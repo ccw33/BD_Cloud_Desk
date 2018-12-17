@@ -1,0 +1,11 @@
+from operation_system import operation_system_blueprint
+from common_api import common_api_blueprint
+from account import account_blueprint
+from other_operations import other_operation_blueprint
+
+blueprints = [
+    operation_system_blueprint,
+    common_api_blueprint,
+    account_blueprint,
+    other_operation_blueprint
+]

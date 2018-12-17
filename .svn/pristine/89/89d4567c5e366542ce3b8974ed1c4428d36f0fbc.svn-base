@@ -1,0 +1,1260 @@
+2018-09-05 16:58:01,151 - Utils.log_utils - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient/cloud_dashboard/cloud_dashboard_end.py", line 64, in get_lans_data
+    net_info = network.getNetworkInfo()
+  File "/home/bluedon/vclient/cloud_dashboard/app/network.py", line 53, in getNetworkInfo
+    if file.get('connection', 'type') == 'ethernet' or file.get('connection', 'type') == 'wifi':
+  File "/usr/lib/python2.7/ConfigParser.py", line 607, in get
+    raise NoSectionError(section)
+NoSectionError: No section: 'connection'
+
+2018-09-05 16:59:19,121 - Utils.log_utils - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient/cloud_dashboard/cloud_dashboard_end.py", line 64, in get_lans_data
+    net_info = network.getNetworkInfo()
+  File "/home/bluedon/vclient/cloud_dashboard/app/network.py", line 53, in getNetworkInfo
+    if file.get('connection', 'type') == 'ethernet' or file.get('connection', 'type') == 'wifi':
+  File "/usr/lib/python2.7/ConfigParser.py", line 607, in get
+    raise NoSectionError(section)
+NoSectionError: No section: 'connection'
+
+2018-09-05 17:16:10,121 - Utils.log_utils - ERROR - Traceback (most recent call last):
+  File "cloud_dashboard_end.py", line 64, in get_lans_data
+    net_info = network.getNetworkInfo()
+  File "/home/bluedon/vclient/cloud_dashboard/app/network.py", line 78, in getNetworkInfo
+    if file.get('wifi', 'mac-address') == dev.HwAddress:
+  File "/usr/lib/python2.7/ConfigParser.py", line 618, in get
+    raise NoOptionError(option, section)
+NoOptionError: No option 'mac-address' in section: 'wifi'
+
+2018-09-05 17:16:16,192 - Utils.log_utils - ERROR - Traceback (most recent call last):
+  File "cloud_dashboard_end.py", line 64, in get_lans_data
+    net_info = network.getNetworkInfo()
+  File "/home/bluedon/vclient/cloud_dashboard/app/network.py", line 78, in getNetworkInfo
+    if file.get('wifi', 'mac-address') == dev.HwAddress:
+  File "/usr/lib/python2.7/ConfigParser.py", line 618, in get
+    raise NoOptionError(option, section)
+NoOptionError: No option 'mac-address' in section: 'wifi'
+
+2018-09-05 17:16:39,576 - Utils.log_utils - ERROR - Traceback (most recent call last):
+  File "cloud_dashboard_end.py", line 64, in get_lans_data
+    net_info = network.getNetworkInfo()
+  File "/home/bluedon/vclient/cloud_dashboard/app/network.py", line 78, in getNetworkInfo
+    if file.get('wifi', 'mac-address') == dev.HwAddress:
+  File "/usr/lib/python2.7/ConfigParser.py", line 618, in get
+    raise NoOptionError(option, section)
+NoOptionError: No option 'mac-address' in section: 'wifi'
+
+2018-09-05 17:18:53,430 - Utils.log_utils - ERROR - Traceback (most recent call last):
+  File "cloud_dashboard_end.py", line 64, in get_lans_data
+    net_info = network.getNetworkInfo()
+  File "/home/bluedon/vclient/cloud_dashboard/app/network.py", line 78, in getNetworkInfo
+    if file.get('wifi', 'mac-address') == dev.HwAddress:
+  File "/usr/lib/python2.7/ConfigParser.py", line 618, in get
+    raise NoOptionError(option, section)
+NoOptionError: No option 'mac-address' in section: 'wifi'
+
+2018-09-28 16:11:19,559 - router.common_api - ERROR - Traceback (most recent call last):
+  File "E:/cloud_dashboard_local\router\common_api.py", line 49, in get_or_post
+    session['account']==request.values['account']
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\werkzeug\local.py", line 377, in <lambda>
+    __getitem__ = lambda x, i: x._get_current_object()[i]
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\flask\sessions.py", line 83, in __getitem__
+    return super(SecureCookieSession, self).__getitem__(key)
+KeyError: 'account'
+
+2018-09-28 16:11:26,622 - router.common_api - ERROR - Traceback (most recent call last):
+  File "E:/cloud_dashboard_local\router\common_api.py", line 49, in get_or_post
+    session['account']==request.values['account']
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\werkzeug\local.py", line 377, in <lambda>
+    __getitem__ = lambda x, i: x._get_current_object()[i]
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\flask\sessions.py", line 83, in __getitem__
+    return super(SecureCookieSession, self).__getitem__(key)
+KeyError: 'account'
+
+2018-09-28 16:12:23,387 - router.common_api - ERROR - Traceback (most recent call last):
+  File "E:/cloud_dashboard_local\router\common_api.py", line 49, in get_or_post
+    session['account']==request.values['account']
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\werkzeug\local.py", line 377, in <lambda>
+    __getitem__ = lambda x, i: x._get_current_object()[i]
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\flask\sessions.py", line 83, in __getitem__
+    return super(SecureCookieSession, self).__getitem__(key)
+KeyError: 'account'
+
+2018-09-28 16:12:31,003 - router.common_api - ERROR - Traceback (most recent call last):
+  File "E:/cloud_dashboard_local\router\common_api.py", line 49, in get_or_post
+    session['account']==request.values.to_dict()['account']
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\werkzeug\local.py", line 377, in <lambda>
+    __getitem__ = lambda x, i: x._get_current_object()[i]
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\flask\sessions.py", line 83, in __getitem__
+    return super(SecureCookieSession, self).__getitem__(key)
+KeyError: 'account'
+
+2018-09-28 16:12:36,348 - router.common_api - ERROR - Traceback (most recent call last):
+  File "E:/cloud_dashboard_local\router\common_api.py", line 49, in get_or_post
+    session['account']==request.values.to_dict()['account']
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\werkzeug\local.py", line 377, in <lambda>
+    __getitem__ = lambda x, i: x._get_current_object()[i]
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\flask\sessions.py", line 83, in __getitem__
+    return super(SecureCookieSession, self).__getitem__(key)
+KeyError: 'account'
+
+2018-09-28 16:14:26,621 - router.common_api - ERROR - Traceback (most recent call last):
+  File "E:/cloud_dashboard_local\router\common_api.py", line 49, in get_or_post
+    session['account']=request.values.to_dict()['account']
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\werkzeug\local.py", line 350, in __setitem__
+    self._get_current_object()[key] = value
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\flask\sessions.py", line 101, in _fail
+    raise RuntimeError('The session is unavailable because no secret '
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+
+2018-09-28 16:44:41,862 - router.account - ERROR - Traceback (most recent call last):
+  File "E:/cloud_dashboard_local\router\account.py", line 28, in login
+    account=request.args.to_dict()['account'],password=request.args.to_dict()['password'],systemType=request.args.to_dict()['systemType']))
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\flask\helpers.py", line 356, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\flask\app.py", line 2061, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\flask\helpers.py", line 345, in url_for
+    force_external=external)
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\werkzeug\routing.py", line 1776, in build
+    raise BuildError(endpoint, values, method, self)
+BuildError: Could not build url for endpoint 'common_api_blueprint.get_or_post' with values ['account', 'password', 'systemType']. Did you mean 'common_api.get_or_post' instead?
+
+2018-09-28 16:44:49,375 - router.account - ERROR - Traceback (most recent call last):
+  File "E:/cloud_dashboard_local\router\account.py", line 28, in login
+    account=request.args.to_dict()['account'],password=request.args.to_dict()['password'],systemType=request.args.to_dict()['systemType']))
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\flask\helpers.py", line 356, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\flask\app.py", line 2061, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\flask\helpers.py", line 345, in url_for
+    force_external=external)
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\werkzeug\routing.py", line 1776, in build
+    raise BuildError(endpoint, values, method, self)
+BuildError: Could not build url for endpoint 'common_api_blueprint.get_or_post' with values ['account', 'password', 'systemType']. Did you mean 'common_api.get_or_post' instead?
+
+2018-09-28 16:45:04,740 - router.account - ERROR - Traceback (most recent call last):
+  File "E:/cloud_dashboard_local\router\account.py", line 28, in login
+    account=request.args.to_dict()['account'],password=request.args.to_dict()['password'],systemType=request.args.to_dict()['systemType']))
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\flask\helpers.py", line 356, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\flask\app.py", line 2061, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\flask\helpers.py", line 345, in url_for
+    force_external=external)
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\werkzeug\routing.py", line 1776, in build
+    raise BuildError(endpoint, values, method, self)
+BuildError: Could not build url for endpoint 'common_api_blueprint.get_or_post' with values ['account', 'password', 'systemType']. Did you mean 'common_api.get_or_post' instead?
+
+2018-09-28 16:59:29,677 - router.account - ERROR - Traceback (most recent call last):
+  File "E:/cloud_dashboard_local\router\account.py", line 28, in login
+    account=request.args.to_dict()['account'],password=request.args.to_dict()['password'],systemType=request.args.to_dict()['systemType']))
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\flask\helpers.py", line 356, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\flask\app.py", line 2061, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\flask\helpers.py", line 345, in url_for
+    force_external=external)
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\werkzeug\routing.py", line 1776, in build
+    raise BuildError(endpoint, values, method, self)
+BuildError: Could not build url for endpoint 'common_api_blueprint.get_or_post' with values ['account', 'password', 'systemType']. Did you mean 'common_api.get_or_post' instead?
+
+2018-09-28 17:00:49,625 - router.account - ERROR - Traceback (most recent call last):
+  File "E:/cloud_dashboard_local\router\account.py", line 28, in login
+    account=request.args.to_dict()['account'],password=request.args.to_dict()['password'],systemType=request.args.to_dict()['systemType']))
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\flask\helpers.py", line 356, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\flask\app.py", line 2061, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\flask\helpers.py", line 345, in url_for
+    force_external=external)
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\werkzeug\routing.py", line 1776, in build
+    raise BuildError(endpoint, values, method, self)
+BuildError: Could not build url for endpoint 'common_api.get_or_post' with values ['account', 'password', 'systemType']. Did you forget to specify values ['api_route']?
+
+2018-09-28 17:25:12,849 - router.account - ERROR - Traceback (most recent call last):
+  File "E:/cloud_dashboard_local\router\account.py", line 47, in logout
+    del session['account']
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\werkzeug\local.py", line 353, in __delitem__
+    del self._get_current_object()[key]
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\werkzeug\datastructures.py", line 238, in oncall
+    rv = getattr(super(UpdateDictMixin, self), name)(*args, **kw)
+KeyError: 'account'
+
+2018-09-29 12:33:24,348 - router.common_api - ERROR - Traceback (most recent call last):
+  File "E:/cloud_dashboard_local\router\common_api.py", line 32, in before_request
+    abort(401)
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\werkzeug\exceptions.py", line 707, in abort
+    return _aborter(status, *args, **kwargs)
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\werkzeug\exceptions.py", line 687, in __call__
+    raise self.mapping[code](*args, **kwargs)
+Unauthorized: 401 Unauthorized: The server could not verify that you are authorized to access the URL requested.  You either supplied the wrong credentials (e.g. a bad password), or your browser doesn't understand how to supply the credentials required.
+
+2018-09-29 12:35:27,677 - router.common_api - ERROR - Traceback (most recent call last):
+  File "E:/cloud_dashboard_local\router\common_api.py", line 32, in before_request
+    abort(401)
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\werkzeug\exceptions.py", line 707, in abort
+    return _aborter(status, *args, **kwargs)
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\werkzeug\exceptions.py", line 687, in __call__
+    raise self.mapping[code](*args, **kwargs)
+Unauthorized: 401 Unauthorized: The server could not verify that you are authorized to access the URL requested.  You either supplied the wrong credentials (e.g. a bad password), or your browser doesn't understand how to supply the credentials required.
+
+2018-09-29 12:35:36,861 - router.common_api - ERROR - Traceback (most recent call last):
+  File "E:/cloud_dashboard_local\router\common_api.py", line 32, in before_request
+    abort(401)
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\werkzeug\exceptions.py", line 707, in abort
+    return _aborter(status, *args, **kwargs)
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\werkzeug\exceptions.py", line 687, in __call__
+    raise self.mapping[code](*args, **kwargs)
+Unauthorized: 401 Unauthorized: The server could not verify that you are authorized to access the URL requested.  You either supplied the wrong credentials (e.g. a bad password), or your browser doesn't understand how to supply the credentials required.
+
+2018-09-29 12:37:48,865 - router.common_api - ERROR - Traceback (most recent call last):
+  File "E:/cloud_dashboard_local\router\common_api.py", line 34, in before_request
+    abort(resp)
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\werkzeug\exceptions.py", line 707, in abort
+    return _aborter(status, *args, **kwargs)
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\werkzeug\exceptions.py", line 684, in __call__
+    raise HTTPException(response=code)
+HTTPException: ??? Unknown Error: None
+
+2018-09-29 12:38:06,539 - router.common_api - ERROR - Traceback (most recent call last):
+  File "E:/cloud_dashboard_local\router\common_api.py", line 34, in before_request
+    abort(resp)
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\werkzeug\exceptions.py", line 707, in abort
+    return _aborter(status, *args, **kwargs)
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\werkzeug\exceptions.py", line 684, in __call__
+    raise HTTPException(response=code)
+HTTPException: ??? Unknown Error: None
+
+2018-09-29 12:40:54,759 - router.common_api - ERROR - Traceback (most recent call last):
+  File "E:/cloud_dashboard_local\router\common_api.py", line 34, in before_request
+    abort(resp)
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\werkzeug\exceptions.py", line 707, in abort
+    return _aborter(status, *args, **kwargs)
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\werkzeug\exceptions.py", line 684, in __call__
+    raise HTTPException(response=code)
+HTTPException: ??? Unknown Error: None
+
+2018-09-29 12:41:43,400 - router.common_api - ERROR - Traceback (most recent call last):
+  File "E:/cloud_dashboard_local\router\common_api.py", line 34, in before_request
+    abort(resp)
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\werkzeug\exceptions.py", line 707, in abort
+    return _aborter(status, *args, **kwargs)
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\werkzeug\exceptions.py", line 684, in __call__
+    raise HTTPException(response=code)
+HTTPException: ??? Unknown Error: None
+
+2018-09-29 12:42:56,217 - router.common_api - ERROR - Traceback (most recent call last):
+  File "E:/cloud_dashboard_local\router\common_api.py", line 34, in before_request
+    abort(resp)
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\werkzeug\exceptions.py", line 707, in abort
+    return _aborter(status, *args, **kwargs)
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\werkzeug\exceptions.py", line 684, in __call__
+    raise HTTPException(response=code)
+HTTPException: ??? Unknown Error: None
+
+2018-09-29 12:44:06,164 - router.common_api - ERROR - Traceback (most recent call last):
+  File "E:/cloud_dashboard_local\router\common_api.py", line 34, in before_request
+    abort(401)
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\werkzeug\exceptions.py", line 707, in abort
+    return _aborter(status, *args, **kwargs)
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\werkzeug\exceptions.py", line 687, in __call__
+    raise self.mapping[code](*args, **kwargs)
+Unauthorized: 401 Unauthorized: The server could not verify that you are authorized to access the URL requested.  You either supplied the wrong credentials (e.g. a bad password), or your browser doesn't understand how to supply the credentials required.
+
+2018-09-29 12:45:41,552 - router.common_api - ERROR - Traceback (most recent call last):
+  File "E:/cloud_dashboard_local\router\common_api.py", line 34, in before_request
+    abort(401)
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\werkzeug\exceptions.py", line 707, in abort
+    return _aborter(status, *args, **kwargs)
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\werkzeug\exceptions.py", line 687, in __call__
+    raise self.mapping[code](*args, **kwargs)
+Unauthorized: 401 Unauthorized: The server could not verify that you are authorized to access the URL requested.  You either supplied the wrong credentials (e.g. a bad password), or your browser doesn't understand how to supply the credentials required.
+
+2018-09-29 16:30:01,568 - router.account - ERROR - Traceback (most recent call last):
+  File "E:/cloud_dashboard_local\router\account.py", line 36, in login
+    resp = Cross_Origin_Response(json.dumps({'content': response.json()['errorinfo']}), mimetype='application/json',status=200)
+  File "E:/cloud_dashboard_local\Utils\flask_class.py", line 8, in __init__
+    super(Response).__init__(self,*args,**kwargs)
+TypeError: super does not take keyword arguments
+
+2018-09-29 16:30:13,970 - router.account - ERROR - Traceback (most recent call last):
+  File "E:/cloud_dashboard_local\router\account.py", line 36, in login
+    resp = Cross_Origin_Response(json.dumps({'content': response.json()['errorinfo']}), mimetype='application/json',status=200)
+  File "E:/cloud_dashboard_local\Utils\flask_class.py", line 8, in __init__
+    super(Response).__init__(self,*args,**kwargs)
+TypeError: super does not take keyword arguments
+
+2018-09-30 11:32:43,121 - router.account - ERROR - Traceback (most recent call last):
+  File "E:/cloud_dashboard_local\router\account.py", line 34, in login
+    session['account'][request.cookies['account']] = request.args.to_dict()['password']
+KeyError: 'account'
+
+2018-09-30 11:32:43,219 - router.account - ERROR - Traceback (most recent call last):
+  File "E:/cloud_dashboard_local\router\account.py", line 34, in login
+    session['account'][request.cookies['account']] = request.args.to_dict()['password']
+KeyError: 'account'
+
+2018-09-30 11:34:44,193 - router.account - ERROR - Traceback (most recent call last):
+  File "E:/cloud_dashboard_local\router\account.py", line 36, in login
+    resp.set_cookie('account',request.cookies['account'])
+KeyError: 'account'
+
+2018-10-10 14:53:02,757 - router.common_api - ERROR - Traceback (most recent call last):
+  File "E:/cloud_dashboard_local\router\common_api.py", line 45, in get_or_post
+    query_string = 'password={0}&{1}'.format(session['account'][request.cookies['account']],
+KeyError: u''
+
+2018-10-10 14:54:41,838 - router.common_api - ERROR - Traceback (most recent call last):
+  File "E:/cloud_dashboard_local\router\common_api.py", line 46, in get_or_post
+    query_string = 'password={0}&{1}'.format(session['account'][request.cookies['account']],
+KeyError: u''
+
+2018-10-10 15:25:43,454 - router.common_api - ERROR - Traceback (most recent call last):
+  File "E:/cloud_dashboard_local\router\common_api.py", line 43, in get_or_post
+    query_string = 'password={0}&{1}'.format(session['account'][request.cookies['account']['password']],
+TypeError: string indices must be integers
+
+2018-10-10 15:31:35,812 - router.common_api - ERROR - Traceback (most recent call last):
+  File "E:/cloud_dashboard_local\router\common_api.py", line 43, in get_or_post
+    query_string = 'password={0}&{1}'.format(session['account'][request.cookies['account']['password']],
+TypeError: string indices must be integers
+
+2018-10-10 15:31:36,229 - router.common_api - ERROR - Traceback (most recent call last):
+  File "E:/cloud_dashboard_local\router\common_api.py", line 43, in get_or_post
+    query_string = 'password={0}&{1}'.format(session['account'][request.cookies['account']['password']],
+TypeError: string indices must be integers
+
+2018-10-10 15:31:36,362 - router.common_api - ERROR - Traceback (most recent call last):
+  File "E:/cloud_dashboard_local\router\common_api.py", line 43, in get_or_post
+    query_string = 'password={0}&{1}'.format(session['account'][request.cookies['account']['password']],
+TypeError: string indices must be integers
+
+2018-10-10 15:31:36,431 - router.common_api - ERROR - Traceback (most recent call last):
+  File "E:/cloud_dashboard_local\router\common_api.py", line 43, in get_or_post
+    query_string = 'password={0}&{1}'.format(session['account'][request.cookies['account']['password']],
+TypeError: string indices must be integers
+
+2018-10-10 15:31:37,029 - router.common_api - ERROR - Traceback (most recent call last):
+  File "E:/cloud_dashboard_local\router\common_api.py", line 43, in get_or_post
+    query_string = 'password={0}&{1}'.format(session['account'][request.cookies['account']['password']],
+TypeError: string indices must be integers
+
+2018-10-10 16:12:50,765 - router.common_api - ERROR - Traceback (most recent call last):
+  File "E:/cloud_dashboard_local\router\common_api.py", line 55, in get_or_post
+    if path=='api/EditPassword' and response.content['errorinfo']=='success':
+TypeError: string indices must be integers, not str
+
+2018-10-10 16:13:49,739 - router.common_api - ERROR - Traceback (most recent call last):
+  File "E:/cloud_dashboard_local\router\common_api.py", line 55, in get_or_post
+    if path=='api/EditPassword' and response.content['errorinfo']=='success':
+TypeError: string indices must be integers, not str
+
+2018-10-10 16:14:07,118 - router.common_api - ERROR - Traceback (most recent call last):
+  File "E:/cloud_dashboard_local\router\common_api.py", line 55, in get_or_post
+    if path=='api/EditPassword' and response.content['errorinfo']=='success':
+TypeError: string indices must be integers, not str
+
+2018-10-10 16:15:11,578 - router.common_api - ERROR - Traceback (most recent call last):
+  File "E:/cloud_dashboard_local\router\common_api.py", line 55, in get_or_post
+    if path=='api/EditPassword' and response.content['errorinfo']=='success':
+TypeError: string indices must be integers, not str
+
+2018-10-10 16:23:04,334 - router.common_api - ERROR - Traceback (most recent call last):
+  File "E:/cloud_dashboard_local\router\common_api.py", line 56, in get_or_post
+    session['account'][request.cookies['account']]['password'] = request.args['newPassword']
+KeyError: u'chenchaowen'
+
+2018-10-10 17:39:55,072 - router.common_api - ERROR - Traceback (most recent call last):
+  File "E:/cloud_dashboard_local\router\common_api.py", line 58, in get_or_post
+    raise Exception(str(response.status_code) + ':' + response.json()['errorinfo'])
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\requests\models.py", line 850, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "D:\Python27\Lib\json\__init__.py", line 338, in loads
+    return _default_decoder.decode(s)
+  File "D:\Python27\Lib\json\decoder.py", line 366, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "D:\Python27\Lib\json\decoder.py", line 384, in raw_decode
+    raise ValueError("No JSON object could be decoded")
+ValueError: No JSON object could be decoded
+
+2018-10-10 17:43:00,959 - router.common_api - ERROR - Traceback (most recent call last):
+  File "E:/cloud_dashboard_local\router\common_api.py", line 58, in get_or_post
+    raise Exception(str(response.status_code) + ':' + response.json()['errorinfo'])
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\requests\models.py", line 850, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "D:\Python27\Lib\json\__init__.py", line 338, in loads
+    return _default_decoder.decode(s)
+  File "D:\Python27\Lib\json\decoder.py", line 366, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "D:\Python27\Lib\json\decoder.py", line 384, in raw_decode
+    raise ValueError("No JSON object could be decoded")
+ValueError: No JSON object could be decoded
+
+2018-10-10 17:46:24,782 - router.common_api - ERROR - Traceback (most recent call last):
+  File "E:/cloud_dashboard_local\router\common_api.py", line 58, in get_or_post
+    raise Exception(str(response.status_code) + ':' + response.json()['errorinfo'])
+  File "E:\cloud_dashboard_local\venv\lib\site-packages\requests\models.py", line 850, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "D:\Python27\Lib\json\__init__.py", line 338, in loads
+    return _default_decoder.decode(s)
+  File "D:\Python27\Lib\json\decoder.py", line 366, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "D:\Python27\Lib\json\decoder.py", line 384, in raw_decode
+    raise ValueError("No JSON object could be decoded")
+ValueError: No JSON object could be decoded
+
+2018-10-10 17:48:43,614 - router.common_api - ERROR - Traceback (most recent call last):
+  File "E:/cloud_dashboard_local\router\common_api.py", line 58, in get_or_post
+    raise Exception(str(response.status_code))
+Exception: 404
+
+2018-10-15 13:42:14,145 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 139, in connect_wifi
+    network.connectWifi(data['name'],data['is_lock'],data['password'])
+  File "/home/bluedon/vclient_web/app/network.py", line 274, in connectWifi
+    NetworkManager.Settings.ReloadConnections()
+  File "<string>", line 3, in ReloadConnections
+  File "/usr/lib/python2.7/dist-packages/dbus/proxies.py", line 145, in __call__
+    **keywords)
+  File "/usr/lib/python2.7/dist-packages/dbus/connection.py", line 651, in call_blocking
+    message, timeout)
+DBusException: org.freedesktop.DBus.Error.AccessDenied: Rejected send message, 4 matched rules; type="method_call", sender=":1.147" (uid=1000 pid=8883 comm="/usr/bin/python cloud_dashboard_end.py ") interface="org.freedesktop.NetworkManager.Settings" member="ReloadConnections" error name="(unset)" requested_reply="0" destination=":1.4" (uid=0 pid=739 comm="/usr/sbin/NetworkManager --no-daemon ")
+
+2018-10-15 13:43:17,121 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 62, in get_lans_data
+    net_info = network.getNetworkInfo()
+  File "/home/bluedon/vclient_web/app/network.py", line 53, in getNetworkInfo
+    if file.get('connection', 'type') == 'ethernet':
+  File "/usr/lib/python2.7/ConfigParser.py", line 607, in get
+    raise NoSectionError(section)
+NoSectionError: No section: 'connection'
+
+2018-10-15 13:44:33,311 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 139, in connect_wifi
+    network.connectWifi(data['name'],data['is_lock'],data['password'])
+  File "/home/bluedon/vclient_web/app/network.py", line 272, in connectWifi
+    os.remove(file)
+OSError: [Errno 13] Permission denied: '/etc/NetworkManager/system-connections/vdesktop'
+
+2018-10-15 13:44:36,657 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 139, in connect_wifi
+    network.connectWifi(data['name'],data['is_lock'],data['password'])
+  File "/home/bluedon/vclient_web/app/network.py", line 272, in connectWifi
+    os.remove(file)
+OSError: [Errno 13] Permission denied: '/etc/NetworkManager/system-connections/vdesktop'
+
+2018-10-15 13:44:36,832 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 139, in connect_wifi
+    network.connectWifi(data['name'],data['is_lock'],data['password'])
+  File "/home/bluedon/vclient_web/app/network.py", line 272, in connectWifi
+    os.remove(file)
+OSError: [Errno 13] Permission denied: '/etc/NetworkManager/system-connections/vdesktop'
+
+2018-10-15 13:44:37,104 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 139, in connect_wifi
+    network.connectWifi(data['name'],data['is_lock'],data['password'])
+  File "/home/bluedon/vclient_web/app/network.py", line 272, in connectWifi
+    os.remove(file)
+OSError: [Errno 13] Permission denied: '/etc/NetworkManager/system-connections/vdesktop'
+
+2018-10-15 13:44:37,592 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 139, in connect_wifi
+    network.connectWifi(data['name'],data['is_lock'],data['password'])
+  File "/home/bluedon/vclient_web/app/network.py", line 272, in connectWifi
+    os.remove(file)
+OSError: [Errno 13] Permission denied: '/etc/NetworkManager/system-connections/vdesktop'
+
+2018-10-15 13:44:37,801 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 139, in connect_wifi
+    network.connectWifi(data['name'],data['is_lock'],data['password'])
+  File "/home/bluedon/vclient_web/app/network.py", line 272, in connectWifi
+    os.remove(file)
+OSError: [Errno 13] Permission denied: '/etc/NetworkManager/system-connections/vdesktop'
+
+2018-10-15 13:44:41,355 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 139, in connect_wifi
+    network.connectWifi(data['name'],data['is_lock'],data['password'])
+  File "/home/bluedon/vclient_web/app/network.py", line 272, in connectWifi
+    os.remove(file)
+OSError: [Errno 13] Permission denied: '/etc/NetworkManager/system-connections/vdesktop'
+
+2018-10-15 13:44:41,810 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 139, in connect_wifi
+    network.connectWifi(data['name'],data['is_lock'],data['password'])
+  File "/home/bluedon/vclient_web/app/network.py", line 272, in connectWifi
+    os.remove(file)
+OSError: [Errno 13] Permission denied: '/etc/NetworkManager/system-connections/vdesktop'
+
+2018-10-15 13:44:41,969 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 139, in connect_wifi
+    network.connectWifi(data['name'],data['is_lock'],data['password'])
+  File "/home/bluedon/vclient_web/app/network.py", line 272, in connectWifi
+    os.remove(file)
+OSError: [Errno 13] Permission denied: '/etc/NetworkManager/system-connections/vdesktop'
+
+2018-10-15 13:44:42,128 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 139, in connect_wifi
+    network.connectWifi(data['name'],data['is_lock'],data['password'])
+  File "/home/bluedon/vclient_web/app/network.py", line 272, in connectWifi
+    os.remove(file)
+OSError: [Errno 13] Permission denied: '/etc/NetworkManager/system-connections/vdesktop'
+
+2018-10-15 13:44:44,815 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 139, in connect_wifi
+    network.connectWifi(data['name'],data['is_lock'],data['password'])
+  File "/home/bluedon/vclient_web/app/network.py", line 272, in connectWifi
+    os.remove(file)
+OSError: [Errno 13] Permission denied: '/etc/NetworkManager/system-connections/vdesktop'
+
+2018-10-15 13:44:45,015 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 139, in connect_wifi
+    network.connectWifi(data['name'],data['is_lock'],data['password'])
+  File "/home/bluedon/vclient_web/app/network.py", line 272, in connectWifi
+    os.remove(file)
+OSError: [Errno 13] Permission denied: '/etc/NetworkManager/system-connections/vdesktop'
+
+2018-10-15 13:44:46,583 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 139, in connect_wifi
+    network.connectWifi(data['name'],data['is_lock'],data['password'])
+  File "/home/bluedon/vclient_web/app/network.py", line 272, in connectWifi
+    os.remove(file)
+OSError: [Errno 13] Permission denied: '/etc/NetworkManager/system-connections/vdesktop'
+
+2018-10-15 13:44:47,039 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 139, in connect_wifi
+    network.connectWifi(data['name'],data['is_lock'],data['password'])
+  File "/home/bluedon/vclient_web/app/network.py", line 272, in connectWifi
+    os.remove(file)
+OSError: [Errno 13] Permission denied: '/etc/NetworkManager/system-connections/vdesktop'
+
+2018-10-15 13:44:47,248 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 139, in connect_wifi
+    network.connectWifi(data['name'],data['is_lock'],data['password'])
+  File "/home/bluedon/vclient_web/app/network.py", line 272, in connectWifi
+    os.remove(file)
+OSError: [Errno 13] Permission denied: '/etc/NetworkManager/system-connections/vdesktop'
+
+2018-10-15 13:44:47,481 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 139, in connect_wifi
+    network.connectWifi(data['name'],data['is_lock'],data['password'])
+  File "/home/bluedon/vclient_web/app/network.py", line 272, in connectWifi
+    os.remove(file)
+OSError: [Errno 13] Permission denied: '/etc/NetworkManager/system-connections/vdesktop'
+
+2018-10-15 13:44:48,384 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 139, in connect_wifi
+    network.connectWifi(data['name'],data['is_lock'],data['password'])
+  File "/home/bluedon/vclient_web/app/network.py", line 272, in connectWifi
+    os.remove(file)
+OSError: [Errno 13] Permission denied: '/etc/NetworkManager/system-connections/vdesktop'
+
+2018-10-15 13:44:48,590 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 139, in connect_wifi
+    network.connectWifi(data['name'],data['is_lock'],data['password'])
+  File "/home/bluedon/vclient_web/app/network.py", line 272, in connectWifi
+    os.remove(file)
+OSError: [Errno 13] Permission denied: '/etc/NetworkManager/system-connections/vdesktop'
+
+2018-10-15 13:44:48,903 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 139, in connect_wifi
+    network.connectWifi(data['name'],data['is_lock'],data['password'])
+  File "/home/bluedon/vclient_web/app/network.py", line 272, in connectWifi
+    os.remove(file)
+OSError: [Errno 13] Permission denied: '/etc/NetworkManager/system-connections/vdesktop'
+
+2018-10-15 13:44:51,407 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 139, in connect_wifi
+    network.connectWifi(data['name'],data['is_lock'],data['password'])
+  File "/home/bluedon/vclient_web/app/network.py", line 272, in connectWifi
+    os.remove(file)
+OSError: [Errno 13] Permission denied: '/etc/NetworkManager/system-connections/vdesktop'
+
+2018-10-15 13:45:05,239 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 139, in connect_wifi
+    network.connectWifi(data['name'],data['is_lock'],data['password'])
+  File "/home/bluedon/vclient_web/app/network.py", line 272, in connectWifi
+    os.remove(file)
+OSError: [Errno 13] Permission denied: '/etc/NetworkManager/system-connections/vdesktop'
+
+2018-10-15 13:45:15,191 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 139, in connect_wifi
+    network.connectWifi(data['name'],data['is_lock'],data['password'])
+  File "/home/bluedon/vclient_web/app/network.py", line 272, in connectWifi
+    os.remove(file)
+OSError: [Errno 13] Permission denied: '/etc/NetworkManager/system-connections/vdesktop'
+
+2018-10-15 13:45:16,327 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 139, in connect_wifi
+    network.connectWifi(data['name'],data['is_lock'],data['password'])
+  File "/home/bluedon/vclient_web/app/network.py", line 272, in connectWifi
+    os.remove(file)
+OSError: [Errno 13] Permission denied: '/etc/NetworkManager/system-connections/vdesktop'
+
+2018-10-15 13:45:16,535 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 139, in connect_wifi
+    network.connectWifi(data['name'],data['is_lock'],data['password'])
+  File "/home/bluedon/vclient_web/app/network.py", line 272, in connectWifi
+    os.remove(file)
+OSError: [Errno 13] Permission denied: '/etc/NetworkManager/system-connections/vdesktop'
+
+2018-10-15 13:45:16,743 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 139, in connect_wifi
+    network.connectWifi(data['name'],data['is_lock'],data['password'])
+  File "/home/bluedon/vclient_web/app/network.py", line 272, in connectWifi
+    os.remove(file)
+OSError: [Errno 13] Permission denied: '/etc/NetworkManager/system-connections/vdesktop'
+
+2018-10-15 13:45:16,894 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 139, in connect_wifi
+    network.connectWifi(data['name'],data['is_lock'],data['password'])
+  File "/home/bluedon/vclient_web/app/network.py", line 272, in connectWifi
+    os.remove(file)
+OSError: [Errno 13] Permission denied: '/etc/NetworkManager/system-connections/vdesktop'
+
+2018-10-15 13:45:17,064 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 139, in connect_wifi
+    network.connectWifi(data['name'],data['is_lock'],data['password'])
+  File "/home/bluedon/vclient_web/app/network.py", line 272, in connectWifi
+    os.remove(file)
+OSError: [Errno 13] Permission denied: '/etc/NetworkManager/system-connections/vdesktop'
+
+2018-10-15 13:45:17,255 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 139, in connect_wifi
+    network.connectWifi(data['name'],data['is_lock'],data['password'])
+  File "/home/bluedon/vclient_web/app/network.py", line 272, in connectWifi
+    os.remove(file)
+OSError: [Errno 13] Permission denied: '/etc/NetworkManager/system-connections/vdesktop'
+
+2018-10-15 13:45:19,534 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 139, in connect_wifi
+    network.connectWifi(data['name'],data['is_lock'],data['password'])
+  File "/home/bluedon/vclient_web/app/network.py", line 272, in connectWifi
+    os.remove(file)
+OSError: [Errno 13] Permission denied: '/etc/NetworkManager/system-connections/vdesktop'
+
+2018-10-15 13:45:19,967 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 139, in connect_wifi
+    network.connectWifi(data['name'],data['is_lock'],data['password'])
+  File "/home/bluedon/vclient_web/app/network.py", line 272, in connectWifi
+    os.remove(file)
+OSError: [Errno 13] Permission denied: '/etc/NetworkManager/system-connections/vdesktop'
+
+2018-10-15 13:45:23,687 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 139, in connect_wifi
+    network.connectWifi(data['name'],data['is_lock'],data['password'])
+  File "/home/bluedon/vclient_web/app/network.py", line 272, in connectWifi
+    os.remove(file)
+OSError: [Errno 13] Permission denied: '/etc/NetworkManager/system-connections/vdesktop'
+
+2018-10-15 13:45:25,367 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 139, in connect_wifi
+    network.connectWifi(data['name'],data['is_lock'],data['password'])
+  File "/home/bluedon/vclient_web/app/network.py", line 272, in connectWifi
+    os.remove(file)
+OSError: [Errno 13] Permission denied: '/etc/NetworkManager/system-connections/vdesktop'
+
+2018-10-15 13:45:25,903 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 139, in connect_wifi
+    network.connectWifi(data['name'],data['is_lock'],data['password'])
+  File "/home/bluedon/vclient_web/app/network.py", line 272, in connectWifi
+    os.remove(file)
+OSError: [Errno 13] Permission denied: '/etc/NetworkManager/system-connections/vdesktop'
+
+2018-10-15 13:45:26,359 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 139, in connect_wifi
+    network.connectWifi(data['name'],data['is_lock'],data['password'])
+  File "/home/bluedon/vclient_web/app/network.py", line 272, in connectWifi
+    os.remove(file)
+OSError: [Errno 13] Permission denied: '/etc/NetworkManager/system-connections/vdesktop'
+
+2018-10-15 13:45:27,024 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 139, in connect_wifi
+    network.connectWifi(data['name'],data['is_lock'],data['password'])
+  File "/home/bluedon/vclient_web/app/network.py", line 272, in connectWifi
+    os.remove(file)
+OSError: [Errno 13] Permission denied: '/etc/NetworkManager/system-connections/vdesktop'
+
+2018-10-15 13:45:27,318 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 139, in connect_wifi
+    network.connectWifi(data['name'],data['is_lock'],data['password'])
+  File "/home/bluedon/vclient_web/app/network.py", line 272, in connectWifi
+    os.remove(file)
+OSError: [Errno 13] Permission denied: '/etc/NetworkManager/system-connections/vdesktop'
+
+2018-10-15 13:45:27,495 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 139, in connect_wifi
+    network.connectWifi(data['name'],data['is_lock'],data['password'])
+  File "/home/bluedon/vclient_web/app/network.py", line 272, in connectWifi
+    os.remove(file)
+OSError: [Errno 13] Permission denied: '/etc/NetworkManager/system-connections/vdesktop'
+
+2018-10-15 13:49:59,609 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 62, in get_lans_data
+    net_info = network.getNetworkInfo()
+  File "/home/bluedon/vclient_web/app/network.py", line 53, in getNetworkInfo
+    if file.get('connection', 'type') == 'ethernet':
+  File "/usr/lib/python2.7/ConfigParser.py", line 607, in get
+    raise NoSectionError(section)
+NoSectionError: No section: 'connection'
+
+2018-10-15 13:50:09,682 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 62, in get_lans_data
+    net_info = network.getNetworkInfo()
+  File "/home/bluedon/vclient_web/app/network.py", line 53, in getNetworkInfo
+    if file.get('connection', 'type') == 'ethernet':
+  File "/usr/lib/python2.7/ConfigParser.py", line 607, in get
+    raise NoSectionError(section)
+NoSectionError: No section: 'connection'
+
+2018-10-15 13:50:38,050 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 139, in connect_wifi
+    network.connectWifi(data['name'],data['is_lock'],data['password'])
+  File "/home/bluedon/vclient_web/app/network.py", line 272, in connectWifi
+    os.remove(file)
+OSError: [Errno 13] Permission denied: '/etc/NetworkManager/system-connections/vdesktop'
+
+2018-10-15 13:50:40,879 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 139, in connect_wifi
+    network.connectWifi(data['name'],data['is_lock'],data['password'])
+  File "/home/bluedon/vclient_web/app/network.py", line 272, in connectWifi
+    os.remove(file)
+OSError: [Errno 13] Permission denied: '/etc/NetworkManager/system-connections/vdesktop'
+
+2018-10-15 13:50:41,250 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 139, in connect_wifi
+    network.connectWifi(data['name'],data['is_lock'],data['password'])
+  File "/home/bluedon/vclient_web/app/network.py", line 272, in connectWifi
+    os.remove(file)
+OSError: [Errno 13] Permission denied: '/etc/NetworkManager/system-connections/vdesktop'
+
+2018-10-15 13:50:41,637 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 139, in connect_wifi
+    network.connectWifi(data['name'],data['is_lock'],data['password'])
+  File "/home/bluedon/vclient_web/app/network.py", line 272, in connectWifi
+    os.remove(file)
+OSError: [Errno 13] Permission denied: '/etc/NetworkManager/system-connections/vdesktop'
+
+2018-10-15 13:55:41,100 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 62, in get_lans_data
+    net_info = network.getNetworkInfo()
+  File "/home/bluedon/vclient_web/app/network.py", line 53, in getNetworkInfo
+    if file.get('connection', 'type') == 'ethernet':
+  File "/usr/lib/python2.7/ConfigParser.py", line 607, in get
+    raise NoSectionError(section)
+NoSectionError: No section: 'connection'
+
+2018-10-15 14:37:49,498 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 62, in get_lans_data
+    net_info = network.getNetworkInfo()
+  File "/home/bluedon/vclient_web/app/network.py", line 53, in getNetworkInfo
+    if file.get('connection', 'type') == 'ethernet':
+  File "/usr/lib/python2.7/ConfigParser.py", line 607, in get
+    raise NoSectionError(section)
+NoSectionError: No section: 'connection'
+
+2018-10-15 14:39:00,521 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 62, in get_lans_data
+    net_info = network.getNetworkInfo()
+  File "/home/bluedon/vclient_web/app/network.py", line 53, in getNetworkInfo
+    if file.get('connection', 'type') == 'ethernet':
+  File "/usr/lib/python2.7/ConfigParser.py", line 607, in get
+    raise NoSectionError(section)
+NoSectionError: No section: 'connection'
+
+2018-10-15 14:39:21,141 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 62, in get_lans_data
+    net_info = network.getNetworkInfo()
+  File "/home/bluedon/vclient_web/app/network.py", line 53, in getNetworkInfo
+    if file.get('connection', 'type') == 'ethernet':
+  File "/usr/lib/python2.7/ConfigParser.py", line 607, in get
+    raise NoSectionError(section)
+NoSectionError: No section: 'connection'
+
+2018-10-15 14:39:30,774 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 62, in get_lans_data
+    net_info = network.getNetworkInfo()
+  File "/home/bluedon/vclient_web/app/network.py", line 53, in getNetworkInfo
+    if file.get('connection', 'type') == 'ethernet':
+  File "/usr/lib/python2.7/ConfigParser.py", line 607, in get
+    raise NoSectionError(section)
+NoSectionError: No section: 'connection'
+
+2018-10-15 14:39:46,439 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 62, in get_lans_data
+    net_info = network.getNetworkInfo()
+  File "/home/bluedon/vclient_web/app/network.py", line 53, in getNetworkInfo
+    if file.get('connection', 'type') == 'ethernet':
+  File "/usr/lib/python2.7/ConfigParser.py", line 607, in get
+    raise NoSectionError(section)
+NoSectionError: No section: 'connection'
+
+2018-10-15 14:41:10,964 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 62, in get_lans_data
+    net_info = network.getNetworkInfo()
+  File "/home/bluedon/vclient_web/app/network.py", line 53, in getNetworkInfo
+    if file.get('connection', 'type') == 'ethernet':
+  File "/usr/lib/python2.7/ConfigParser.py", line 607, in get
+    raise NoSectionError(section)
+NoSectionError: No section: 'connection'
+
+2018-10-15 14:42:15,126 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 62, in get_lans_data
+    net_info = network.getNetworkInfo()
+  File "/home/bluedon/vclient_web/app/network.py", line 53, in getNetworkInfo
+    if file.get('connection', 'type') == 'ethernet':
+  File "/usr/lib/python2.7/ConfigParser.py", line 607, in get
+    raise NoSectionError(section)
+NoSectionError: No section: 'connection'
+
+2018-10-15 14:42:32,187 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 62, in get_lans_data
+    net_info = network.getNetworkInfo()
+  File "/home/bluedon/vclient_web/app/network.py", line 53, in getNetworkInfo
+    if file.get('connection', 'type') == 'ethernet':
+  File "/usr/lib/python2.7/ConfigParser.py", line 607, in get
+    raise NoSectionError(section)
+NoSectionError: No section: 'connection'
+
+2018-10-15 14:50:58,775 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 62, in get_lans_data
+    net_info = network.getNetworkInfo()
+  File "/home/bluedon/vclient_web/app/network.py", line 53, in getNetworkInfo
+    if file.get('connection', 'type') == 'ethernet':
+  File "/usr/lib/python2.7/ConfigParser.py", line 607, in get
+    raise NoSectionError(section)
+NoSectionError: No section: 'connection'
+
+2018-10-15 14:51:02,934 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 62, in get_lans_data
+    net_info = network.getNetworkInfo()
+  File "/home/bluedon/vclient_web/app/network.py", line 53, in getNetworkInfo
+    if file.get('connection', 'type') == 'ethernet':
+  File "/usr/lib/python2.7/ConfigParser.py", line 607, in get
+    raise NoSectionError(section)
+NoSectionError: No section: 'connection'
+
+2018-10-15 14:54:41,092 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 62, in get_lans_data
+    net_info = network.getNetworkInfo()
+  File "/home/bluedon/vclient_web/app/network.py", line 53, in getNetworkInfo
+    if file.get('connection', 'type') == 'ethernet':
+  File "/usr/lib/python2.7/ConfigParser.py", line 607, in get
+    raise NoSectionError(section)
+NoSectionError: No section: 'connection'
+
+2018-10-15 18:01:23,066 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 185, in get_resolution
+    resolution_list = resolution.get_resolution()
+  File "/home/bluedon/vclient_web/app/resolution.py", line 10, in get_resolution
+    xrandrs.append(lines[0].split(',')[1][9:])
+IndexError: list index out of range
+
+2018-10-15 18:01:36,590 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 185, in get_resolution
+    resolution_list = resolution.get_resolution()
+  File "/home/bluedon/vclient_web/app/resolution.py", line 10, in get_resolution
+    xrandrs.append(lines[0].split(',')[1][9:])
+IndexError: list index out of range
+
+2018-10-15 18:02:03,069 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/home/bluedon/vclient_web/router/operation_system.py", line 185, in get_resolution
+    resolution_list = resolution.get_resolution()
+  File "/home/bluedon/vclient_web/app/resolution.py", line 10, in get_resolution
+    xrandrs.append(lines[0].split(',')[1][9:])
+IndexError: list index out of range
+
+2018-10-31 17:32:15,050 - router.operation_system - DEBUG - {'vm_name': u'localwin7', 'configId': u'191'}
+2018-10-31 17:32:15,050 - router.operation_system - DEBUG - start  local vm1
+2018-10-31 17:32:15,845 - router.operation_system - DEBUG - vclient.create {'code': 0, 'error_msg': None, 'results': '199'}
+2018-10-31 17:32:15,845 - router.operation_system - DEBUG - start  local vm
+2018-10-31 17:34:12,919 - router.operation_system - DEBUG - {'vm_name': u'localwin7', 'configId': u'191'}
+2018-10-31 17:34:12,920 - router.operation_system - DEBUG - start  local vm1
+2018-10-31 17:34:12,940 - router.operation_system - DEBUG - vclient.create {'code': 0, 'error_msg': None, 'results': 199}
+2018-10-31 17:34:12,941 - router.operation_system - DEBUG - start  local vm
+2018-10-31 17:41:20,490 - router.operation_system - DEBUG - {'vm_name': u'localwin7', 'configId': u'191'}
+2018-10-31 17:41:20,491 - router.operation_system - DEBUG - start  local vm1
+2018-10-31 17:41:20,497 - router.operation_system - DEBUG - vclient.create {'code': 0, 'error_msg': None, 'results': 199}
+2018-10-31 17:41:20,497 - router.operation_system - DEBUG - start  local vm
+2018-10-31 17:41:27,177 - router.operation_system - DEBUG - {'vm_name': u'localwin7', 'configId': u'191'}
+2018-10-31 17:41:27,178 - router.operation_system - DEBUG - start  local vm1
+2018-10-31 17:41:27,185 - router.operation_system - DEBUG - vclient.create {'code': 0, 'error_msg': None, 'results': 199}
+2018-10-31 17:41:27,186 - router.operation_system - DEBUG - start  local vm
+2018-10-31 17:56:31,288 - router.operation_system - DEBUG - {'volume_size': u'15', 'ram': u'2048', 'image_id': u'73b8f379-bef2-482f-9af4-af541ea5cb65', 'image_size': u'4619027456', 'configId': u'191', 'cpu': u'2'}
+2018-10-31 17:56:31,289 - router.operation_system - DEBUG - start  local vm1
+2018-10-31 17:56:57,859 - router.operation_system - DEBUG - {'volume_size': u'15', 'ram': u'2048', 'image_id': u'73b8f379-bef2-482f-9af4-af541ea5cb65', 'image_size': u'4619027456', 'configId': u'191', 'cpu': u'2'}
+2018-10-31 17:56:57,860 - router.operation_system - DEBUG - start  local vm1
+2018-10-31 18:03:21,300 - router.operation_system - DEBUG - {'volume_size': u'15', 'ram': u'2048', 'image_id': u'73b8f379-bef2-482f-9af4-af541ea5cb65', 'image_size': u'4619027456', 'configId': u'191', 'cpu': u'2'}
+2018-10-31 18:03:21,302 - router.operation_system - DEBUG - start  local vm1
+2018-10-31 18:04:23,938 - router.operation_system - DEBUG - {'vm_name': u'win7_5_18_100_200\n100.200.0.10', 'configId': u'159'}
+2018-10-31 18:04:23,939 - router.operation_system - DEBUG - start  local vm1
+2018-10-31 18:04:23,940 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/bdapp/vclient_web/router/operation_system.py", line 71, in link_vm
+    vm_status_data = vm_operate.server.start_spice(data['configId'])
+  File "/bdapp/vclient_web/app/server.py", line 85, in start_spice
+    data_dict['account'] = session['username']
+  File "/usr/lib/python2.7/dist-packages/werkzeug/local.py", line 368, in <lambda>
+    __getitem__ = lambda x, i: x._get_current_object()[i]
+KeyError: 'username'
+
+2018-10-31 18:04:28,276 - router.operation_system - DEBUG - {'volume_size': u'15', 'ram': u'2048', 'image_id': u'73b8f379-bef2-482f-9af4-af541ea5cb65', 'image_size': u'4619027456', 'configId': u'191', 'cpu': u'2'}
+2018-10-31 18:04:28,277 - router.operation_system - DEBUG - start  local vm1
+2018-10-31 18:05:37,001 - router.operation_system - DEBUG - {'volume_size': u'15', 'ram': u'2048', 'image_id': u'73b8f379-bef2-482f-9af4-af541ea5cb65', 'image_size': u'4619027456', 'configId': u'191', 'cpu': u'2'}
+2018-10-31 18:05:37,002 - router.operation_system - DEBUG - start  local vm1
+2018-10-31 18:05:37,003 - router.operation_system - ERROR - int exceeds XML-RPC limits
+2018-10-31 18:06:12,084 - router.operation_system - DEBUG - {'volume_size': u'15', 'ram': u'2048', 'image_id': u'73b8f379-bef2-482f-9af4-af541ea5cb65', 'image_size': u'4619027456', 'configId': u'191', 'cpu': u'2'}
+2018-10-31 18:06:12,084 - router.operation_system - DEBUG - start  local vm1
+2018-10-31 18:06:12,487 - router.operation_system - DEBUG - vclient.create {'code': 0, 'error_msg': None, 'results': '191'}
+2018-10-31 18:07:37,524 - router.operation_system - DEBUG - {'volume_size': u'15', 'ram': u'2048', 'image_id': u'73b8f379-bef2-482f-9af4-af541ea5cb65', 'image_size': u'4619027456', 'configId': u'191', 'cpu': u'2'}
+2018-10-31 18:07:37,524 - router.operation_system - DEBUG - start  local vm1
+2018-10-31 18:07:37,531 - router.operation_system - DEBUG - vclient.create {'code': 0, 'error_msg': None, 'results': 191}
+2018-10-31 18:07:50,921 - router.operation_system - DEBUG - {'volume_size': u'15', 'ram': u'2048', 'image_id': u'73b8f379-bef2-482f-9af4-af541ea5cb65', 'image_size': u'4619027456', 'configId': u'191', 'cpu': u'2'}
+2018-10-31 18:07:50,922 - router.operation_system - DEBUG - start  local vm1
+2018-10-31 18:07:50,931 - router.operation_system - DEBUG - vclient.create {'code': 0, 'error_msg': None, 'results': 191}
+2018-11-01 08:44:26,215 - router.operation_system - DEBUG - {'vm_name': u'win7_5_18_100_200\n100.200.0.10', 'configId': u'159'}
+2018-11-01 08:44:26,216 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 08:44:26,219 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/bdapp/vclient_web/router/operation_system.py", line 71, in link_vm
+    vm_status_data = vm_operate.server.start_spice(data['configId'])
+  File "/bdapp/vclient_web/app/server.py", line 85, in start_spice
+    data_dict['account'] = session['username']
+  File "/usr/lib/python2.7/dist-packages/werkzeug/local.py", line 368, in <lambda>
+    __getitem__ = lambda x, i: x._get_current_object()[i]
+KeyError: 'username'
+
+2018-11-01 08:45:21,546 - router.operation_system - DEBUG - {'vm_name': u'win7_5_18_100_200\n100.200.0.10', 'configId': u'159'}
+2018-11-01 08:45:21,547 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 08:45:21,547 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/bdapp/vclient_web/router/operation_system.py", line 71, in link_vm
+    vm_status_data = vm_operate.server.start_spice(data['configId'])
+  File "/bdapp/vclient_web/app/server.py", line 85, in start_spice
+    data_dict['account'] = session['username']
+  File "/usr/lib/python2.7/dist-packages/werkzeug/local.py", line 368, in <lambda>
+    __getitem__ = lambda x, i: x._get_current_object()[i]
+KeyError: 'username'
+
+2018-11-01 08:45:25,675 - router.operation_system - DEBUG - {'vm_name': u'win7_5_18_100_200\n100.200.0.10', 'configId': u'159'}
+2018-11-01 08:45:25,676 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 08:45:25,677 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/bdapp/vclient_web/router/operation_system.py", line 71, in link_vm
+    vm_status_data = vm_operate.server.start_spice(data['configId'])
+  File "/bdapp/vclient_web/app/server.py", line 85, in start_spice
+    data_dict['account'] = session['username']
+  File "/usr/lib/python2.7/dist-packages/werkzeug/local.py", line 368, in <lambda>
+    __getitem__ = lambda x, i: x._get_current_object()[i]
+KeyError: 'username'
+
+2018-11-01 08:45:31,509 - router.operation_system - DEBUG - {'vm_name': u'win7_5_18_100_200\n100.200.0.10', 'configId': u'159'}
+2018-11-01 08:45:31,510 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 08:45:31,512 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/bdapp/vclient_web/router/operation_system.py", line 71, in link_vm
+    vm_status_data = vm_operate.server.start_spice(data['configId'])
+  File "/bdapp/vclient_web/app/server.py", line 85, in start_spice
+    data_dict['account'] = session['username']
+  File "/usr/lib/python2.7/dist-packages/werkzeug/local.py", line 368, in <lambda>
+    __getitem__ = lambda x, i: x._get_current_object()[i]
+KeyError: 'username'
+
+2018-11-01 08:45:48,499 - router.operation_system - DEBUG - {'vm_name': u'win7\n100.100.100.101', 'configId': u'132'}
+2018-11-01 08:45:48,499 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 08:45:48,500 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/bdapp/vclient_web/router/operation_system.py", line 71, in link_vm
+    vm_status_data = vm_operate.server.start_spice(data['configId'])
+  File "/bdapp/vclient_web/app/server.py", line 85, in start_spice
+    data_dict['account'] = session['username']
+  File "/usr/lib/python2.7/dist-packages/werkzeug/local.py", line 368, in <lambda>
+    __getitem__ = lambda x, i: x._get_current_object()[i]
+KeyError: 'username'
+
+2018-11-01 08:45:50,938 - router.operation_system - DEBUG - {'vm_name': u'win7-5-18\n100.100.100.102', 'configId': u'134'}
+2018-11-01 08:45:50,939 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 08:45:50,941 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/bdapp/vclient_web/router/operation_system.py", line 71, in link_vm
+    vm_status_data = vm_operate.server.start_spice(data['configId'])
+  File "/bdapp/vclient_web/app/server.py", line 85, in start_spice
+    data_dict['account'] = session['username']
+  File "/usr/lib/python2.7/dist-packages/werkzeug/local.py", line 368, in <lambda>
+    __getitem__ = lambda x, i: x._get_current_object()[i]
+KeyError: 'username'
+
+2018-11-01 08:45:53,332 - router.operation_system - DEBUG - {'vm_name': u'win7-5-18\n100.100.100.102', 'configId': u'134'}
+2018-11-01 08:45:53,332 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 08:45:53,333 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/bdapp/vclient_web/router/operation_system.py", line 71, in link_vm
+    vm_status_data = vm_operate.server.start_spice(data['configId'])
+  File "/bdapp/vclient_web/app/server.py", line 85, in start_spice
+    data_dict['account'] = session['username']
+  File "/usr/lib/python2.7/dist-packages/werkzeug/local.py", line 368, in <lambda>
+    __getitem__ = lambda x, i: x._get_current_object()[i]
+KeyError: 'username'
+
+2018-11-01 08:45:55,951 - router.operation_system - DEBUG - {'vm_name': u'win7-5-18\n100.100.100.102', 'configId': u'134'}
+2018-11-01 08:45:55,952 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 08:45:55,952 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/bdapp/vclient_web/router/operation_system.py", line 71, in link_vm
+    vm_status_data = vm_operate.server.start_spice(data['configId'])
+  File "/bdapp/vclient_web/app/server.py", line 85, in start_spice
+    data_dict['account'] = session['username']
+  File "/usr/lib/python2.7/dist-packages/werkzeug/local.py", line 368, in <lambda>
+    __getitem__ = lambda x, i: x._get_current_object()[i]
+KeyError: 'username'
+
+2018-11-01 09:11:31,970 - router.operation_system - DEBUG - {'vm_name': u'win7_5_18_100_200\n100.200.0.10', 'configId': u'159'}
+2018-11-01 09:11:31,970 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 09:11:32,773 - router.operation_system - DEBUG - vm_status_data: {u'status': u'ACTIVE', u'errorInfo': u'success', u'console': {u'passwd': u'oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny', u'host': u'100.100.0.2', u'port': u'5929', u'serverId': u'92f11e31-f6dc-48d4-b478-d8dc78003073'}, u'status_zh': u'\u6d3b\u52a8\u4e2d'}
+2018-11-01 09:11:32,774 - app.vm_operate - DEBUG - taskset -c 1-3 /bdapp/bin/remote-viewer spice://10.100.11.199?tls-port=5910 --spice-ca-file /bdapp/vclient_web/ca-cert.pem --spice-host-subject="C=IL, L=Raanana, O=Red Hat, CN=my server" --redir-server=100.100.0.2:5929 --spice-password=oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny --user-name=yuandc --password=123qwe --server-id=92f11e31-f6dc-48d4-b478-d8dc78003073 --vdesktop-ip=10.100.11.199 --vdesktop-port=444 -t win7_5_18_100_200-100.200.0.10 --delay=100 --spice-color-depth=32 --spice-preferred-compression=quic --spice-disable-effects=font-smooth,animation  --full-screen
+2018-11-01 09:11:41,062 - router.operation_system - DEBUG - {'vm_name': u'win7_5_18_100_200\n100.200.0.10', 'configId': u'159'}
+2018-11-01 09:11:41,063 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 09:11:41,862 - router.operation_system - DEBUG - vm_status_data: {u'status': u'ACTIVE', u'errorInfo': u'success', u'console': {u'passwd': u'oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny', u'host': u'100.100.0.2', u'port': u'5929', u'serverId': u'92f11e31-f6dc-48d4-b478-d8dc78003073'}, u'status_zh': u'\u6d3b\u52a8\u4e2d'}
+2018-11-01 09:11:41,863 - app.vm_operate - DEBUG - taskset -c 1-3 /bdapp/bin/remote-viewer spice://10.100.11.199?tls-port=5910 --spice-ca-file /bdapp/vclient_web/ca-cert.pem --spice-host-subject="C=IL, L=Raanana, O=Red Hat, CN=my server" --redir-server=100.100.0.2:5929 --spice-password=oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny --user-name=yuandc --password=123qwe --server-id=92f11e31-f6dc-48d4-b478-d8dc78003073 --vdesktop-ip=10.100.11.199 --vdesktop-port=444 -t win7_5_18_100_200-100.200.0.10 --delay=100 --spice-color-depth=32 --spice-preferred-compression=quic --spice-disable-effects=font-smooth,animation  --full-screen
+2018-11-01 09:18:00,695 - router.operation_system - DEBUG - {'vm_name': u'win7_5_18_100_200\n100.200.0.10', 'configId': u'159'}
+2018-11-01 09:18:00,696 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 09:18:01,470 - router.operation_system - DEBUG - vm_status_data: {u'status': u'ACTIVE', u'errorInfo': u'success', u'console': {u'passwd': u'oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny', u'host': u'100.100.0.2', u'port': u'5929', u'serverId': u'92f11e31-f6dc-48d4-b478-d8dc78003073'}, u'status_zh': u'\u6d3b\u52a8\u4e2d'}
+2018-11-01 09:18:01,471 - app.vm_operate - DEBUG - taskset -c 1-3 /bdapp/bin/remote-viewer spice://10.100.11.199?tls-port=5910 --spice-ca-file /bdapp/vclient_web/ca-cert.pem --spice-host-subject="C=IL, L=Raanana, O=Red Hat, CN=my server" --redir-server=100.100.0.2:5929 --spice-password=oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny --user-name=yuandc --password=123qwe --server-id=92f11e31-f6dc-48d4-b478-d8dc78003073 --vdesktop-ip=10.100.11.199 --vdesktop-port=444 -t win7_5_18_100_200-100.200.0.10 --delay=100 --spice-color-depth=32 --spice-preferred-compression=quic --spice-disable-effects=font-smooth,animation  --full-screen
+2018-11-01 09:18:29,259 - router.operation_system - DEBUG - {'vm_name': u'win7_5_18_100_200\n100.200.0.10', 'configId': u'159'}
+2018-11-01 09:18:29,260 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 09:18:30,022 - router.operation_system - DEBUG - vm_status_data: {u'status': u'ACTIVE', u'errorInfo': u'success', u'console': {u'passwd': u'oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny', u'host': u'100.100.0.2', u'port': u'5929', u'serverId': u'92f11e31-f6dc-48d4-b478-d8dc78003073'}, u'status_zh': u'\u6d3b\u52a8\u4e2d'}
+2018-11-01 09:18:30,023 - app.vm_operate - DEBUG - taskset -c 1-3 /bdapp/bin/remote-viewer spice://10.100.11.199?tls-port=5910 --spice-ca-file /bdapp/vclient_web/ca-cert.pem --spice-host-subject="C=IL, L=Raanana, O=Red Hat, CN=my server" --redir-server=100.100.0.2:5929 --spice-password=oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny --user-name=yuandc --password=123qwe --server-id=92f11e31-f6dc-48d4-b478-d8dc78003073 --vdesktop-ip=10.100.11.199 --vdesktop-port=444 -t win7_5_18_100_200-100.200.0.10 --delay=100 --spice-color-depth=32 --spice-preferred-compression=quic --spice-disable-effects=font-smooth,animation  --full-screen
+2018-11-01 09:19:44,560 - router.operation_system - DEBUG - {'vm_name': u'win7_5_18_100_200\n100.200.0.10', 'configId': u'159'}
+2018-11-01 09:19:44,561 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 09:19:45,369 - router.operation_system - DEBUG - vm_status_data: {u'status': u'ACTIVE', u'errorInfo': u'success', u'console': {u'passwd': u'oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny', u'host': u'100.100.0.2', u'port': u'5929', u'serverId': u'92f11e31-f6dc-48d4-b478-d8dc78003073'}, u'status_zh': u'\u6d3b\u52a8\u4e2d'}
+2018-11-01 09:19:45,370 - app.vm_operate - DEBUG - taskset -c 1-3 /bdapp/bin/remote-viewer spice://10.100.11.199?tls-port=5910 --spice-ca-file /bdapp/vclient_web/ca-cert.pem --spice-host-subject="C=IL, L=Raanana, O=Red Hat, CN=my server" --redir-server=100.100.0.2:5929 --spice-password=oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny --user-name=yuandc --password=123qwe --server-id=92f11e31-f6dc-48d4-b478-d8dc78003073 --vdesktop-ip=10.100.11.199 --vdesktop-port=444 -t win7_5_18_100_200-100.200.0.10 --delay=100 --spice-color-depth=32 --spice-preferred-compression=quic --spice-disable-effects=font-smooth,animation  --full-screen
+2018-11-01 09:19:49,950 - router.operation_system - DEBUG - {'vm_name': u'win7_5_18_100_200\n100.200.0.10', 'configId': u'159'}
+2018-11-01 09:19:49,951 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 09:19:50,776 - router.operation_system - DEBUG - vm_status_data: {u'status': u'ACTIVE', u'errorInfo': u'success', u'console': {u'passwd': u'oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny', u'host': u'100.100.0.2', u'port': u'5929', u'serverId': u'92f11e31-f6dc-48d4-b478-d8dc78003073'}, u'status_zh': u'\u6d3b\u52a8\u4e2d'}
+2018-11-01 09:19:50,777 - app.vm_operate - DEBUG - taskset -c 1-3 /bdapp/bin/remote-viewer spice://10.100.11.199?tls-port=5910 --spice-ca-file /bdapp/vclient_web/ca-cert.pem --spice-host-subject="C=IL, L=Raanana, O=Red Hat, CN=my server" --redir-server=100.100.0.2:5929 --spice-password=oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny --user-name=yuandc --password=123qwe --server-id=92f11e31-f6dc-48d4-b478-d8dc78003073 --vdesktop-ip=10.100.11.199 --vdesktop-port=444 -t win7_5_18_100_200-100.200.0.10 --delay=100 --spice-color-depth=32 --spice-preferred-compression=quic --spice-disable-effects=font-smooth,animation  --full-screen
+2018-11-01 09:19:54,770 - router.operation_system - DEBUG - {'vm_name': u'win7_5_18_100_200\n100.200.0.10', 'configId': u'159'}
+2018-11-01 09:19:54,770 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 09:19:55,537 - router.operation_system - DEBUG - vm_status_data: {u'status': u'ACTIVE', u'errorInfo': u'success', u'console': {u'passwd': u'oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny', u'host': u'100.100.0.2', u'port': u'5929', u'serverId': u'92f11e31-f6dc-48d4-b478-d8dc78003073'}, u'status_zh': u'\u6d3b\u52a8\u4e2d'}
+2018-11-01 09:19:55,538 - app.vm_operate - DEBUG - taskset -c 1-3 /bdapp/bin/remote-viewer spice://10.100.11.199?tls-port=5910 --spice-ca-file /bdapp/vclient_web/ca-cert.pem --spice-host-subject="C=IL, L=Raanana, O=Red Hat, CN=my server" --redir-server=100.100.0.2:5929 --spice-password=oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny --user-name=yuandc --password=123qwe --server-id=92f11e31-f6dc-48d4-b478-d8dc78003073 --vdesktop-ip=10.100.11.199 --vdesktop-port=444 -t win7_5_18_100_200-100.200.0.10 --delay=100 --spice-color-depth=32 --spice-preferred-compression=quic --spice-disable-effects=font-smooth,animation  --full-screen
+2018-11-01 09:20:05,428 - router.operation_system - DEBUG - {'vm_name': u'win7_5_18_100_200\n100.200.0.10', 'configId': u'159'}
+2018-11-01 09:20:05,429 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 09:20:06,250 - router.operation_system - DEBUG - vm_status_data: {u'status': u'ACTIVE', u'errorInfo': u'success', u'console': {u'passwd': u'oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny', u'host': u'100.100.0.2', u'port': u'5929', u'serverId': u'92f11e31-f6dc-48d4-b478-d8dc78003073'}, u'status_zh': u'\u6d3b\u52a8\u4e2d'}
+2018-11-01 09:20:06,252 - app.vm_operate - DEBUG - taskset -c 1-3 /bdapp/bin/remote-viewer spice://10.100.11.199?tls-port=5910 --spice-ca-file /bdapp/vclient_web/ca-cert.pem --spice-host-subject="C=IL, L=Raanana, O=Red Hat, CN=my server" --redir-server=100.100.0.2:5929 --spice-password=oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny --user-name=yuandc --password=123qwe --server-id=92f11e31-f6dc-48d4-b478-d8dc78003073 --vdesktop-ip=10.100.11.199 --vdesktop-port=444 -t win7_5_18_100_200-100.200.0.10 --delay=100 --spice-color-depth=32 --spice-preferred-compression=quic --spice-disable-effects=font-smooth,animation  --full-screen
+2018-11-01 09:20:11,352 - router.operation_system - DEBUG - {'vm_name': u'win7_5_18_100_200\n100.200.0.10', 'configId': u'159'}
+2018-11-01 09:20:11,353 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 09:20:14,418 - router.operation_system - DEBUG - vm_status_data: None
+2018-11-01 09:20:14,419 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/bdapp/vclient_web/router/operation_system.py", line 73, in link_vm
+    console = vm_status_data['console']
+TypeError: 'NoneType' object has no attribute '__getitem__'
+
+2018-11-01 09:20:14,424 - router.operation_system - DEBUG - {'vm_name': u'win7_5_18_100_200\n100.200.0.10', 'configId': u'159'}
+2018-11-01 09:20:14,424 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 09:20:15,416 - router.operation_system - DEBUG - vm_status_data: {u'status': u'ACTIVE', u'errorInfo': u'success', u'console': {u'passwd': u'oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny', u'host': u'100.100.0.2', u'port': u'5929', u'serverId': u'92f11e31-f6dc-48d4-b478-d8dc78003073'}, u'status_zh': u'\u6d3b\u52a8\u4e2d'}
+2018-11-01 09:20:15,417 - app.vm_operate - DEBUG - taskset -c 1-3 /bdapp/bin/remote-viewer spice://10.100.11.199?tls-port=5910 --spice-ca-file /bdapp/vclient_web/ca-cert.pem --spice-host-subject="C=IL, L=Raanana, O=Red Hat, CN=my server" --redir-server=100.100.0.2:5929 --spice-password=oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny --user-name=yuandc --password=123qwe --server-id=92f11e31-f6dc-48d4-b478-d8dc78003073 --vdesktop-ip=10.100.11.199 --vdesktop-port=444 -t win7_5_18_100_200-100.200.0.10 --delay=100 --spice-color-depth=32 --spice-preferred-compression=quic --spice-disable-effects=font-smooth,animation  --full-screen
+2018-11-01 09:20:26,920 - router.operation_system - DEBUG - {'vm_name': u'win7_5_18_100_200\n100.200.0.10', 'configId': u'159'}
+2018-11-01 09:20:26,921 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 09:20:27,661 - router.operation_system - DEBUG - vm_status_data: {u'status': u'ACTIVE', u'errorInfo': u'success', u'console': {u'passwd': u'oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny', u'host': u'100.100.0.2', u'port': u'5929', u'serverId': u'92f11e31-f6dc-48d4-b478-d8dc78003073'}, u'status_zh': u'\u6d3b\u52a8\u4e2d'}
+2018-11-01 09:20:27,662 - app.vm_operate - DEBUG - taskset -c 1-3 /bdapp/bin/remote-viewer spice://10.100.11.199?tls-port=5910 --spice-ca-file /bdapp/vclient_web/ca-cert.pem --spice-host-subject="C=IL, L=Raanana, O=Red Hat, CN=my server" --redir-server=100.100.0.2:5929 --spice-password=oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny --user-name=yuandc --password=123qwe --server-id=92f11e31-f6dc-48d4-b478-d8dc78003073 --vdesktop-ip=10.100.11.199 --vdesktop-port=444 -t win7_5_18_100_200-100.200.0.10 --delay=100 --spice-color-depth=32 --spice-preferred-compression=quic --spice-disable-effects=font-smooth,animation  --full-screen
+2018-11-01 09:20:40,054 - router.operation_system - DEBUG - {'vm_name': u'win7_5_18_100_200\n100.200.0.10', 'configId': u'159'}
+2018-11-01 09:20:40,054 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 09:20:40,839 - router.operation_system - DEBUG - vm_status_data: {u'status': u'ACTIVE', u'errorInfo': u'success', u'console': {u'passwd': u'oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny', u'host': u'100.100.0.2', u'port': u'5929', u'serverId': u'92f11e31-f6dc-48d4-b478-d8dc78003073'}, u'status_zh': u'\u6d3b\u52a8\u4e2d'}
+2018-11-01 09:20:40,839 - app.vm_operate - DEBUG - taskset -c 1-3 /bdapp/bin/remote-viewer spice://10.100.11.199?tls-port=5910 --spice-ca-file /bdapp/vclient_web/ca-cert.pem --spice-host-subject="C=IL, L=Raanana, O=Red Hat, CN=my server" --redir-server=100.100.0.2:5929 --spice-password=oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny --user-name=yuandc --password=123qwe --server-id=92f11e31-f6dc-48d4-b478-d8dc78003073 --vdesktop-ip=10.100.11.199 --vdesktop-port=444 -t win7_5_18_100_200-100.200.0.10 --delay=100 --spice-color-depth=32 --spice-preferred-compression=quic --spice-disable-effects=font-smooth,animation  --full-screen
+2018-11-01 09:20:43,223 - router.operation_system - DEBUG - {'vm_name': u'win7_5_18_100_200\n100.200.0.10', 'configId': u'159'}
+2018-11-01 09:20:43,224 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 09:20:44,009 - router.operation_system - DEBUG - vm_status_data: {u'status': u'ACTIVE', u'errorInfo': u'success', u'console': {u'passwd': u'oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny', u'host': u'100.100.0.2', u'port': u'5929', u'serverId': u'92f11e31-f6dc-48d4-b478-d8dc78003073'}, u'status_zh': u'\u6d3b\u52a8\u4e2d'}
+2018-11-01 09:20:44,010 - app.vm_operate - DEBUG - taskset -c 1-3 /bdapp/bin/remote-viewer spice://10.100.11.199?tls-port=5910 --spice-ca-file /bdapp/vclient_web/ca-cert.pem --spice-host-subject="C=IL, L=Raanana, O=Red Hat, CN=my server" --redir-server=100.100.0.2:5929 --spice-password=oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny --user-name=yuandc --password=123qwe --server-id=92f11e31-f6dc-48d4-b478-d8dc78003073 --vdesktop-ip=10.100.11.199 --vdesktop-port=444 -t win7_5_18_100_200-100.200.0.10 --delay=100 --spice-color-depth=32 --spice-preferred-compression=quic --spice-disable-effects=font-smooth,animation  --full-screen
+2018-11-01 09:20:45,790 - router.operation_system - DEBUG - {'vm_name': u'win7_5_18_100_200\n100.200.0.10', 'configId': u'159'}
+2018-11-01 09:20:45,790 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 09:20:46,544 - router.operation_system - DEBUG - vm_status_data: {u'status': u'ACTIVE', u'errorInfo': u'success', u'console': {u'passwd': u'oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny', u'host': u'100.100.0.2', u'port': u'5929', u'serverId': u'92f11e31-f6dc-48d4-b478-d8dc78003073'}, u'status_zh': u'\u6d3b\u52a8\u4e2d'}
+2018-11-01 09:20:46,545 - app.vm_operate - DEBUG - taskset -c 1-3 /bdapp/bin/remote-viewer spice://10.100.11.199?tls-port=5910 --spice-ca-file /bdapp/vclient_web/ca-cert.pem --spice-host-subject="C=IL, L=Raanana, O=Red Hat, CN=my server" --redir-server=100.100.0.2:5929 --spice-password=oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny --user-name=yuandc --password=123qwe --server-id=92f11e31-f6dc-48d4-b478-d8dc78003073 --vdesktop-ip=10.100.11.199 --vdesktop-port=444 -t win7_5_18_100_200-100.200.0.10 --delay=100 --spice-color-depth=32 --spice-preferred-compression=quic --spice-disable-effects=font-smooth,animation  --full-screen
+2018-11-01 09:24:40,533 - router.operation_system - DEBUG - {'vm_name': u'win7_5_18_100_200\n100.200.0.10', 'configId': u'159'}
+2018-11-01 09:24:40,534 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 09:24:41,346 - router.operation_system - DEBUG - vm_status_data: {u'status': u'ACTIVE', u'errorInfo': u'success', u'console': {u'passwd': u'oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny', u'host': u'100.100.0.2', u'port': u'5929', u'serverId': u'92f11e31-f6dc-48d4-b478-d8dc78003073'}, u'status_zh': u'\u6d3b\u52a8\u4e2d'}
+2018-11-01 09:24:41,347 - app.vm_operate - DEBUG - taskset -c 1-3 /bdapp/bin/remote-viewer spice://10.100.11.199?tls-port=5910 --spice-ca-file /bdapp/vclient_web/ca-cert.pem --spice-host-subject="C=IL, L=Raanana, O=Red Hat, CN=my server" --redir-server=100.100.0.2:5929 --spice-password=oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny --user-name=yuandc --password=123qwe --server-id=92f11e31-f6dc-48d4-b478-d8dc78003073 --vdesktop-ip=10.100.11.199 --vdesktop-port=444 -t win7_5_18_100_200-100.200.0.10 --delay=100 --spice-color-depth=32 --spice-preferred-compression=quic --spice-disable-effects=font-smooth,animation  --full-screen &
+2018-11-01 09:24:41,351 - app.vm_operate - DEBUG - ##################################
+2018-11-01 09:24:48,917 - router.operation_system - DEBUG - {'vm_name': u'win7_5_18_100_200\n100.200.0.10', 'configId': u'159'}
+2018-11-01 09:24:48,918 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 09:24:49,687 - router.operation_system - DEBUG - vm_status_data: {u'status': u'ACTIVE', u'errorInfo': u'success', u'console': {u'passwd': u'oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny', u'host': u'100.100.0.2', u'port': u'5929', u'serverId': u'92f11e31-f6dc-48d4-b478-d8dc78003073'}, u'status_zh': u'\u6d3b\u52a8\u4e2d'}
+2018-11-01 09:24:49,688 - app.vm_operate - DEBUG - taskset -c 1-3 /bdapp/bin/remote-viewer spice://10.100.11.199?tls-port=5910 --spice-ca-file /bdapp/vclient_web/ca-cert.pem --spice-host-subject="C=IL, L=Raanana, O=Red Hat, CN=my server" --redir-server=100.100.0.2:5929 --spice-password=oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny --user-name=yuandc --password=123qwe --server-id=92f11e31-f6dc-48d4-b478-d8dc78003073 --vdesktop-ip=10.100.11.199 --vdesktop-port=444 -t win7_5_18_100_200-100.200.0.10 --delay=100 --spice-color-depth=32 --spice-preferred-compression=quic --spice-disable-effects=font-smooth,animation  --full-screen &
+2018-11-01 09:24:49,692 - app.vm_operate - DEBUG - ##################################
+2018-11-01 09:24:58,909 - router.operation_system - DEBUG - {'vm_name': u'win7_5_18_100_200\n100.200.0.10', 'configId': u'159'}
+2018-11-01 09:24:58,909 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 09:24:59,676 - router.operation_system - DEBUG - vm_status_data: {u'status': u'ACTIVE', u'errorInfo': u'success', u'console': {u'passwd': u'oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny', u'host': u'100.100.0.2', u'port': u'5929', u'serverId': u'92f11e31-f6dc-48d4-b478-d8dc78003073'}, u'status_zh': u'\u6d3b\u52a8\u4e2d'}
+2018-11-01 09:24:59,676 - app.vm_operate - DEBUG - taskset -c 1-3 /bdapp/bin/remote-viewer spice://10.100.11.199?tls-port=5910 --spice-ca-file /bdapp/vclient_web/ca-cert.pem --spice-host-subject="C=IL, L=Raanana, O=Red Hat, CN=my server" --redir-server=100.100.0.2:5929 --spice-password=oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny --user-name=yuandc --password=123qwe --server-id=92f11e31-f6dc-48d4-b478-d8dc78003073 --vdesktop-ip=10.100.11.199 --vdesktop-port=444 -t win7_5_18_100_200-100.200.0.10 --delay=100 --spice-color-depth=32 --spice-preferred-compression=quic --spice-disable-effects=font-smooth,animation  --full-screen &
+2018-11-01 09:24:59,681 - app.vm_operate - DEBUG - ##################################
+2018-11-01 09:26:23,791 - router.operation_system - DEBUG - {'vm_name': u'win7_5_18_100_200\n100.200.0.10', 'configId': u'159'}
+2018-11-01 09:26:23,791 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 09:26:24,720 - router.operation_system - DEBUG - vm_status_data: {u'status': u'ACTIVE', u'errorInfo': u'success', u'console': {u'passwd': u'oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny', u'host': u'100.100.0.2', u'port': u'5929', u'serverId': u'92f11e31-f6dc-48d4-b478-d8dc78003073'}, u'status_zh': u'\u6d3b\u52a8\u4e2d'}
+2018-11-01 09:26:24,721 - app.vm_operate - DEBUG - taskset -c 1-3 /bdapp/bin/remote-viewer spice://10.100.11.199?tls-port=5910 --spice-ca-file /bdapp/vclient_web/ca-cert.pem --spice-host-subject="C=IL, L=Raanana, O=Red Hat, CN=my server" --redir-server=100.100.0.2:5929 --spice-password=oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny --user-name=yuandc --password=123qwe --server-id=92f11e31-f6dc-48d4-b478-d8dc78003073 --vdesktop-ip=10.100.11.199 --vdesktop-port=444 -t win7_5_18_100_200-100.200.0.10 --delay=100 --spice-color-depth=32 --spice-preferred-compression=quic --spice-disable-effects=font-smooth,animation  --full-screen &
+2018-11-01 09:26:24,724 - app.vm_operate - DEBUG - ##################################
+2018-11-01 09:26:43,215 - router.operation_system - DEBUG - {'volume_size': u'15', 'ram': u'2048', 'image_id': u'73b8f379-bef2-482f-9af4-af541ea5cb65', 'image_size': u'4619027456', 'configId': u'191', 'cpu': u'2'}
+2018-11-01 09:26:43,215 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 09:26:43,220 - router.operation_system - DEBUG - vclient.create {'code': 0, 'error_msg': None, 'results': 191}
+2018-11-01 09:27:02,548 - router.operation_system - DEBUG - {'vm_name': u'win7\n100.100.100.101', 'configId': u'132'}
+2018-11-01 09:27:02,549 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 09:27:03,302 - router.operation_system - DEBUG - vm_status_data: {u'status': u'ACTIVE', u'errorInfo': u'success', u'console': {u'passwd': u'IDg28fAyZVhafrfq773UCcxPq9eEpVRI', u'host': u'100.100.0.2', u'port': u'5903', u'serverId': u'e365e657-e6ef-45f4-9435-847e21e74a5b'}, u'status_zh': u'\u6d3b\u52a8\u4e2d'}
+2018-11-01 09:27:03,303 - app.vm_operate - DEBUG - taskset -c 1-3 /bdapp/bin/remote-viewer spice://10.100.11.199?tls-port=5910 --spice-ca-file /bdapp/vclient_web/ca-cert.pem --spice-host-subject="C=IL, L=Raanana, O=Red Hat, CN=my server" --redir-server=100.100.0.2:5903 --spice-password=IDg28fAyZVhafrfq773UCcxPq9eEpVRI --user-name=yuandc --password=123qwe --server-id=e365e657-e6ef-45f4-9435-847e21e74a5b --vdesktop-ip=10.100.11.199 --vdesktop-port=444 -t win7-100.100.100.101 --delay=100 --spice-color-depth=32 --spice-preferred-compression=quic --spice-disable-effects=font-smooth,animation  --full-screen &
+2018-11-01 09:27:03,310 - app.vm_operate - DEBUG - ##################################
+2018-11-01 09:27:13,119 - router.operation_system - DEBUG - {'vm_name': u'win7_5_18_100_200\n100.200.0.10', 'configId': u'159'}
+2018-11-01 09:27:13,120 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 09:27:13,890 - router.operation_system - DEBUG - vm_status_data: {u'status': u'ACTIVE', u'errorInfo': u'success', u'console': {u'passwd': u'oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny', u'host': u'100.100.0.2', u'port': u'5929', u'serverId': u'92f11e31-f6dc-48d4-b478-d8dc78003073'}, u'status_zh': u'\u6d3b\u52a8\u4e2d'}
+2018-11-01 09:27:13,891 - app.vm_operate - DEBUG - taskset -c 1-3 /bdapp/bin/remote-viewer spice://10.100.11.199?tls-port=5910 --spice-ca-file /bdapp/vclient_web/ca-cert.pem --spice-host-subject="C=IL, L=Raanana, O=Red Hat, CN=my server" --redir-server=100.100.0.2:5929 --spice-password=oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny --user-name=yuandc --password=123qwe --server-id=92f11e31-f6dc-48d4-b478-d8dc78003073 --vdesktop-ip=10.100.11.199 --vdesktop-port=444 -t win7_5_18_100_200-100.200.0.10 --delay=100 --spice-color-depth=32 --spice-preferred-compression=quic --spice-disable-effects=font-smooth,animation  --full-screen &
+2018-11-01 09:27:13,895 - app.vm_operate - DEBUG - ##################################
+2018-11-01 09:27:34,950 - router.operation_system - DEBUG - {'vm_name': u'win7_5_18_100_200\n100.200.0.10', 'configId': u'159'}
+2018-11-01 09:27:34,951 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 09:27:35,776 - router.operation_system - DEBUG - vm_status_data: {u'status': u'ACTIVE', u'errorInfo': u'success', u'console': {u'passwd': u'oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny', u'host': u'100.100.0.2', u'port': u'5929', u'serverId': u'92f11e31-f6dc-48d4-b478-d8dc78003073'}, u'status_zh': u'\u6d3b\u52a8\u4e2d'}
+2018-11-01 09:27:35,777 - app.vm_operate - DEBUG - taskset -c 1-3 /bdapp/bin/remote-viewer spice://10.100.11.199?tls-port=5910 --spice-ca-file /bdapp/vclient_web/ca-cert.pem --spice-host-subject="C=IL, L=Raanana, O=Red Hat, CN=my server" --redir-server=100.100.0.2:5929 --spice-password=oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny --user-name=yuandc --password=123qwe --server-id=92f11e31-f6dc-48d4-b478-d8dc78003073 --vdesktop-ip=10.100.11.199 --vdesktop-port=444 -t win7_5_18_100_200-100.200.0.10 --delay=100 --spice-color-depth=32 --spice-preferred-compression=quic --spice-disable-effects=font-smooth,animation  --full-screen &
+2018-11-01 09:27:35,781 - app.vm_operate - DEBUG - ##################################
+2018-11-01 09:27:41,913 - router.operation_system - DEBUG - {'vm_name': u'win7_5_18_100_200\n100.200.0.10', 'configId': u'159'}
+2018-11-01 09:27:41,914 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 09:27:42,715 - router.operation_system - DEBUG - vm_status_data: {u'status': u'ACTIVE', u'errorInfo': u'success', u'console': {u'passwd': u'oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny', u'host': u'100.100.0.2', u'port': u'5929', u'serverId': u'92f11e31-f6dc-48d4-b478-d8dc78003073'}, u'status_zh': u'\u6d3b\u52a8\u4e2d'}
+2018-11-01 09:27:42,715 - app.vm_operate - DEBUG - taskset -c 1-3 /bdapp/bin/remote-viewer spice://10.100.11.199?tls-port=5910 --spice-ca-file /bdapp/vclient_web/ca-cert.pem --spice-host-subject="C=IL, L=Raanana, O=Red Hat, CN=my server" --redir-server=100.100.0.2:5929 --spice-password=oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny --user-name=yuandc --password=123qwe --server-id=92f11e31-f6dc-48d4-b478-d8dc78003073 --vdesktop-ip=10.100.11.199 --vdesktop-port=444 -t win7_5_18_100_200-100.200.0.10 --delay=100 --spice-color-depth=32 --spice-preferred-compression=quic --spice-disable-effects=font-smooth,animation  --full-screen &
+2018-11-01 09:27:42,719 - app.vm_operate - DEBUG - ##################################
+2018-11-01 09:27:47,214 - router.operation_system - DEBUG - {'vm_name': u'win7_5_18_100_200\n100.200.0.10', 'configId': u'159'}
+2018-11-01 09:27:47,215 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 09:27:48,037 - router.operation_system - DEBUG - vm_status_data: {u'status': u'ACTIVE', u'errorInfo': u'success', u'console': {u'passwd': u'oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny', u'host': u'100.100.0.2', u'port': u'5929', u'serverId': u'92f11e31-f6dc-48d4-b478-d8dc78003073'}, u'status_zh': u'\u6d3b\u52a8\u4e2d'}
+2018-11-01 09:27:48,038 - app.vm_operate - DEBUG - taskset -c 1-3 /bdapp/bin/remote-viewer spice://10.100.11.199?tls-port=5910 --spice-ca-file /bdapp/vclient_web/ca-cert.pem --spice-host-subject="C=IL, L=Raanana, O=Red Hat, CN=my server" --redir-server=100.100.0.2:5929 --spice-password=oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny --user-name=yuandc --password=123qwe --server-id=92f11e31-f6dc-48d4-b478-d8dc78003073 --vdesktop-ip=10.100.11.199 --vdesktop-port=444 -t win7_5_18_100_200-100.200.0.10 --delay=100 --spice-color-depth=32 --spice-preferred-compression=quic --spice-disable-effects=font-smooth,animation  --full-screen &
+2018-11-01 09:27:48,045 - app.vm_operate - DEBUG - ##################################
+2018-11-01 09:27:53,678 - router.operation_system - DEBUG - {'vm_name': u'win7_5_18_100_200\n100.200.0.10', 'configId': u'159'}
+2018-11-01 09:27:53,679 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 09:27:54,409 - router.operation_system - DEBUG - vm_status_data: {u'status': u'ACTIVE', u'errorInfo': u'success', u'console': {u'passwd': u'oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny', u'host': u'100.100.0.2', u'port': u'5929', u'serverId': u'92f11e31-f6dc-48d4-b478-d8dc78003073'}, u'status_zh': u'\u6d3b\u52a8\u4e2d'}
+2018-11-01 09:27:54,410 - app.vm_operate - DEBUG - taskset -c 1-3 /bdapp/bin/remote-viewer spice://10.100.11.199?tls-port=5910 --spice-ca-file /bdapp/vclient_web/ca-cert.pem --spice-host-subject="C=IL, L=Raanana, O=Red Hat, CN=my server" --redir-server=100.100.0.2:5929 --spice-password=oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny --user-name=yuandc --password=123qwe --server-id=92f11e31-f6dc-48d4-b478-d8dc78003073 --vdesktop-ip=10.100.11.199 --vdesktop-port=444 -t win7_5_18_100_200-100.200.0.10 --delay=100 --spice-color-depth=32 --spice-preferred-compression=quic --spice-disable-effects=font-smooth,animation  --full-screen &
+2018-11-01 09:27:54,416 - app.vm_operate - DEBUG - ##################################
+2018-11-01 09:27:58,500 - router.operation_system - DEBUG - {'vm_name': u'win7_5_18_100_200\n100.200.0.10', 'configId': u'159'}
+2018-11-01 09:27:58,502 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 09:27:59,209 - router.operation_system - DEBUG - vm_status_data: {u'status': u'ACTIVE', u'errorInfo': u'success', u'console': {u'passwd': u'oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny', u'host': u'100.100.0.2', u'port': u'5929', u'serverId': u'92f11e31-f6dc-48d4-b478-d8dc78003073'}, u'status_zh': u'\u6d3b\u52a8\u4e2d'}
+2018-11-01 09:27:59,210 - app.vm_operate - DEBUG - taskset -c 1-3 /bdapp/bin/remote-viewer spice://10.100.11.199?tls-port=5910 --spice-ca-file /bdapp/vclient_web/ca-cert.pem --spice-host-subject="C=IL, L=Raanana, O=Red Hat, CN=my server" --redir-server=100.100.0.2:5929 --spice-password=oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny --user-name=yuandc --password=123qwe --server-id=92f11e31-f6dc-48d4-b478-d8dc78003073 --vdesktop-ip=10.100.11.199 --vdesktop-port=444 -t win7_5_18_100_200-100.200.0.10 --delay=100 --spice-color-depth=32 --spice-preferred-compression=quic --spice-disable-effects=font-smooth,animation  --full-screen &
+2018-11-01 09:27:59,217 - app.vm_operate - DEBUG - ##################################
+2018-11-01 09:28:04,648 - router.operation_system - DEBUG - {'vm_name': u'win7_5_18_100_200\n100.200.0.10', 'configId': u'159'}
+2018-11-01 09:28:04,649 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 09:28:05,621 - router.operation_system - DEBUG - vm_status_data: {u'status': u'ACTIVE', u'errorInfo': u'success', u'console': {u'passwd': u'oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny', u'host': u'100.100.0.2', u'port': u'5929', u'serverId': u'92f11e31-f6dc-48d4-b478-d8dc78003073'}, u'status_zh': u'\u6d3b\u52a8\u4e2d'}
+2018-11-01 09:28:05,622 - app.vm_operate - DEBUG - taskset -c 1-3 /bdapp/bin/remote-viewer spice://10.100.11.199?tls-port=5910 --spice-ca-file /bdapp/vclient_web/ca-cert.pem --spice-host-subject="C=IL, L=Raanana, O=Red Hat, CN=my server" --redir-server=100.100.0.2:5929 --spice-password=oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny --user-name=yuandc --password=123qwe --server-id=92f11e31-f6dc-48d4-b478-d8dc78003073 --vdesktop-ip=10.100.11.199 --vdesktop-port=444 -t win7_5_18_100_200-100.200.0.10 --delay=100 --spice-color-depth=32 --spice-preferred-compression=quic --spice-disable-effects=font-smooth,animation  --full-screen &
+2018-11-01 09:28:05,628 - app.vm_operate - DEBUG - ##################################
+2018-11-01 09:31:18,673 - router.operation_system - DEBUG - {'vm_name': u'win7_5_18_100_200\n100.200.0.10', 'configId': u'159'}
+2018-11-01 09:31:18,674 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 09:31:19,469 - router.operation_system - DEBUG - vm_status_data: {u'status': u'ACTIVE', u'errorInfo': u'success', u'console': {u'passwd': u'oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny', u'host': u'100.100.0.2', u'port': u'5929', u'serverId': u'92f11e31-f6dc-48d4-b478-d8dc78003073'}, u'status_zh': u'\u6d3b\u52a8\u4e2d'}
+2018-11-01 09:31:19,470 - app.vm_operate - DEBUG - taskset -c 1-3 /bdapp/bin/remote-viewer spice://10.100.11.199?tls-port=5910 --spice-ca-file /bdapp/vclient_web/ca-cert.pem --spice-host-subject="C=IL, L=Raanana, O=Red Hat, CN=my server" --redir-server=100.100.0.2:5929 --spice-password=oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny --user-name=yuandc --password=123qwe --server-id=92f11e31-f6dc-48d4-b478-d8dc78003073 --vdesktop-ip=10.100.11.199 --vdesktop-port=444 -t win7_5_18_100_200-100.200.0.10 --delay=100 --spice-color-depth=32 --spice-preferred-compression=quic --spice-disable-effects=font-smooth,animation  --full-screen &
+2018-11-01 09:31:19,475 - app.vm_operate - DEBUG - ##################################
+2018-11-01 09:31:23,209 - router.operation_system - DEBUG - {'vm_name': u'win7_5_18_100_200\n100.200.0.10', 'configId': u'159'}
+2018-11-01 09:31:23,210 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 09:31:24,025 - router.operation_system - DEBUG - vm_status_data: {u'status': u'ACTIVE', u'errorInfo': u'success', u'console': {u'passwd': u'oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny', u'host': u'100.100.0.2', u'port': u'5929', u'serverId': u'92f11e31-f6dc-48d4-b478-d8dc78003073'}, u'status_zh': u'\u6d3b\u52a8\u4e2d'}
+2018-11-01 09:31:24,026 - app.vm_operate - DEBUG - taskset -c 1-3 /bdapp/bin/remote-viewer spice://10.100.11.199?tls-port=5910 --spice-ca-file /bdapp/vclient_web/ca-cert.pem --spice-host-subject="C=IL, L=Raanana, O=Red Hat, CN=my server" --redir-server=100.100.0.2:5929 --spice-password=oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny --user-name=yuandc --password=123qwe --server-id=92f11e31-f6dc-48d4-b478-d8dc78003073 --vdesktop-ip=10.100.11.199 --vdesktop-port=444 -t win7_5_18_100_200-100.200.0.10 --delay=100 --spice-color-depth=32 --spice-preferred-compression=quic --spice-disable-effects=font-smooth,animation  --full-screen &
+2018-11-01 09:31:24,031 - app.vm_operate - DEBUG - ##################################
+2018-11-01 09:31:27,840 - router.operation_system - DEBUG - {'vm_name': u'win7_5_18_100_200\n100.200.0.10', 'configId': u'159'}
+2018-11-01 09:31:27,840 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 09:31:28,740 - router.operation_system - DEBUG - vm_status_data: {u'status': u'ACTIVE', u'errorInfo': u'success', u'console': {u'passwd': u'oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny', u'host': u'100.100.0.2', u'port': u'5929', u'serverId': u'92f11e31-f6dc-48d4-b478-d8dc78003073'}, u'status_zh': u'\u6d3b\u52a8\u4e2d'}
+2018-11-01 09:31:28,741 - app.vm_operate - DEBUG - taskset -c 1-3 /bdapp/bin/remote-viewer spice://10.100.11.199?tls-port=5910 --spice-ca-file /bdapp/vclient_web/ca-cert.pem --spice-host-subject="C=IL, L=Raanana, O=Red Hat, CN=my server" --redir-server=100.100.0.2:5929 --spice-password=oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny --user-name=yuandc --password=123qwe --server-id=92f11e31-f6dc-48d4-b478-d8dc78003073 --vdesktop-ip=10.100.11.199 --vdesktop-port=444 -t win7_5_18_100_200-100.200.0.10 --delay=100 --spice-color-depth=32 --spice-preferred-compression=quic --spice-disable-effects=font-smooth,animation  --full-screen &
+2018-11-01 09:31:28,746 - app.vm_operate - DEBUG - ##################################
+2018-11-01 09:31:50,930 - router.operation_system - DEBUG - {'vm_name': u'win7_5_18_100_200\n100.200.0.10', 'configId': u'159'}
+2018-11-01 09:31:50,932 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 09:31:51,737 - router.operation_system - DEBUG - vm_status_data: {u'status': u'ACTIVE', u'errorInfo': u'success', u'console': {u'passwd': u'oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny', u'host': u'100.100.0.2', u'port': u'5929', u'serverId': u'92f11e31-f6dc-48d4-b478-d8dc78003073'}, u'status_zh': u'\u6d3b\u52a8\u4e2d'}
+2018-11-01 09:31:51,738 - app.vm_operate - DEBUG - taskset -c 1-3 /bdapp/bin/remote-viewer spice://10.100.11.199?tls-port=5910 --spice-ca-file /bdapp/vclient_web/ca-cert.pem --spice-host-subject="C=IL, L=Raanana, O=Red Hat, CN=my server" --redir-server=100.100.0.2:5929 --spice-password=oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny --user-name=yuandc --password=123qwe --server-id=92f11e31-f6dc-48d4-b478-d8dc78003073 --vdesktop-ip=10.100.11.199 --vdesktop-port=444 -t win7_5_18_100_200-100.200.0.10 --delay=100 --spice-color-depth=32 --spice-preferred-compression=quic --spice-disable-effects=font-smooth,animation  --full-screen &
+2018-11-01 09:31:51,745 - app.vm_operate - DEBUG - ##################################
+2018-11-01 09:32:34,297 - router.operation_system - DEBUG - {'vm_name': u'win7_5_18_100_200\n100.200.0.10', 'configId': u'159'}
+2018-11-01 09:32:34,298 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 09:32:35,045 - router.operation_system - DEBUG - vm_status_data: {u'status': u'ACTIVE', u'errorInfo': u'success', u'console': {u'passwd': u'oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny', u'host': u'100.100.0.2', u'port': u'5929', u'serverId': u'92f11e31-f6dc-48d4-b478-d8dc78003073'}, u'status_zh': u'\u6d3b\u52a8\u4e2d'}
+2018-11-01 09:32:35,046 - app.vm_operate - DEBUG - taskset -c 1-3 /bdapp/bin/remote-viewer spice://10.100.11.199?tls-port=5910 --spice-ca-file /bdapp/vclient_web/ca-cert.pem --spice-host-subject="C=IL, L=Raanana, O=Red Hat, CN=my server" --redir-server=100.100.0.2:5929 --spice-password=oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny --user-name=yuandc --password=123qwe --server-id=92f11e31-f6dc-48d4-b478-d8dc78003073 --vdesktop-ip=10.100.11.199 --vdesktop-port=444 -t win7_5_18_100_200-100.200.0.10 --delay=100 --spice-color-depth=32 --spice-preferred-compression=quic --spice-disable-effects=font-smooth,animation  --full-screen &
+2018-11-01 09:32:35,051 - app.vm_operate - DEBUG - ##################################
+2018-11-01 09:33:38,289 - router.operation_system - DEBUG - {'vm_name': u'win7_5_18_100_200\n100.200.0.10', 'configId': u'159'}
+2018-11-01 09:33:38,290 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 09:33:39,301 - router.operation_system - DEBUG - vm_status_data: {u'status': u'ACTIVE', u'errorInfo': u'success', u'console': {u'passwd': u'oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny', u'host': u'100.100.0.2', u'port': u'5929', u'serverId': u'92f11e31-f6dc-48d4-b478-d8dc78003073'}, u'status_zh': u'\u6d3b\u52a8\u4e2d'}
+2018-11-01 09:33:39,301 - app.vm_operate - DEBUG - taskset -c 1-3 /bdapp/bin/remote-viewer spice://10.100.11.199?tls-port=5910 --spice-ca-file /bdapp/vclient_web/ca-cert.pem --spice-host-subject="C=IL, L=Raanana, O=Red Hat, CN=my server" --redir-server=100.100.0.2:5929 --spice-password=oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny --user-name=yuandc --password=123qwe --server-id=92f11e31-f6dc-48d4-b478-d8dc78003073 --vdesktop-ip=10.100.11.199 --vdesktop-port=444 -t win7_5_18_100_200-100.200.0.10 --delay=100 --spice-color-depth=32 --spice-preferred-compression=quic --spice-disable-effects=font-smooth,animation  --full-screen &
+2018-11-01 09:33:39,306 - app.vm_operate - DEBUG - ##################################
+2018-11-01 09:34:42,742 - router.operation_system - DEBUG - {'vm_name': u'win7_5_18_100_200\n100.200.0.10', 'configId': u'159'}
+2018-11-01 09:34:42,742 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 09:34:43,550 - router.operation_system - DEBUG - vm_status_data: {u'status': u'ACTIVE', u'errorInfo': u'success', u'console': {u'passwd': u'oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny', u'host': u'100.100.0.2', u'port': u'5929', u'serverId': u'92f11e31-f6dc-48d4-b478-d8dc78003073'}, u'status_zh': u'\u6d3b\u52a8\u4e2d'}
+2018-11-01 09:34:43,551 - app.vm_operate - DEBUG - taskset -c 1-3 /bdapp/bin/remote-viewer spice://10.100.11.199?tls-port=5910 --spice-ca-file /bdapp/vclient_web/ca-cert.pem --spice-host-subject="C=IL, L=Raanana, O=Red Hat, CN=my server" --redir-server=100.100.0.2:5929 --spice-password=oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny --user-name=yuandc --password=123qwe --server-id=92f11e31-f6dc-48d4-b478-d8dc78003073 --vdesktop-ip=10.100.11.199 --vdesktop-port=444 -t win7_5_18_100_200-100.200.0.10 --delay=100 --spice-color-depth=32 --spice-preferred-compression=quic --spice-disable-effects=font-smooth,animation  --full-screen &
+2018-11-01 09:34:43,555 - app.vm_operate - DEBUG - ##################################
+2018-11-01 09:36:31,287 - router.operation_system - DEBUG - {'vm_name': u'win7_5_18_100_200\n100.200.0.10', 'configId': u'159'}
+2018-11-01 09:36:31,289 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 09:36:32,253 - router.operation_system - DEBUG - vm_status_data: {u'status': u'ACTIVE', u'errorInfo': u'success', u'console': {u'passwd': u'oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny', u'host': u'100.100.0.2', u'port': u'5929', u'serverId': u'92f11e31-f6dc-48d4-b478-d8dc78003073'}, u'status_zh': u'\u6d3b\u52a8\u4e2d'}
+2018-11-01 09:36:32,253 - app.vm_operate - DEBUG - taskset -c 1-3 /bdapp/bin/remote-viewer spice://10.100.11.199?tls-port=5910 --spice-ca-file /bdapp/vclient_web/ca-cert.pem --spice-host-subject="C=IL, L=Raanana, O=Red Hat, CN=my server" --redir-server=100.100.0.2:5929 --spice-password=oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny --user-name=yuandc --password=123qwe --server-id=92f11e31-f6dc-48d4-b478-d8dc78003073 --vdesktop-ip=10.100.11.199 --vdesktop-port=444 -t win7_5_18_100_200-100.200.0.10 --delay=100 --spice-color-depth=32 --spice-preferred-compression=quic --spice-disable-effects=font-smooth,animation  --full-screen &
+2018-11-01 09:36:32,258 - app.vm_operate - DEBUG - ##################################
+2018-11-01 09:36:39,138 - router.operation_system - DEBUG - {'vm_name': u'win7_5_18_100_200\n100.200.0.10', 'configId': u'159'}
+2018-11-01 09:36:39,139 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 09:36:39,947 - router.operation_system - DEBUG - vm_status_data: {u'status': u'ACTIVE', u'errorInfo': u'success', u'console': {u'passwd': u'oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny', u'host': u'100.100.0.2', u'port': u'5929', u'serverId': u'92f11e31-f6dc-48d4-b478-d8dc78003073'}, u'status_zh': u'\u6d3b\u52a8\u4e2d'}
+2018-11-01 09:36:39,949 - app.vm_operate - DEBUG - taskset -c 1-3 /bdapp/bin/remote-viewer spice://10.100.11.199?tls-port=5910 --spice-ca-file /bdapp/vclient_web/ca-cert.pem --spice-host-subject="C=IL, L=Raanana, O=Red Hat, CN=my server" --redir-server=100.100.0.2:5929 --spice-password=oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny --user-name=yuandc --password=123qwe --server-id=92f11e31-f6dc-48d4-b478-d8dc78003073 --vdesktop-ip=10.100.11.199 --vdesktop-port=444 -t win7_5_18_100_200-100.200.0.10 --delay=100 --spice-color-depth=32 --spice-preferred-compression=quic --spice-disable-effects=font-smooth,animation  --full-screen &
+2018-11-01 09:36:39,956 - app.vm_operate - DEBUG - ##################################
+2018-11-01 09:42:39,474 - router.operation_system - DEBUG - {'vm_name': u'win7_5_18_100_200\n100.200.0.10', 'configId': u'159'}
+2018-11-01 09:42:39,475 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 09:42:42,321 - router.operation_system - DEBUG - vm_status_data: None
+2018-11-01 09:42:42,321 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/bdapp/vclient_web/router/operation_system.py", line 73, in link_vm
+    console = vm_status_data['console']
+TypeError: 'NoneType' object has no attribute '__getitem__'
+
+2018-11-01 09:42:43,039 - router.operation_system - DEBUG - {'vm_name': u'win7_5_18_100_200\n100.200.0.10', 'configId': u'159'}
+2018-11-01 09:42:43,041 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 09:42:43,964 - router.operation_system - DEBUG - vm_status_data: {u'status': u'ACTIVE', u'errorInfo': u'success', u'console': {u'passwd': u'oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny', u'host': u'100.100.0.2', u'port': u'5929', u'serverId': u'92f11e31-f6dc-48d4-b478-d8dc78003073'}, u'status_zh': u'\u6d3b\u52a8\u4e2d'}
+2018-11-01 09:42:43,965 - app.vm_operate - DEBUG - taskset -c 1-3 /bdapp/bin/remote-viewer spice://10.100.11.199?tls-port=5910 --spice-ca-file /bdapp/vclient_web/ca-cert.pem --spice-host-subject="C=IL, L=Raanana, O=Red Hat, CN=my server" --redir-server=100.100.0.2:5929 --spice-password=oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny --user-name=yuandc --password=123qwe --server-id=92f11e31-f6dc-48d4-b478-d8dc78003073 --vdesktop-ip=10.100.11.199 --vdesktop-port=444 -t win7_5_18_100_200-100.200.0.10 --delay=100 --spice-color-depth=32 --spice-preferred-compression=quic --spice-disable-effects=font-smooth,animation  --full-screen &
+2018-11-01 09:42:43,971 - app.vm_operate - DEBUG - ##################################
+2018-11-01 09:43:56,045 - router.operation_system - DEBUG - {'vm_name': u'win7_5_18_100_200\n100.200.0.10', 'configId': u'159'}
+2018-11-01 09:43:56,046 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 09:43:56,839 - router.operation_system - DEBUG - vm_status_data: {u'status': u'ACTIVE', u'errorInfo': u'success', u'console': {u'passwd': u'oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny', u'host': u'100.100.0.2', u'port': u'5929', u'serverId': u'92f11e31-f6dc-48d4-b478-d8dc78003073'}, u'status_zh': u'\u6d3b\u52a8\u4e2d'}
+2018-11-01 09:43:56,840 - app.vm_operate - DEBUG - taskset -c 1-3 /bdapp/bin/remote-viewer spice://10.100.11.199?tls-port=5910 --spice-ca-file /bdapp/vclient_web/ca-cert.pem --spice-host-subject="C=IL, L=Raanana, O=Red Hat, CN=my server" --redir-server=100.100.0.2:5929 --spice-password=oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny --user-name=yuandc --password=123qwe --server-id=92f11e31-f6dc-48d4-b478-d8dc78003073 --vdesktop-ip=10.100.11.199 --vdesktop-port=444 -t win7_5_18_100_200-100.200.0.10 --delay=100 --spice-color-depth=32 --spice-preferred-compression=quic --spice-disable-effects=font-smooth,animation  --full-screen &
+2018-11-01 09:43:56,843 - app.vm_operate - DEBUG - ##################################
+2018-11-01 09:44:01,020 - router.operation_system - DEBUG - {'vm_name': u'win7_5_18_100_200\n100.200.0.10', 'configId': u'159'}
+2018-11-01 09:44:01,021 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 09:44:03,865 - router.operation_system - DEBUG - vm_status_data: None
+2018-11-01 09:44:03,866 - router.operation_system - ERROR - Traceback (most recent call last):
+  File "/bdapp/vclient_web/router/operation_system.py", line 73, in link_vm
+    console = vm_status_data['console']
+TypeError: 'NoneType' object has no attribute '__getitem__'
+
+2018-11-01 09:44:04,517 - router.operation_system - DEBUG - {'vm_name': u'win7_5_18_100_200\n100.200.0.10', 'configId': u'159'}
+2018-11-01 09:44:04,518 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 09:44:05,456 - router.operation_system - DEBUG - vm_status_data: {u'status': u'ACTIVE', u'errorInfo': u'success', u'console': {u'passwd': u'oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny', u'host': u'100.100.0.2', u'port': u'5929', u'serverId': u'92f11e31-f6dc-48d4-b478-d8dc78003073'}, u'status_zh': u'\u6d3b\u52a8\u4e2d'}
+2018-11-01 09:44:05,457 - app.vm_operate - DEBUG - taskset -c 1-3 /bdapp/bin/remote-viewer spice://10.100.11.199?tls-port=5910 --spice-ca-file /bdapp/vclient_web/ca-cert.pem --spice-host-subject="C=IL, L=Raanana, O=Red Hat, CN=my server" --redir-server=100.100.0.2:5929 --spice-password=oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny --user-name=yuandc --password=123qwe --server-id=92f11e31-f6dc-48d4-b478-d8dc78003073 --vdesktop-ip=10.100.11.199 --vdesktop-port=444 -t win7_5_18_100_200-100.200.0.10 --delay=100 --spice-color-depth=32 --spice-preferred-compression=quic --spice-disable-effects=font-smooth,animation  --full-screen &
+2018-11-01 09:44:05,461 - app.vm_operate - DEBUG - ##################################
+2018-11-01 09:44:09,464 - router.operation_system - DEBUG - {'vm_name': u'win7_5_18_100_200\n100.200.0.10', 'configId': u'159'}
+2018-11-01 09:44:09,464 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 09:44:10,241 - router.operation_system - DEBUG - vm_status_data: {u'status': u'ACTIVE', u'errorInfo': u'success', u'console': {u'passwd': u'oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny', u'host': u'100.100.0.2', u'port': u'5929', u'serverId': u'92f11e31-f6dc-48d4-b478-d8dc78003073'}, u'status_zh': u'\u6d3b\u52a8\u4e2d'}
+2018-11-01 09:44:10,242 - app.vm_operate - DEBUG - taskset -c 1-3 /bdapp/bin/remote-viewer spice://10.100.11.199?tls-port=5910 --spice-ca-file /bdapp/vclient_web/ca-cert.pem --spice-host-subject="C=IL, L=Raanana, O=Red Hat, CN=my server" --redir-server=100.100.0.2:5929 --spice-password=oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny --user-name=yuandc --password=123qwe --server-id=92f11e31-f6dc-48d4-b478-d8dc78003073 --vdesktop-ip=10.100.11.199 --vdesktop-port=444 -t win7_5_18_100_200-100.200.0.10 --delay=100 --spice-color-depth=32 --spice-preferred-compression=quic --spice-disable-effects=font-smooth,animation  --full-screen &
+2018-11-01 09:44:10,246 - app.vm_operate - DEBUG - ##################################
+2018-11-01 09:44:14,115 - router.operation_system - DEBUG - {'vm_name': u'win7_5_18_100_200\n100.200.0.10', 'configId': u'159'}
+2018-11-01 09:44:14,116 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 09:44:14,883 - router.operation_system - DEBUG - vm_status_data: {u'status': u'ACTIVE', u'errorInfo': u'success', u'console': {u'passwd': u'oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny', u'host': u'100.100.0.2', u'port': u'5929', u'serverId': u'92f11e31-f6dc-48d4-b478-d8dc78003073'}, u'status_zh': u'\u6d3b\u52a8\u4e2d'}
+2018-11-01 09:44:14,883 - app.vm_operate - DEBUG - taskset -c 1-3 /bdapp/bin/remote-viewer spice://10.100.11.199?tls-port=5910 --spice-ca-file /bdapp/vclient_web/ca-cert.pem --spice-host-subject="C=IL, L=Raanana, O=Red Hat, CN=my server" --redir-server=100.100.0.2:5929 --spice-password=oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny --user-name=yuandc --password=123qwe --server-id=92f11e31-f6dc-48d4-b478-d8dc78003073 --vdesktop-ip=10.100.11.199 --vdesktop-port=444 -t win7_5_18_100_200-100.200.0.10 --delay=100 --spice-color-depth=32 --spice-preferred-compression=quic --spice-disable-effects=font-smooth,animation  --full-screen &
+2018-11-01 09:44:14,887 - app.vm_operate - DEBUG - ##################################
+2018-11-01 09:46:20,161 - router.operation_system - DEBUG - {'volume_size': u'15', 'ram': u'2048', 'image_id': u'73b8f379-bef2-482f-9af4-af541ea5cb65', 'image_size': u'4619027456', 'configId': u'191', 'cpu': u'2'}
+2018-11-01 09:46:20,162 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 09:46:20,178 - router.operation_system - DEBUG - vclient.create {'code': 0, 'error_msg': None, 'results': 191}
+2018-11-01 09:46:26,715 - router.operation_system - DEBUG - {'vm_name': u'win7_5_18_100_200\n100.200.0.10', 'configId': u'159'}
+2018-11-01 09:46:26,715 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 09:46:27,495 - router.operation_system - DEBUG - vm_status_data: {u'status': u'ACTIVE', u'errorInfo': u'success', u'console': {u'passwd': u'oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny', u'host': u'100.100.0.2', u'port': u'5929', u'serverId': u'92f11e31-f6dc-48d4-b478-d8dc78003073'}, u'status_zh': u'\u6d3b\u52a8\u4e2d'}
+2018-11-01 09:46:27,495 - app.vm_operate - DEBUG - taskset -c 1-3 /bdapp/bin/remote-viewer spice://10.100.11.199?tls-port=5910 --spice-ca-file /bdapp/vclient_web/ca-cert.pem --spice-host-subject="C=IL, L=Raanana, O=Red Hat, CN=my server" --redir-server=100.100.0.2:5929 --spice-password=oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny --user-name=yuandc --password=123qwe --server-id=92f11e31-f6dc-48d4-b478-d8dc78003073 --vdesktop-ip=10.100.11.199 --vdesktop-port=444 -t win7_5_18_100_200-100.200.0.10 --delay=100 --spice-color-depth=32 --spice-preferred-compression=quic --spice-disable-effects=font-smooth,animation  --full-screen &
+2018-11-01 09:46:27,499 - app.vm_operate - DEBUG - ##################################
+2018-11-01 10:23:20,362 - router.operation_system - DEBUG - {'vm_name': u'win7_5_18_100_200\n100.200.0.10', 'configId': u'159'}
+2018-11-01 10:23:20,363 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 10:23:21,129 - router.operation_system - DEBUG - vm_status_data: {u'status': u'ACTIVE', u'errorInfo': u'success', u'console': {u'passwd': u'oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny', u'host': u'100.100.0.2', u'port': u'5929', u'serverId': u'92f11e31-f6dc-48d4-b478-d8dc78003073'}, u'status_zh': u'\u6d3b\u52a8\u4e2d'}
+2018-11-01 10:23:41,493 - router.operation_system - DEBUG - {'vm_name': u'win7_5_18_100_200\n100.200.0.10', 'configId': u'159'}
+2018-11-01 10:23:41,494 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 10:23:42,242 - router.operation_system - DEBUG - vm_status_data: {u'status': u'ACTIVE', u'errorInfo': u'success', u'console': {u'passwd': u'oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny', u'host': u'100.100.0.2', u'port': u'5929', u'serverId': u'92f11e31-f6dc-48d4-b478-d8dc78003073'}, u'status_zh': u'\u6d3b\u52a8\u4e2d'}
+2018-11-01 10:23:42,242 - app.vm_operate - DEBUG - taskset -c 1-3 /bdapp/bin/remote-viewer spice://10.100.11.199?tls-port=5910 --spice-ca-file /bdapp/vclient_web/ca-cert.pem --spice-host-subject="C=IL, L=Raanana, O=Red Hat, CN=my server" --redir-server=100.100.0.2:5929 --spice-password=oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny --user-name=yuandc --password=123qwe --server-id=92f11e31-f6dc-48d4-b478-d8dc78003073 --vdesktop-ip=10.100.11.199 --vdesktop-port=444 -t win7_5_18_100_200-100.200.0.10 --delay=100 --spice-color-depth=32 --spice-preferred-compression=quic --spice-disable-effects=font-smooth,animation  --full-screen &
+2018-11-01 10:23:42,245 - app.vm_operate - DEBUG - ##################################
+2018-11-01 13:07:23,442 - router.operation_system - DEBUG - {'vm_name': u'win7_5_18_100_200\n100.200.0.10', 'configId': u'159'}
+2018-11-01 13:07:23,443 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 13:07:24,174 - router.operation_system - DEBUG - vm_status_data: {u'status': u'ACTIVE', u'errorInfo': u'success', u'console': {u'passwd': u'oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny', u'host': u'100.100.0.2', u'port': u'5929', u'serverId': u'92f11e31-f6dc-48d4-b478-d8dc78003073'}, u'status_zh': u'\u6d3b\u52a8\u4e2d'}
+2018-11-01 13:07:24,175 - app.vm_operate - DEBUG - taskset -c 1-3 /bdapp/bin/remote-viewer spice://10.100.11.199?tls-port=5910 --spice-ca-file /bdapp/vclient_web/ca-cert.pem --spice-host-subject="C=IL, L=Raanana, O=Red Hat, CN=my server" --redir-server=100.100.0.2:5929 --spice-password=oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny --user-name=yuandc --password=123qwe --server-id=92f11e31-f6dc-48d4-b478-d8dc78003073 --vdesktop-ip=10.100.11.199 --vdesktop-port=444 -t win7_5_18_100_200-100.200.0.10 --delay=100 --spice-color-depth=32 --spice-preferred-compression=quic --spice-disable-effects=font-smooth,animation  --full-screen &
+2018-11-01 13:07:24,177 - app.vm_operate - DEBUG - ##################################
+2018-11-01 13:07:36,065 - router.operation_system - DEBUG - {'vm_name': u'win7_5_18_100_200\n100.200.0.10', 'configId': u'159'}
+2018-11-01 13:07:36,066 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 13:07:37,033 - router.operation_system - DEBUG - vm_status_data: {u'status': u'ACTIVE', u'errorInfo': u'success', u'console': {u'passwd': u'oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny', u'host': u'100.100.0.2', u'port': u'5929', u'serverId': u'92f11e31-f6dc-48d4-b478-d8dc78003073'}, u'status_zh': u'\u6d3b\u52a8\u4e2d'}
+2018-11-01 13:07:37,034 - app.vm_operate - DEBUG - taskset -c 1-3 /bdapp/bin/remote-viewer spice://10.100.11.199?tls-port=5910 --spice-ca-file /bdapp/vclient_web/ca-cert.pem --spice-host-subject="C=IL, L=Raanana, O=Red Hat, CN=my server" --redir-server=100.100.0.2:5929 --spice-password=oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny --user-name=yuandc --password=123qwe --server-id=92f11e31-f6dc-48d4-b478-d8dc78003073 --vdesktop-ip=10.100.11.199 --vdesktop-port=444 -t win7_5_18_100_200-100.200.0.10 --delay=100 --spice-color-depth=32 --spice-preferred-compression=quic --spice-disable-effects=font-smooth,animation  --full-screen &
+2018-11-01 13:07:37,041 - app.vm_operate - DEBUG - ##################################
+2018-11-01 13:08:04,179 - router.operation_system - DEBUG - {'vm_name': u'win7\n100.100.100.101', 'configId': u'132'}
+2018-11-01 13:08:04,179 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 13:08:04,897 - router.operation_system - DEBUG - vm_status_data: {u'status': u'ACTIVE', u'errorInfo': u'success', u'console': {u'passwd': u'IDg28fAyZVhafrfq773UCcxPq9eEpVRI', u'host': u'100.100.0.2', u'port': u'5903', u'serverId': u'e365e657-e6ef-45f4-9435-847e21e74a5b'}, u'status_zh': u'\u6d3b\u52a8\u4e2d'}
+2018-11-01 13:08:04,897 - app.vm_operate - DEBUG - taskset -c 1-3 /bdapp/bin/remote-viewer spice://10.100.11.199?tls-port=5910 --spice-ca-file /bdapp/vclient_web/ca-cert.pem --spice-host-subject="C=IL, L=Raanana, O=Red Hat, CN=my server" --redir-server=100.100.0.2:5903 --spice-password=IDg28fAyZVhafrfq773UCcxPq9eEpVRI --user-name=yuandc --password=123qwe --server-id=e365e657-e6ef-45f4-9435-847e21e74a5b --vdesktop-ip=10.100.11.199 --vdesktop-port=444 -t win7-100.100.100.101 --delay=100 --spice-color-depth=32 --spice-preferred-compression=quic --spice-disable-effects=font-smooth,animation  --full-screen &
+2018-11-01 13:08:04,900 - app.vm_operate - DEBUG - ##################################
+2018-11-01 13:08:13,845 - router.operation_system - DEBUG - {'vm_name': u'win7-5-18\n100.100.100.102', 'configId': u'134'}
+2018-11-01 13:08:13,846 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 13:08:14,707 - router.operation_system - DEBUG - vm_status_data: {u'status': u'ACTIVE', u'errorInfo': u'success', u'console': {u'passwd': u'mT5AG1HfWZBcjolCpo5cd2l1h6BadGuh', u'host': u'100.100.0.2', u'port': u'5905', u'serverId': u'7a07a472-e265-48bc-bae4-06a52f21f699'}, u'status_zh': u'\u6d3b\u52a8\u4e2d'}
+2018-11-01 13:08:14,709 - app.vm_operate - DEBUG - taskset -c 1-3 /bdapp/bin/remote-viewer spice://10.100.11.199?tls-port=5910 --spice-ca-file /bdapp/vclient_web/ca-cert.pem --spice-host-subject="C=IL, L=Raanana, O=Red Hat, CN=my server" --redir-server=100.100.0.2:5905 --spice-password=mT5AG1HfWZBcjolCpo5cd2l1h6BadGuh --user-name=yuandc --password=123qwe --server-id=7a07a472-e265-48bc-bae4-06a52f21f699 --vdesktop-ip=10.100.11.199 --vdesktop-port=444 -t win7-5-18-100.100.100.102 --delay=100 --spice-color-depth=32 --spice-preferred-compression=quic --spice-disable-effects=font-smooth,animation  --full-screen &
+2018-11-01 13:08:14,716 - app.vm_operate - DEBUG - ##################################
+2018-11-01 13:25:27,821 - router.operation_system - DEBUG - {'vm_name': u'win7\n100.100.100.101', 'configId': u'132'}
+2018-11-01 13:25:27,822 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 13:25:28,826 - router.operation_system - DEBUG - vm_status_data: {u'status': u'ACTIVE', u'errorInfo': u'success', u'console': {u'passwd': u'IDg28fAyZVhafrfq773UCcxPq9eEpVRI', u'host': u'100.100.0.2', u'port': u'5903', u'serverId': u'e365e657-e6ef-45f4-9435-847e21e74a5b'}, u'status_zh': u'\u6d3b\u52a8\u4e2d'}
+2018-11-01 13:25:28,828 - app.vm_operate - DEBUG - taskset -c 1-3 /bdapp/bin/remote-viewer spice://10.100.11.199?tls-port=5910 --spice-ca-file /bdapp/vclient_web/ca-cert.pem --spice-host-subject="C=IL, L=Raanana, O=Red Hat, CN=my server" --redir-server=100.100.0.2:5903 --spice-password=IDg28fAyZVhafrfq773UCcxPq9eEpVRI --user-name=yuandc --password=123qwe --server-id=e365e657-e6ef-45f4-9435-847e21e74a5b --vdesktop-ip=10.100.11.199 --vdesktop-port=444 -t win7-100.100.100.101 --delay=100 --spice-color-depth=32 --spice-preferred-compression=quic --spice-disable-effects=font-smooth,animation  --full-screen &
+2018-11-01 13:25:28,835 - app.vm_operate - DEBUG - ##################################
+2018-11-01 13:25:38,256 - router.operation_system - DEBUG - {'vm_name': u'win7_5_18_100_200\n100.200.0.10', 'configId': u'159'}
+2018-11-01 13:25:38,256 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 13:25:39,078 - router.operation_system - DEBUG - vm_status_data: {u'status': u'ACTIVE', u'errorInfo': u'success', u'console': {u'passwd': u'oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny', u'host': u'100.100.0.2', u'port': u'5929', u'serverId': u'92f11e31-f6dc-48d4-b478-d8dc78003073'}, u'status_zh': u'\u6d3b\u52a8\u4e2d'}
+2018-11-01 13:25:39,079 - app.vm_operate - DEBUG - taskset -c 1-3 /bdapp/bin/remote-viewer spice://10.100.11.199?tls-port=5910 --spice-ca-file /bdapp/vclient_web/ca-cert.pem --spice-host-subject="C=IL, L=Raanana, O=Red Hat, CN=my server" --redir-server=100.100.0.2:5929 --spice-password=oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny --user-name=yuandc --password=123qwe --server-id=92f11e31-f6dc-48d4-b478-d8dc78003073 --vdesktop-ip=10.100.11.199 --vdesktop-port=444 -t win7_5_18_100_200-100.200.0.10 --delay=100 --spice-color-depth=32 --spice-preferred-compression=quic --spice-disable-effects=font-smooth,animation  --full-screen &
+2018-11-01 13:25:39,089 - app.vm_operate - DEBUG - ##################################
+2018-11-01 13:28:01,526 - router.operation_system - DEBUG - {'vm_name': u'win7_5_18_100_200\n100.200.0.10', 'configId': u'159'}
+2018-11-01 13:28:01,526 - router.operation_system - DEBUG - start  local vm1
+2018-11-01 13:28:02,363 - router.operation_system - DEBUG - vm_status_data: {u'status': u'ACTIVE', u'errorInfo': u'success', u'console': {u'passwd': u'oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny', u'host': u'100.100.0.2', u'port': u'5929', u'serverId': u'92f11e31-f6dc-48d4-b478-d8dc78003073'}, u'status_zh': u'\u6d3b\u52a8\u4e2d'}
+2018-11-01 13:28:02,364 - app.vm_operate - DEBUG - taskset -c 1-3 /bdapp/bin/remote-viewer spice://10.100.11.199?tls-port=5910 --spice-ca-file /bdapp/vclient_web/ca-cert.pem --spice-host-subject="C=IL, L=Raanana, O=Red Hat, CN=my server" --redir-server=100.100.0.2:5929 --spice-password=oGuaPC8Dlj1cXxRk7hi5UjdvkzAlgnny --user-name=yuandc --password=123qwe --server-id=92f11e31-f6dc-48d4-b478-d8dc78003073 --vdesktop-ip=10.100.11.199 --vdesktop-port=444 -t win7_5_18_100_200-100.200.0.10 --delay=100 --spice-color-depth=32 --spice-preferred-compression=quic --spice-disable-effects=font-smooth,animation  --full-screen &
+2018-11-01 13:28:02,371 - app.vm_operate - DEBUG - ##################################

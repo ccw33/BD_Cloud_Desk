@@ -1,0 +1,4 @@
+安装python-networkmanager
+$ git clone http://github.com/seveas/python-networkmanager
+$ cd python-networkmanager
+$ python setup.py install

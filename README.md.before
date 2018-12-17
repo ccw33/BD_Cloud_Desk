@@ -1,0 +1,26 @@
+# Flask-htmlPy-pywebview
+# 安装依赖
+- sudo pip install PySide (如果失败则运行 sudo apt-get install python-pyside) #htmlPy所需依赖
+- sudo pip install -r requirements.txt #安装依赖
+- cd file/python-networkmanager && sudo python setup.py install  #安装 networkmanager
+
+- 如果是windows 执行 pip install pywebview[winforms]
+
+[//]: # (安装PyQt5)
+- pip3 install PyQt5
+- sudo apt-get install python3-pyqt5.qtwebkit
+
+[//]: # (安装PyQt5需要的依赖)
+- wget http://download.qt.io/archive/qt/5.10/5.10.1/qt-opensource-linux-x64-5.10.1.run
+-  pip install enum34
+- cd /home/bluedon/vclient/cloud_dashboard/file/PyQt5_gpl-5.11.2/ &&
+
+# 运行
+- sudo python cloud_dashboard_end.py #运行Flask（必须先运行，这是后台）
+- sudo python open.py ip #打开ip设置窗口
+- sudo python open.py wifi [x,y ]#列出所有wifi。可选参数x,y，表示窗口与屏幕右下角的x、y方向上的距离
+- sudo python open.py screen_set  #打开屏幕设置窗口
+
+# 文件
+- 配置文件是Conf.py文件，可以配置服务器的ip、端口，以及是否开启debug模式
+- 日志文件是log/cloud_dashboard_end

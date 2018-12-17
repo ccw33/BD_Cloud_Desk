@@ -1,0 +1,243 @@
+@import "theme";
+@import "~bootstrap/scss/bootstrap";
+
+$phone-max-width: 767px;
+$phone-max-portrait-width: 430px;
+$phone-max-landscape-width: 767px;
+
+$pad-min-width: 768px;
+
+//row center
+.inline-row-center-center {
+  @extend .d-inline-flex;
+  @extend .flex-row;
+  @extend .justify-content-center;
+  @extend .align-items-center;
+  @extend .flex-wrap;
+}
+
+.inline-row-center-start {
+  @extend .d-inline-flex;
+  @extend .flex-row;
+  @extend .justify-content-center;
+  @extend .align-items-start;
+  @extend .flex-wrap;
+}
+
+.inline-row-center-baseline {
+  @extend .d-inline-flex;
+  @extend .flex-row;
+  @extend .justify-content-center;
+  @extend .align-items-baseline;
+  @extend .flex-wrap;
+}
+
+.inline-row-center-end {
+  @extend .d-inline-flex;
+  @extend .flex-row;
+  @extend .justify-content-center;
+  @extend .align-items-end;
+  @extend .flex-wrap;
+}
+
+//row start
+.inline-row-start-center {
+  @extend .d-inline-flex;
+  @extend .flex-row;
+  @extend .justify-content-start;
+  @extend .align-items-center;
+  @extend .flex-wrap;
+}
+
+.inline-row-start-start {
+  @extend .d-inline-flex;
+  @extend .flex-row;
+  @extend .justify-content-start;
+  @extend .align-items-start;
+  @extend .flex-wrap;
+}
+
+.inline-row-start-baseline {
+  @extend .d-inline-flex;
+  @extend .flex-row;
+  @extend .justify-content-start;
+  @extend .align-items-baseline;
+  @extend .flex-wrap;
+}
+
+.inline-row-start-end {
+  @extend .d-inline-flex;
+  @extend .flex-row;
+  @extend .justify-content-start;
+  @extend .align-items-end;
+  @extend .flex-wrap;
+}
+
+//row end
+.inline-row-end-center {
+  @extend .d-inline-flex;
+  @extend .flex-row;
+  @extend .justify-content-end;
+  @extend .align-items-center;
+  @extend .flex-wrap;
+}
+
+.inline-row-end-start {
+  @extend .d-inline-flex;
+  @extend .flex-row;
+  @extend .justify-content-end;
+  @extend .align-items-start;
+  @extend .flex-wrap;
+}
+
+.inline-row-end-baseline {
+  @extend .d-inline-flex;
+  @extend .flex-row;
+  @extend .justify-content-end;
+  @extend .align-items-baseline;
+  @extend .flex-wrap;
+}
+
+.inline-row-end-end {
+  @extend .d-inline-flex;
+  @extend .flex-row;
+  @extend .justify-content-end;
+  @extend .align-items-end;
+  @extend .flex-wrap;
+}
+
+//column center
+.inline-column-center-center {
+  @extend .d-inline-flex;
+  @extend .flex-column;
+  @extend .justify-content-center;
+  @extend .align-items-center;
+  @extend .flex-wrap;
+}
+
+.inline-column-center-start {
+  @extend .d-inline-flex;
+  @extend .flex-column;
+  @extend .justify-content-center;
+  @extend .align-items-start;
+  @extend .flex-wrap;
+}
+
+.inline-column-center-baseline {
+  @extend .d-inline-flex;
+  @extend .flex-column;
+  @extend .justify-content-center;
+  @extend .align-items-baseline;
+  @extend .flex-wrap;
+}
+
+.inline-column-center-end {
+  @extend .d-inline-flex;
+  @extend .flex-column;
+  @extend .justify-content-center;
+  @extend .align-items-end;
+  @extend .flex-wrap;
+}
+
+
+
+//column start
+.inline-column-start-center {
+  @extend .d-inline-flex;
+  @extend .flex-column;
+  @extend .justify-content-start;
+  @extend .align-items-center;
+  @extend .flex-wrap;
+}
+
+.inline-column-start-start {
+  @extend .d-inline-flex;
+  @extend .flex-column;
+  @extend .justify-content-start;
+  @extend .align-items-start;
+  @extend .flex-wrap;
+}
+
+.inline-column-start-baseline {
+  @extend .d-inline-flex;
+  @extend .flex-column;
+  @extend .justify-content-start;
+  @extend .align-items-baseline;
+  @extend .flex-wrap;
+}
+
+.inline-column-start-end {
+  @extend .d-inline-flex;
+  @extend .flex-column;
+  @extend .justify-content-start;
+  @extend .align-items-end;
+  @extend .flex-wrap;
+}
+
+//column end
+.inline-column-end-center {
+  @extend .d-inline-flex;
+  @extend .flex-column;
+  @extend .justify-content-end;
+  @extend .align-items-center;
+  @extend .flex-wrap;
+}
+
+.inline-column-end-start {
+  @extend .d-inline-flex;
+  @extend .flex-column;
+  @extend .justify-content-end;
+  @extend .align-items-start;
+  @extend .flex-wrap;
+}
+
+.inline-column-end-baseline {
+  @extend .d-inline-flex;
+  @extend .flex-column;
+  @extend .justify-content-end;
+  @extend .align-items-baseline;
+  @extend .flex-wrap;
+}
+
+.inline-column-end-end {
+  @extend .d-inline-flex;
+  @extend .flex-column;
+  @extend .justify-content-end;
+  @extend .align-items-end;
+  @extend .flex-wrap;
+}
+
+.bd_scroll {
+  //滚动条整体部分
+  &::-webkit-scrollbar {
+    width: 5px;
+    height: 10px;
+    //background-color: #b5b1b1;
+    background-color: transparent;
+  }
+  //scroll轨道背景
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-color: black;
+
+  }
+  //滚动条中能上下移动的小块
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    background-color: #b5b1b1;
+  }
+
+}
+
+////蓝盾特有绿色按钮
+//.green_button {
+//  background-color: #6EA28B;
+//  &:hover {
+//    background-color: #2BAF73;
+//  }
+//}
+
+
+

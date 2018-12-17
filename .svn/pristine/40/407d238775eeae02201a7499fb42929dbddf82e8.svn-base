@@ -1,0 +1,383 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+import uuid
+import os
+import ConfigParser
+import IPy
+from flask import current_app
+import NetworkManager as nm
+
+try:
+    LOG = current_app.logger
+except Exception:
+    import logging
+
+    LOG = logging
+
+NetworkManagerDir = '/etc/NetworkManager/system-connections/'
+
+SUPPORTED_NM_DEVICE_TYPES = {
+    nm.NM_DEVICE_TYPE_ETHERNET,
+    # nm.NM_DEVICE_TYPE_WIFI,
+    nm.NM_DEVICE_TYPE_BRIDGE,
+    # nm.NM_DEVICE_TYPE_TUN
+}
+
+NM_DEVICE_TYPE_STR_MAPPING = {
+    nm.NM_DEVICE_TYPE_ETHERNET: "802-3-ethernet",
+    nm.NM_DEVICE_TYPE_WIFI: "802-11-wireless",
+    nm.NM_DEVICE_TYPE_BRIDGE: "bridge",
+    nm.NM_DEVICE_TYPE_TUN: "tun"
+}
+
+VDESKTOP_NM_CONNECTION_ID_PREFIX = "vdp-"
+MAX_CONNECTION_ID_LENGTH = 50
+
+
+def get_vdesktop_connection_id(device_name, ssid=None):
+    if ssid:
+        s = "%s%s_%s" % (VDESKTOP_NM_CONNECTION_ID_PREFIX, ssid, device_name)
+    else:
+        s = "%s%s" % (VDESKTOP_NM_CONNECTION_ID_PREFIX, device_name)
+    return s[:MAX_CONNECTION_ID_LENGTH]
+
+
+def is_vdesktop_connection_id(s):
+    return s.startswith(VDESKTOP_NM_CONNECTION_ID_PREFIX)
+
+
+def _populate_networkinfo_from_networkmanager(dev, networkinfo):
+    # only use the first one address
+    updates = {}
+    if dev.Ip4Config:
+        ip_addr, fixed_len, gateway = dev.Ip4Config.Addresses[0]
+        updates = {
+            'ip': ip_addr,
+            'subnet_mask': intToMask(fixed_len), # str
+            'gateway': gateway,
+            'dns': ';'.join(dev.Ip4Config.Nameservers),
+            'is_auto': bool(dev.Dhcp4Config)
+        }
+
+    networkinfo.update(updates)
+
+
+def _get_config(cfg, section, option, default=None, force_raise=False):
+    try:
+        return cfg.get(section, option)
+    except ConfigParser.NoOptionError as e:
+        if force_raise:
+            raise e
+        return default
+
+
+def _populate_networkinfo_from_file(dev, networkinfo):
+    config_file = "%s%s" % (NetworkManagerDir, networkinfo["id"])
+    config = ConfigParser.ConfigParser()
+    try:
+        with open(config_file) as fp:
+            config.readfp(fp, config_file)
+    except IOError as e:
+        LOG.warning("Cannot get config from %s. Because: %s"
+                            % (config_file, e))
+        raise
+
+    method = _get_config(config, 'ipv4', 'method', default='auto')
+    updates = {
+        'dns': _get_config(config, 'ipv4', 'dns', default=""),
+        'is_auto': (method == "auto"),
+    }
+
+    # address is in the form like ip_address/fixed_len,gateway
+    address = _get_config(config, 'ipv4', 'address1')
+    if address:
+        interface_addr = address = address.strip()
+        _v = address.split(",", 1)
+        if len(_v) > 1:
+            interface_addr = _v[0].strip()
+            updates["gateway"] = _v[1].strip()
+            if not isIP(updates["gateway"]):
+                raise ValueError("Invalid gateway %s in %s" \
+                                 % (updates["gateway"], config_file))
+
+        _v = interface_addr.split("/", 1)
+        updates["ip"] = _v[0].strip()
+        updates["subnet_mask"] = intToMask(int(_v[1].strip()))
+        if not isIP(updates["ip"]):
+            raise ValueError("Invalid ip address %s in %s" \
+                             % (updates["ip"], config_file))
+
+    networkinfo.update(updates)
+
+
+def get_all_mac():
+    all_mac = [dev.HwAddress for dev in nm.NetworkManager.GetAllDevices()
+               if dev.DeviceType == nm.NM_DEVICE_TYPE_ETHERNET]
+    return all_mac
+
+
+def getNetworkInfo():
+    networkInfos = []
+
+    for dev in nm.NetworkManager.GetAllDevices():
+        if dev.DeviceType not in SUPPORTED_NM_DEVICE_TYPES:
+            continue
+        networkInfo = {
+            'id': get_vdesktop_connection_id(dev.Interface),
+            'mac': dev.HwAddress,
+            'type': dev.DeviceType,
+            'ip': '',
+            'subnet_mask': '',
+            'gateway': '',
+            'dns': '',
+            'is_auto': True,
+            'interface_name': dev.Interface,
+            'lan': dev.Interface,  # 前台展现?
+        }
+
+        if dev.State == nm.NM_DEVICE_STATE_ACTIVATED:
+            _populate_networkinfo_from_networkmanager(dev, networkInfo)
+        else:
+            try:
+                # To-do(mozz): get connection info from nm connections
+                # conn.GetSettings()
+                _populate_networkinfo_from_file(dev, networkInfo)
+            except Exception as e:
+                LOG.warning("Cannot get %s network info. Because of %s"
+                            % (dev.Interface, e))
+        networkInfos.append(networkInfo)
+    return networkInfos
+
+
+def add_or_update_nm_connection_to_disk(conn_info, device):
+    """如果找到相应的配置则设法更新它，否则创建一个新的"""
+
+    for conn in device.AvailableConnections:
+        conn_info_on_disk = conn.GetSettings()
+        if conn_info_on_disk["connection"]["id"] == conn_info["connection"]["id"]:
+            # re-use uuid on disk
+            conn_info["connection"]["uuid"] \
+                = conn_info_on_disk["connection"]["uuid"]
+            conn.Update(conn_info)
+            break
+    else:
+        # 创建新配置
+        conn = nm.Settings.AddConnection(conn_info)
+
+    # 加载新配置到NM中
+    nm.Settings.ReloadConnections()
+
+    return conn
+
+
+def add_and_active_connection(conn_info):
+    """Add and active NM connection
+
+    默认绑定的设备从 conn_info["connection"]["interface-name"] 取得.
+
+    """
+
+    def _find_dev(device_name):
+        for dev in nm.NetworkManager.GetAllDevices():
+            if dev.Interface == device_name:
+                break
+        else:
+            raise KeyError("Device %s is not found." % device_name)
+        return dev
+
+    try:
+        device_name = conn_info["connection"]["interface-name"]
+    except KeyError:
+        raise Exception("interface-name is required in conn_info %s."
+                        % (conn_info,))
+    dev = _find_dev(device_name)
+
+    conn = add_or_update_nm_connection_to_disk(conn_info, dev)
+
+    # 激活制定connection
+    return nm.NetworkManager.ActivateConnection(conn, dev, "/")
+
+
+def setNetwork(device_name, mac, address, netmask, gateway, dns, eth_type):
+    if not isIP(address):
+        raise KeyError("Invalid ip address %s for device %s"
+                       % (address, device_name))
+
+    eth_type = int(eth_type)
+    try:
+        conn_type = NM_DEVICE_TYPE_STR_MAPPING[eth_type]
+    except KeyError:
+        raise KeyError("Unsupported device %s." % device_name)
+
+    if not gateway:
+        gateway = '0.0.0.0'
+    dns_list = []
+    if dns:
+        for s in map(lambda s: s.strip(), dns.split(";")):
+            if not isIP(s):
+                raise KeyError("Invalid dns server addresses %s for device %s"
+                               % (dns, device_name))
+            dns_list.append(s)
+
+    conn_info = {
+        'connection': {'id': get_vdesktop_connection_id(device_name),
+                       'type': conn_type,
+                       # 'uuid':str(uuid.uuid4()),
+                       'interface-name': device_name
+                       },
+        '802-3-ethernet': {'mac-address': mac},
+        'ipv4': {'method': 'manual',
+                 'addresses': [(address, maskToInt(netmask), gateway)],
+                 'dns': dns_list},
+        'ipv6': {'method': 'auto'}
+    }
+
+    if gateway != "0.0.0.0":
+        conn_info['ipv4']["gateway"] = gateway
+
+    # If device is a virtual tap(tun), set tun mode to Ethernet-like layer 2.
+    if eth_type == nm.NM_DEVICE_TYPE_TUN:
+        conn_info["tun"] = {"mode": 2}
+
+    return add_and_active_connection(conn_info)
+
+
+def setDHCP(device_name, eth_type):
+    try:
+        conn_type = NM_DEVICE_TYPE_STR_MAPPING[eth_type]
+    except KeyError:
+        raise KeyError("Unsupported device %s." % device_name)
+
+    conn_info = {
+        'connection': {'id': get_vdesktop_connection_id(device_name),
+                       "interface-name": device_name,
+                       'type': conn_type,
+                       # 'uuid':str(uuid.uuid4()),
+                       },
+        'ipv4': {'method': 'auto'},
+        'ipv6': {'method': 'auto'}
+    }
+
+    return add_and_active_connection(conn_info)
+
+
+def getWifiList():
+    wifi_list = []
+    for dev in nm.NetworkManager.GetAllDevices():
+        if dev.DeviceType != nm.NM_DEVICE_TYPE_WIFI:
+            continue
+        # To-do(mozz): We should check and return device state to the web front
+        #              end.
+        #              1.wifi disabled:
+        #                     dev.State -> NM_DEVICE_STATE_UNAVAILABLE(20)
+        #              2.wifi enabled but haven't connected to a access point:
+        #                     dev.State -> NM_DEVICE_STATE_DISCONNECTED(30)
+        #              3.wifi has connected to a access point:
+        #                     dev.State -> NM_DEVICE_STATE_ACTIVATED(100)
+        for ap in dev.GetAccessPoints():
+            actived = (ap.Ssid == dev.ActiveAccessPoint.Ssid and ap.HwAddress == dev.ActiveAccessPoint.HwAddress) \
+                        if dev.ActiveAccessPoint else False
+            one = {"name": ap.Ssid,
+                   "ap_mac": ap.HwAddress,
+                   "strength": ap.Strength,
+                   "interface_name": dev.Interface,
+                   "key_type": None,
+                   "actived": actived,
+                  }
+
+            one.update(name=ap.Ssid)
+            if ap.Flags == nm.NM_802_11_AP_FLAGS_NONE:
+                one.update(is_lock=False)
+            elif ap.Flags == nm.NM_802_11_AP_FLAGS_PRIVACY:
+                one.update(is_lock=True)
+            else:
+                raise ValueError("Unsupported 802.11 access point flags.")
+            wifi_list.append(one)
+    return {"wifi_list": wifi_list, }
+
+
+def disconnect_wifi(ssid, interface_name):
+    '''
+    断开连接的代码实现在这里
+    '''
+
+    conn_id = get_vdesktop_connection_id(interface_name, ssid=ssid)
+    for conn in nm.NetworkManager.ActiveConnections:
+        if conn.Id == conn_id:
+            nm.NetworkManager.DeactivateConnection(conn)
+            try:
+                # 如果已激活的连接关闭后 还能请求到，表示还没关闭
+                # to-do(mozz): 最好异步或者加个sleep
+                return not bool(conn.Id)
+            except nm.ObjectVanished:
+                return True
+
+    raise KeyError("Connection is not found: ssid %s, interface %s.",
+                   (ssid, interface_name))
+
+
+def is_wifi_enabled():
+    return nm.WirelessHardwareEnabled
+
+
+def is_access_point_actived(ssid, ap_mac):
+    for dev in nm.NetworkManager.GetAllDevices():
+        if dev.DeviceType != nm.NM_DEVICE_TYPE_WIFI or not dev.ActiveAccessPoint:
+            continue
+
+        if dev.ActiveAccessPoint.Ssid == ssid and dev.ActiveAccessPoint.HwAddress == ap_mac:
+            return  True
+    return False
+
+
+def connectWifi(ssid, is_lock, password, device_name=""):
+    conn_info = {
+        'connection':{'id': get_vdesktop_connection_id(device_name, ssid),
+                      'type':'802-11-wireless',
+                      # 'uuid':str(uuid.uuid4()),
+                      'interface-name': device_name},
+        '802-11-wireless': {'mode':'infrastructure',
+                            'security':'802-11-wireless-security',
+                            'ssid': ssid},
+        'ipv4':{'method':'auto'},
+        'ipv6':{'method':'auto'}
+    }
+
+    if is_lock:
+        # To-do(mozz): 支持多种认证方式
+        conn_info["802-11-wireless-security"] \
+            = {'key-mgmt': 'wpa-psk', 'psk': password}
+
+    add_and_active_connection(conn_info)
+
+
+def maskToInt(mask):
+    count_bit = lambda bin_str: len([i for i in bin_str if i == '1'])
+    mask_splited = mask.split('.')
+    mask_count = [count_bit(bin(int(i))) for i in mask_splited]
+    return sum(mask_count)
+
+
+def intToMask(n):
+    bin_arr = ['0' for i in range(32)]
+    for i in range(n):
+        bin_arr[i] = '1'
+    tmpmask = [''.join(bin_arr[i * 8: i * 8 + 8]) for i in range(4)]
+    tmpmask = [str(int(tmpstr, 2)) for tmpstr in tmpmask]
+    return '.'.join(tmpmask)
+
+
+def isIP(addr):
+    try:
+        IPy.IP(addr)
+        return True
+    except Exception as e:
+        return False
+
+
+if __name__ == '__main__':
+
+    networkInfos = getWifiList()
+    for k in networkInfos:
+        print networkInfos[k]

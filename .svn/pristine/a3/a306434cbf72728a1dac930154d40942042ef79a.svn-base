@@ -1,0 +1,72 @@
+# encoding:utf-8
+import re
+import sys
+import json
+import logging
+import multiprocessing
+import traceback
+
+from flask import request, Blueprint, session, abort,current_app
+from werkzeug.exceptions import HTTPException
+
+import requests
+from Utils import log_utils, flask_utils
+from Utils.conf import Conf
+
+# logger = log_utils.Log('log/cloud_dashboard_end',
+#                        level=logging.DEBUG if Conf.get('BACKEND_SERVER', 'mode') == 'debug' else logging.ERROR,
+#                        name=__name__).logger
+
+
+common_api_blueprint = Blueprint(
+    'common_api',
+    __name__,
+    url_prefix='/api/common_api'
+)
+
+
+
+@common_api_blueprint.before_request
+def before_request():
+    flask_utils.need_login()
+
+
+@common_api_blueprint.route('/<api_route>', methods=['GET', 'POST'])
+def get_or_post(api_route):
+    try:
+        path = api_route.replace('.', '/')
+        if path == 'api/login':
+            raise Exception('此方法不能用于登录')
+        query_string = request.query_string
+
+        if flask_utils.is_local_server:
+            query_string = 'account={0}&password={1}&{2}'.format(Conf.get('USER','account'), Conf.get('USER','password'),
+                                                                 query_string)
+        else:
+            query_string = 'account={0}&password={1}&{2}'.format(session['account'], session['password'],
+                                                             query_string)
+        if request.method == 'GET':
+            response = requests.get('{0}{1}?{2}'.format(flask_utils.vm_server(), path, query_string), verify=False)
+        elif request.method == 'POST':
+            response = requests.post('{0}{1}?{2}'.format(flask_utils.vm_server(), path, query_string), data=request.form.to_dict(),
+                                     verify=False)
+        else:
+            raise Exception('目前只支持get和post两种方法')
+
+        if response.status_code == 200:
+            if path == 'api/EditPassword' and response.json()['errorinfo'] == 'success':
+                if flask_utils.is_local_server:
+                    Conf.set('USER', 'password', request.args['newPassword'])
+                else:
+                    if flask_utils.is_local_server:
+                        Conf.set('USER','password',request.args['newPassword'])
+                    else:
+                        session['password'] = request.args['newPassword']
+            return json.loads(response.content)
+        else:
+            raise Exception(str(response.status_code))
+    except HTTPException as e:
+        raise e
+    except Exception  as e:
+        current_app.logger.error(traceback.format_exc())
+        return {'content': e.message},500

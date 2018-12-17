@@ -1,0 +1,26 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+import os
+
+def get_resolution():
+    xrandrs = []
+    lines = os.popen("xrandr").readlines()
+    #print lines
+    xrandrs.append(lines[0].split(',')[1][9:])
+    for index in range(len(lines)):
+        #print lines[index].split()[0]
+        if(lines[index].split()[0].find('x') != -1):
+            xrandrs.append(lines[index].split()[0])
+    return xrandrs
+
+def set_resolution(resolution):
+    cmd = "xrandr -s " + resolution
+    status = os.system(cmd)
+    if not status == 0:
+        raise('设置分辨率出错')
+
+
+if __name__ == '__main__':
+    print(get_resolution())
+    #set_resolution("800x600")

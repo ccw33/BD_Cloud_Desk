@@ -1,0 +1,223 @@
+<template>
+  <div class="bd_scroll">
+    <div class="list">
+      <div v-for="item in list">
+        <div class="item row" @dblclick="vm_start(item.id)">
+          <div class="col-2 icon">
+            <div v-bind:class="[item.icon]"></div>
+          </div>
+          <div class="col-9">
+            <div class="text-left">
+              <span>名称</span>
+              <span>{{item.name}}</span>
+            </div>
+            <div class="row">
+              <div class="col-6 text-left">
+                <span>cpu</span>
+                <span>{{item.flavor.cpu}}</span>
+              </div>
+              <div class="col-6 text-left">
+                <span>内存</span>
+                <span>{{item.flavor.ram}}</span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6 text-left">
+                <span>硬盘大小</span>
+                <span>{{item.flavor.volume_size}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script type="text/javascript">
+
+  export default {
+    name: 'offline',
+    components: {},
+    data() {
+      return {
+        show: true,
+        lock: false,
+        list: [
+          // {
+          //   flavor: {
+          //     cpu: 2,
+          //     ram: 2048,
+          //     volome_size: 1
+          //   },
+          //   id: 191,
+          //   name: "假数据",
+          //   icon: "win7"
+          // }, {
+          //   flavor: {
+          //     cpu: 2,
+          //     ram: 2048,
+          //     volome_size: 1
+          //   },
+          //   id: 191,
+          //   name: "假数据",
+          //   icon: "linux"
+          // }, {
+          //   flavor: {
+          //     cpu: 2,
+          //     ram: 2048,
+          //     volome_size: 1
+          //   },
+          //   id: 191,
+          //   name: "假数据",
+          //   icon: "ubuntu"
+          // }, {
+          //   flavor: {
+          //     cpu: 2,
+          //     ram: 2048,
+          //     volome_size: 1
+          //   },
+          //   id: 191,
+          //   name: "假数据",
+          //   icon: "centos"
+          // },
+        ],
+      };
+    },
+    created: function () {
+      this.get_list();
+    },
+    computed: {},
+    methods: {
+
+      // 获取离线虚拟机列表
+      get_list: function () {
+        this.$ajax.get('api/operation_system/get_created_local_vms', {
+          params: {},
+          responseType: 'json',
+        }).then((response) => {
+          // 获取列表
+          response.data.content.forEach((item) => {
+            let icon = '';
+
+            switch (item.os) {
+              case 'windows':
+                icon = 'win7';
+                break;
+              case 'linux':
+                icon = 'linux';
+                break;
+              case 'ubuntu':
+                icon = 'ubuntu';
+                break;
+              case 'centos':
+                icon = 'centos';
+                break;
+            }
+
+            this.list.push({
+              flavor: {
+                cpu: item.flavor.cpu,
+                ram: Math.round(item.flavor.ram / 1024).toString() + 'GB',
+                volume_size: (item.flavor.volome_size).toString() + 'GB',
+              },
+              id: item.id,
+              name: item.name,
+              icon: icon
+            })
+          });
+        }).catch((error) => {
+          this.$root.alert.fail.message = '发生错误,无法获取离线虚拟机列表';
+          this.$root.alert.fail.is_show = true;
+        });
+      },
+      // 启动离线虚拟机
+      vm_start: function (id) {
+        this.locking(() => {
+          this.$root.is_loading = true;
+          this.$ajax.get('api/operation_system/link_local_created_vm', {
+            params: {
+              configId: id
+            },
+            responseType: 'json'
+          }).then((response) => {
+            let data = response.data;
+
+            if (data.content !== 'success') {
+              this.$root.alert.fail.message = data.content;
+            }
+          }).catch((error) => {
+            this.$root.alert.fail.message = error.response.data.content;
+            this.$root.alert.fail.is_show = true;
+          })
+
+          this.$root.is_loading = false;
+        })
+
+      },
+      // 锁,为了在点击启动离线桌面的时候,不允许点击其他的离线桌面
+      locking: function (func) {
+        if (this.lock === false) {
+          this.lock = true;
+          func();
+          this.lock = false;
+        }
+      },
+    }
+  }
+</script>
+
+<style scoped lang="scss">
+  @import "../../assets/sass/base";
+
+  .list {
+    width: 75%;
+    margin: auto;
+    padding: 0px;
+
+    .item {
+      border: 1px solid $color-withe-gray;
+      margin-bottom: 2px;
+      color: #FFFFFF;
+    }
+  }
+
+  .bd_scroll {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 90%;
+    margin: 0 10%;
+  }
+
+  .icon {
+    background: {
+      /*image: url("/static/img/HomePage/vmbg01.png");*/
+      position: center;
+      repeat: no-repeat;
+      size: contain;
+    }
+    .win7, .linux, .ubuntu, .centos {
+      width: 100%;
+      height: 100%;
+      background: {
+        position: center;
+        repeat: no-repeat;
+        size: 50% 50%;
+      }
+    }
+    .win7 {
+      background-image: url("/static/img/HomePage/windows.png");
+    }
+    .linux {
+      background-image: url("/static/img/HomePage/linux.png");
+    }
+    .ubuntu {
+      background-image: url("/static/img/HomePage/ubuntu.png");
+    }
+    .centos {
+      background-image: url("/static/img/HomePage/centos.png");
+    }
+  }
+</style>
+
+bytes 0-

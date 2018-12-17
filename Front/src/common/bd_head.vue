@@ -1,0 +1,424 @@
+<template>
+  <div class="my_container">
+    <header class="w-100 position-relative">
+      <div class="logo position-relative"></div>
+      <div class="buttons ml-auto position-absolute">
+        <div class="refresh button" @click="$emit('switch_type')" v-if="show_switch_type">
+          <div class="icon"></div>
+          <div class="text-primary w-100 text-center">{{ switch_type_text }}</div>
+        </div>
+        <div class="refresh button" @click="$emit('reload_vm_list')" v-if="show_reload_vm_list">
+          <div class="icon"></div>
+          <div class="text-primary w-100 text-center">刷新</div>
+        </div>
+        <div class="back button" @click="$emit('back')" v-show="show_back">
+          <div class="icon"></div>
+          <div class="text-primary w-100 text-center">返回</div>
+        </div>
+        <div class="setting button" @click="$emit('computer_setting')" v-show="show_computer_setting">
+          <div class="icon"></div>
+          <div class="text-primary w-100 text-center">设置</div>
+        </div>
+        <div class="reset_pass button" @click="modalShow=true" v-show="show_reset_pass">
+          <div class="icon"></div>
+          <div class="text-primary w-100 text-center">修改密码</div>
+        </div>
+        <div class="exit button" @click="exit" v-show="show_exit">
+          <div class="icon"></div>
+          <div class="text-primary w-100 text-center">注销</div>
+        </div>
+        <div class="shutdown button" @click="shutdown" v-show="show_shutdown">
+          <div class="icon"></div>
+          <div class="text-primary w-100 text-center">关机</div>
+        </div>
+      </div>
+    </header>
+    <!-- Modal Component -->
+    <b-modal ref="myModalRef" centered class="my-modal" :no-close-on-backdrop="true" v-model="modalShow">
+      <div slot="modal-title" class="w-100">
+        <h3>修改密码</h3>
+      </div>
+      <div slot="modal-header-close">
+        <button type="button" aria-label="Close" class="close" style="position: absolute; top: 1em; right: 1em;">×
+        </button>
+      </div>
+      <form class="w-100">
+        <div class="input w-100 position-relative">
+          <label class="w-25 position-relative">原始密码：</label>
+          <div class="w-75 in_help position-absolute">
+            <input type="password" class="form-control form-control-sm w-100" placeholder="输入密码"
+                   :class="{'is-invalid':form.old_pass.is_invalid}"
+                   v-model="form.old_pass.val">
+            <div class="invalid-feedback w-100">
+              {{form.old_pass.help_text}}
+            </div>
+          </div>
+        </div>
+
+        <div class="input w-100 position-relative">
+          <label class="w-25 position-relative">新原密码：</label>
+          <div class="w-75 in_help position-absolute">
+            <input type="password" class="form-control form-control-sm w-100" placeholder="输入密码"
+                   :class="{'is-invalid':form.new_pass.is_invalid}"
+                   v-model="form.new_pass.val">
+            <div class="invalid-feedback">
+              {{form.new_pass.help_text}}
+            </div>
+          </div>
+        </div>
+
+        <div class="input w-100 position-relative">
+          <label class="w-25 position-relative">确认新密码：</label>
+          <div class="w-75 in_help position-absolute">
+            <input type="password" class="form-control form-control-sm w-100" placeholder="输入密码"
+                   :class="{'is-invalid':form.repeat_pass.is_invalid}"
+                   v-model="form.repeat_pass.val">
+            <div class="invalid-feedback">
+              {{form.repeat_pass.help_text}}
+            </div>
+          </div>
+        </div>
+      </form>
+      <div slot="modal-footer" class="w-100 footer text-right">
+        <button class="btn btn-default " @click="modalShow = false">取消</button>
+        <button class="green_button btn btn-primary " @click="reset_password">提交</button>
+      </div>
+    </b-modal>
+
+    <b-modal ref="shutdown_confirm" size="sm"
+             no-close-on-backdrop no-close-on-esc centered
+             hide-footer hide-header-close
+             title="确认关机">
+      <div class="w-100 position-relative">
+        <spinner class="mr-2 position-relative" style="left: 2px;"></spinner>
+        <h6 class="m-0 position-absolute" style="top: 6px;left: 37px">{{ regret_time }} 秒之后关机</h6>
+      </div>
+      <b-btn class="mt-3" variant="outline-secondary" block @click="cancel_shutdown">取消</b-btn>
+    </b-modal>
+
+  </div>
+
+</template>
+
+<script>
+
+  // $('.carousel').carousel({
+  //   pause:true,
+  // });
+  import spinner from '@/common/spinner';
+
+  export default {
+    name: 'bd_head',
+    components: {spinner},
+    props: {
+      show_switch_type: {
+        type: Boolean,
+        default: false,
+        required: false,
+      },
+      switch_type_text: {
+        type: String,
+        default: '切换类型',
+        required: false,
+      },
+      show_reload_vm_list: {
+        type: Boolean,
+        default: false,
+        required: false,
+      },
+      show_computer_setting: {
+        type: Boolean,
+        default: false,
+        required: false,
+      },
+      show_reset_pass: {
+        type: Boolean,
+        default: false,
+        required: false,
+      },
+      show_exit: {
+        type: Boolean,
+        default: false,
+        required: false,
+      },
+      show_shutdown: {
+        type: Boolean,
+        default: false,
+        required: false,
+      },
+      vm_show: {
+        type: Boolean,
+        default: false,
+        required: false,
+      },
+      show_back: {
+        type: Boolean,
+        default: false,
+        required: false,
+      },
+    },
+    data() {
+      return {
+        regret_time: 5,
+        regret_it: NaN,
+        modalShow: false,
+        form: {
+          old_pass: {
+            val: '',
+            is_invalid: false,
+            help_text: '密码不能为空',
+          },
+          new_pass: {
+            val: '',
+            is_invalid: false,
+            help_text: '密码不能为空',
+          },
+          repeat_pass: {
+            val: '',
+            is_invalid: false,
+            help_text: '输入的新密码不一致',
+          },
+        },
+      }
+    },
+    methods: {
+      cancel_shutdown() {
+        const vm = this;
+        window.clearInterval(vm.regret_it);
+        vm.$refs.shutdown_confirm.hide();
+        vm.regret_time = 5;
+      },
+      reset_password() {
+        const vm = this;
+        vm.$ajax.get('/api/common_api/api.EditPassword', {
+          params: {
+            password: vm.form.old_pass.val,
+            newPassword: vm.form.new_pass.val,
+            rePassword: vm.form.repeat_pass.val,
+            systemType: vm.utils.get_system_typenum(),
+          }
+        }).then(resp => {
+          if (resp.data.errorinfo == 'success') {
+            vm.$root.alert.success.message = '修改密码成功';
+            vm.$root.alert.success.is_show = true;
+            vm.$refs.myModalRef.hide()
+          }
+          else {
+            vm.$root.alert.fail.message = resp.data.errorinfo;
+            vm.$root.alert.fail.is_show = true;
+          }
+        }).catch(error => {
+          if (error && error.response && error.response.status == 401)
+            return
+          console.log(error.response.data)
+          vm.$root.alert.fail.message = '修改密码失败';
+          vm.$root.alert.fail.is_show = true;
+        })
+      },
+
+      exit() {
+        const vm = this;
+        vm.$ajax.get(`/api/account/logout`)
+          .then(resp => {
+            vm.$router.push('/login');
+            vm.$root.can_auto_login = false;
+          }).catch(error => {
+          if (error && error.response && error.response.status == 401)
+            return
+          vm.$root.alert.fail.is_show = true;
+          vm.$root.alert.fail.message = '登出失败';
+        }).finally(() => {
+          // vm.lan_data = vm.lans[0];
+        });
+      },
+      shutdown() {
+        const vm = this;
+        vm.$refs.shutdown_confirm.show();
+        vm.regret_it = window.setInterval(() => {
+          vm.regret_time--
+          if (vm.regret_time < 0) {
+            vm.$refs.shutdown_confirm.hide();
+            vm.regret_time = 5;
+            vm.$ajax.get(`/api/operation_system/shutdown`)
+              .then(resp => {
+                // do nothing
+              }).catch(error => {
+              if (error && error.response && error.response.status == 401)
+                return
+              vm.$root.alert.fail.is_show = true;
+              vm.$root.alert.fail.message = '关机失败';
+            }).finally(() => {
+              // vm.lan_data = vm.lans[0];
+            });
+            window.clearInterval(vm.regret_it)
+          }
+        }, 1000);
+      },
+    },
+    beforeCreate() {
+      let vm = this;
+      // // $.get(`${vm.host}/get_lans`,
+      // //   function (resp) {
+      // //     vm.lans = resp;
+      // //     vm.lan_data = vm.lans[0];
+      // //   });
+      //
+      // vm.$ajax.get(`${vm.host}/get_lans`)
+      //   .then(resp => {
+      //     vm.lans = resp.data;
+      //   }).catch(error => {
+      //   $('.alert-danger').show();
+      // }).finally(() => {
+      //   vm.lan_data = vm.lans[0];
+      // });
+    },
+  }
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped lang="scss">
+  @import "../assets/sass/base";
+
+  .my_container {
+    width: 100%;
+    header {
+      $height: 4em;
+      .logo {
+        top: 0;
+        left: 1em;
+        width: $height*2;
+        height: $height;
+        background: {
+          image: url("/static/img/logo/new_logo.png");
+          position: center;
+          repeat: no-repeat;
+          size: contain;
+        }
+      }
+      .buttons {
+        top: 0;
+        right: 1em;
+        //width: $height*0.8*2+3em;
+        text-align: right;
+        .button {
+          display: inline-block;
+          width: $height;
+          text-align: center;
+          .icon {
+            width: $height;
+            height: $height*0.8;
+            margin: 0;
+            background: {
+              position: center;
+              repeat: no-repeat;
+              size: contain;
+            }
+          }
+          .text-primary {
+            width: 100%;
+          }
+          &:hover {
+            .text-primary {
+              color: $color-withe !important;
+            }
+          }
+        }
+        .refresh {
+          .icon {
+            background: {
+              image: url("/static/img/later-images-01/yzm_10_01.png");
+            }
+          }
+          &:hover {
+            .icon {
+              background-image: url("/static/img/later-images-01/yzm_10_02.png");
+            }
+          }
+        }
+        .setting {
+          .icon {
+            background: {
+              image: url("/static/img/later-images-01/yzm_06_01.png");
+            }
+          }
+          &:hover {
+            .icon {
+              background-image: url("/static/img/later-images-01/yzm_06_02.png");
+            }
+          }
+        }
+        .reset_pass {
+          .icon {
+            background: {
+              image: url("/static/img/icon/icon_setting.png");
+            }
+          }
+          &:hover {
+            .icon {
+              background-image: url("/static/img/icon/icon_setting_hover.png");
+            }
+          }
+        }
+        .exit {
+          .icon {
+            background: {
+              image: url("/static/img/icon/icon_exit.png");
+            }
+          }
+          &:hover {
+            .icon {
+              background-image: url("/static/img/icon/icon_exit_hover.png");
+            }
+          }
+        }
+        .back {
+          .icon {
+            background: {
+              image: url("/static/img/later-images-01/yzm_07_01.png");
+            }
+          }
+          &:hover {
+            .icon {
+              background-image: url("/static/img/later-images-01/yzm_07_02.png");
+            }
+          }
+        }
+        .shutdown {
+          .icon {
+            background: {
+              image: url("/static/img/later-images-01/yzm_09_01.png");
+            }
+          }
+          &:hover {
+            .icon {
+              background-image: url("/static/img/later-images-01/yzm_09_02.png");
+            }
+          }
+        }
+      }
+    }
+    .my-modal {
+      button.close {
+        position: relative;
+        top: 1em;
+        right: 1em;
+      }
+      form {
+        padding: 1em;
+        .input {
+          margin: 0.5em 0;
+          label {
+            margin-top: 0.3em;
+            top: 0em
+          }
+          .in_help {
+            top: 0;
+            right: 0;
+          }
+        }
+      }
+
+    }
+  }
+
+</style>

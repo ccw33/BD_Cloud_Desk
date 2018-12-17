@@ -1,0 +1,145 @@
+// The Vue build version to load with the `import` command
+// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+import Vue from 'vue'
+import App from './App'
+import router from './router'
+import BootstrapVue from 'bootstrap-vue'
+
+Vue.use(BootstrapVue);
+
+
+import axios from 'axios/dist/axios'
+import qs from 'qs/dist/qs'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+import 'bootstrap/dist/js/bootstrap'
+// import '../static/css/wifi.css'
+
+import Promise from 'es6-promise/dist/es6-promise'
+import 'animate.css'
+import Swiper from 'swiper/dist/js/swiper'
+import 'swiper/dist/css/swiper.css'
+
+Promise.polyfill()
+import 'font-awesome/css/font-awesome.css'
+import '../static/Hover-master/css/hover.css'
+import conf from './config'
+import utilss from './utils'
+
+utilss.Swiper = Swiper;
+
+//前后端分离时异步请求可带cookie
+axios.defaults.withCredentials = true;
+//异步请求通用属性
+const instance = axios.create({
+  baseURL: conf.host,
+  // timeout: 1000,
+});
+
+
+Vue.prototype.$ajax = instance;
+
+Vue.prototype.$qs = qs;
+Vue.config.productionTip = false;
+Vue.prototype.host = conf.host;
+Vue.prototype.conf = conf;
+Vue.prototype.utils = utilss;
+Vue.prototype.$ = $;
+
+// 全局注册组件
+// import v_alert from '@/common/v_alert';
+// Vue.component('v_alert', v_alert);
+
+//全局mixin
+Vue.mixin({
+  data() {
+    return {}
+  },
+})
+
+/* eslint-disable no-new */
+let vm = new Vue({
+  el: '#app',
+  router,
+  data: {
+    can_auto_login: true,
+    is_loading: false,
+    alert: {
+      success: {
+        message: '操作成功',
+        is_show: false,
+      },
+      fail: {
+        message: '操作失败',
+        is_show: false,
+      }
+    },
+    is_login: false,
+    account: '',
+    password: '',
+    deviceStatus: 0,
+    can_connect_network: false,
+  },
+  components: {App},
+  template: '<App/>'
+})
+
+
+//请求拦截
+let unloading_url = ['ServerSPICEConsole', 'link_local_vm', 'get_local_vm_status',
+  'get_all_mac_str', 'get_current_mac', 'account/is_login', 'common_api/api.device.pong',
+  'can_connect_vm_server']
+vm.$ajax.interceptors.request.use(function (config) {
+  // unloading_url.forEach(function (val, index, arr) {
+  //   if (config.url.search(val) != -1) {
+  //     debugger
+  //     return config;
+  //   }
+  // });
+  for (let k in unloading_url) {
+    if (config.url.search(unloading_url[k]) != -1) {
+      return config;
+    }
+  }
+  vm.$root.is_loading = true;
+  return config;
+}, function (error) {
+  // Do something with request error
+  return Promise.reject(error);
+});
+
+//响应拦截
+vm.$ajax.interceptors.response.use(
+  response => {
+    vm.$root.is_loading = false;
+    window.setTimeout(() => {
+      vm.$root.alert.success.is_show = false;
+      vm.$root.alert.fail.is_show = false;
+    }, 5000)
+    return response;
+  },
+  error => {
+    vm.$root.is_loading = false;
+    try {
+      console.error(`SERVER----------:${error.response.data.content}`);
+    } catch (err) {
+      console.error(error.message)
+    }
+    if (error.response) {
+      switch (error.response.status) {
+        case 401:
+          // 返回登录页
+          vm.$router.push('/login');
+          vm.$root.alert.fail.message = '未登录';
+          vm.$root.alert.fail.is_show = true;
+          vm.$root.can_auto_login = false;
+      }
+    }
+
+    window.setTimeout(() => {
+      vm.$root.alert.success.is_show = false
+      vm.$root.alert.fail.is_show = false
+    }, 5000)
+    return Promise.reject(error);
+  });
+

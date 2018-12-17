@@ -1,0 +1,8 @@
+build
+debian
+dist
+docs/_build
+.*.sw?
+*.pyc
+*.pyo
+MANIFEST

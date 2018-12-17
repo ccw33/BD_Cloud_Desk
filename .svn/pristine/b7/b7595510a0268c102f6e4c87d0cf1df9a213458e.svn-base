@@ -1,0 +1,188 @@
+<template>
+  <div class="my_container">
+    <!--wifi list-->
+    <div class="wifi_list_container" v-if="wifi_list_show" @click.self="wifi_list_show=false">
+      <wifi class="wifi_list"
+            @close_wifi_list="wifi_list_show=false"
+            @open_wifi_connect_win="open_wifi_connect_win"></wifi>
+    </div>
+    <!--wifi_connect_win-->
+    <div class="wifi_connect_win_container" v-if="wifi_connection_show">
+      <wifi_connect_win :prop_wifi="wifi" @cancel="wifi_connection_show=false"></wifi_connect_win>
+    </div>
+    <footer class="">
+      <copy_right class="text-center copy_right"></copy_right>
+      <div class="buttons">
+        <div class="left">版本：1.0.2</div>
+        <div class="right">
+          <div class="network_icon" :class="[network_icon_class]"
+               :style=""></div>
+          <div class="wifi_icon" @click="wifi_list_show=true"
+               :style=""></div>
+          <div class="time">{{ time }}</div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+</template>
+
+<script>
+
+  // $('.carousel').carousel({
+  //   pause:true,
+  // });
+  import copy_right from '@/common/copy_right';
+  import wifi_connect_win from '@/components/wifi_connect_win';
+  import Wifi from '@/components/Wifi';
+
+  export default {
+    name: 'bd_foot',
+    components: {copy_right, wifi_connect_win, Wifi},
+    data() {
+      return {
+        wifi_list_show: false,
+        time: '',
+        wifi_connection_show: false,
+        wifi: {
+          name: '',
+          is_lock: true,
+          key_type: '',
+          strength: 0,
+          password: '',
+          remember_pwd: false,
+        },
+      }
+    },
+    props: {
+      // can_connect_network: {
+      //   type: Boolean,
+      //   default: true,
+      //   required: true,
+      // },
+    },
+    computed: {
+      network_icon_class() {
+        const vm = this;
+        return vm.$root.can_connect_network ? 'network_connected' : 'network_disconnected'
+      }
+    },
+    methods: {
+      open_wifi_connect_win(wifi) {
+        const vm = this;
+        vm.wifi = wifi;
+        vm.wifi_connection_show = true
+      },
+    },
+    created(){
+      const vm = this;
+    },
+    beforeCreate() {
+      let vm = this;
+      let time_it = window.setInterval(() => {
+          vm.time = (new Date()).toLocaleString()
+        },
+        1000
+      )
+      // // $.get(`${vm.host}/get_lans`,
+      // //   function (resp) {
+      // //     vm.lans = resp;
+      // //     vm.lan_data = vm.lans[0];
+      // //   });
+      //
+      // vm.$ajax.get(`${vm.host}/get_lans`)
+      //   .then(resp => {
+      //     vm.lans = resp.data;
+      //   }).catch(error => {
+      //   $('.alert-danger').show();
+      // }).finally(() => {
+      //   vm.lan_data = vm.lans[0];
+      // });
+    },
+  }
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped lang="scss">
+  .my_container {
+    @import "../assets/sass/base";
+
+    width: 100%;
+    height: 7rem;
+
+    .wifi_list_container, .wifi_connect_win_container {
+      padding: 0;
+      position: fixed;
+      z-index: 999;
+      width: 100%;
+      height: 100%;
+      background-color: transparent;
+      left: 0;
+      top: 0;
+    }
+    .wifi_connect_win_container {
+      text-align: center;
+    }
+    footer {
+      position: absolute;
+      left: 0;
+      bottom: 1em;
+      width: 100%;
+      .copy_right {
+        width: 100%;
+        text-align: center;
+      }
+      .buttons {
+        font-size: 0.8em;
+        /*color: #788fa9;*/
+        color: white;
+
+        .left {
+          float: left;
+          margin-left: 2em;
+        }
+
+        .right {
+          float: right;
+          margin-right: 2em;
+
+          .network_icon, .wifi_icon {
+            float: left;
+            width: 1.5em;
+            height: 1.5em;
+            margin-right: 1em;
+            background: {
+              size: contain;
+              position: center;
+              repeat: no-repeat;
+            }
+          }
+          .network_connected {
+            background: {
+              image: url("/static/img/icon/network_connect.png");
+            }
+          }
+          .network_disconnected {
+            background: {
+              image: url("/static/img/icon/network_disconnect.png");
+            }
+          }
+          .wifi_icon {
+            &:hover {
+              cursor: pointer;
+            }
+            background: {
+              image: url("/static/img/later-images-01/yzm_35_06.png");
+            }
+          }
+          .time {
+            float: left;
+
+          }
+        }
+      }
+    }
+
+  }
+
+</style>

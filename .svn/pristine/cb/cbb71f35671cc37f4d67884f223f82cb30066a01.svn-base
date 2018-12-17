@@ -1,0 +1,78 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+import os
+import threading
+import subprocess
+
+import requests
+from flask import current_app, abort
+
+import dev_info
+import network
+import server
+
+import logging
+from Utils import log_utils, flask_utils
+from Utils.conf import Conf
+from vclient_python.client import Client as LocalVmClient
+
+vclient = LocalVmClient()
+
+def set_remote_viewer_argv(server_ip, server_port, username, password, console, vm_name):
+    argv = {}
+    argv['proxy_ip'] = server_ip  # '10.100.11.199'
+    argv['proxy_port'] = 5910
+    argv['host_ip'] = console['host']
+    argv['host_port'] = console['port']
+    argv['username'] = username  # 'zw'
+    argv['password'] = password  # '123qwe'
+    argv['spice_password'] = console['passwd']
+    argv['server_id'] = console['serverId']
+    argv['vdesktop_ip'] = server_ip  # '10.100.11.199'
+    argv['vdesktop_port'] = server_port  # '444'
+    argv['title'] = vm_name  # 'vm_name'
+    return argv
+
+
+def spice_connect_vm(argv):
+    if dev_info.get_system_type()[1] == 'Linux':
+        # cmd = 'taskset -c 1-%ld /bdapp/bin/remote-viewer spice://%s:%d --redir-server=%s:%s --user-name=%s --password=%s --spice-password=%s --server-id=%s --vdesktop-ip=%s --vdesktop-port=%s -t %s %s' % (
+        cmd = 'taskset -c 1-{cpu} /bdapp/bin/remote-viewer spice://{proxy_ip}?tls-port={proxy_port} --spice-ca-file /bdapp/vclient_web/ca-cert.pem --spice-host-subject="C=IL, L=Raanana, O=Red Hat, CN=my server" --redir-server={spice_ip}:{spice_port} --spice-password={spice_password} --user-name={username} --password={password} --server-id={server_id} --vdesktop-ip={vdesktop_ip} --vdesktop-port={vdesktop_port} -t {title} {other_argv}'.format(
+            cpu=dev_info.get_cpu_count() - 1,
+            proxy_ip=argv['proxy_ip'],
+            proxy_port=argv['proxy_port'],
+            spice_ip=argv['host_ip'],
+            spice_port=argv['host_port'],
+            spice_password=argv['spice_password'],
+            username=argv['username'],
+            password=argv['password'],
+            server_id=argv['server_id'],
+            vdesktop_ip=argv['vdesktop_ip'],
+            vdesktop_port=argv['vdesktop_port'],
+            title='-'.join(argv['title'].split('\n')),
+            other_argv='--delay=100 --spice-color-depth=32 --spice-preferred-compression=quic --spice-disable-effects=font-smooth,animation  --full-screen &'
+        )
+        logging.debug(cmd)
+    elif dev_info.get_system_type()[1] == 'Windows':
+        cmd = './remote-viewer.exe spice://%s:%d --redir-server=%s:%s --user-name=%s --password=%s --spice-password=%s --server-id=%s --vdesktop-ip=%s --vdesktop-port=%s -t %s %s' % (
+        argv['proxy_ip'], argv['proxy_port'], argv['host_ip'], argv['host_port'], argv['username'], argv['password'],
+        argv['spice_password'], argv['server_id'], argv['vdesktop_ip'], argv['vdesktop_port'], argv['title'],
+        argv['spice_argv'])
+    else:
+        pass
+    os.system(cmd)
+
+
+
+
+
+if __name__ == '__main__':
+    # vm_status_data = server.start_spice('160')
+    # console = vm_status_data['console']
+    # if console != '':
+    #     spice_connect_vm(set_remote_viewer_argv('10.100.11.199', '444', 'zw', '123qwe', console, 'vm_name'))
+    # else:
+    #     print vm_status_data['status_zh']
+    a = vclient.get_status('191')
+    b = 1

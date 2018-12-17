@@ -1,0 +1,630 @@
+<template>
+  <div class="my_container">
+    <div v-for="(vm,index) in vm_list"
+         class="vm text-center d-inline-block">
+      <div class="icon hvr-grow" :class="['icon_'+(index%3)]"
+           @dblclick="vm_ready(vm)" @click.right.stop.prevent="open_menu(vm)">
+        <div :class="[vm.iconName]"></div>
+      </div>
+      <div class="name text-center text-white">{{vm.sConfigName}}</div>
+    </div>
+
+    <!--虚机状态提示-->
+    <b-modal ref="vm_status" size="sm"
+             no-close-on-backdrop no-close-on-esc centered
+             hide-footer hide-header-close
+             title="状态提示">
+      <div class="w-100 position-relative">
+        <spinner class="mr-2 position-relative" style="left: 2px;"></spinner>
+        <h6 class="m-0 position-absolute" style="top: 6px;left: 37px">{{ linking_vm.text }}</h6>
+      </div>
+      <!--<b-btn class="mt-3" variant="outline-secondary" block @click="close_vm_status">取消</b-btn>-->
+    </b-modal>
+
+    <!--右键menu-->
+    <div class="menu_background" @click.self="close_menu" @click.left.right.self="close_menu"
+         v-show="menu_data.is_show">
+      <b-collapse id="menu" ref="menu" :style="menu_data.position">
+        <b-list-group flush>
+          <b-list-group-item href="#" @click="reboot_vm">重启</b-list-group-item>
+          <b-list-group-item href="#" @click="set_as_default">设为默认</b-list-group-item>
+        </b-list-group>
+      </b-collapse>
+    </div>
+  </div>
+</template>
+
+<script>
+  import spinner from '@/common/spinner';
+
+  let it = '';
+
+  let status = '';
+
+  let map = {
+    '': '',
+    'ERROR': '虚机处于错误状态',
+    'BUILD': '创建中',
+    'PAUSE': '虚机暂停',
+    'SHUTOFF': '虚机关闭中',
+    'REBOOT': '虚机重启中',
+    'HARD_REBOOT': '虚机重启中',
+    'REBUILD': '虚拟机重建中',
+    'BACKUP': '虚机备份中',
+    'ACTIVE': '活动中',
+  }
+
+
+  function request(vm, virtual_machine, vm_console) {
+    console.log('request');
+    vm.$ajax.get('/api/common_api/api.ServerSPICEConsole', {
+      params: {
+        configId: virtual_machine.configId,
+        systemType: vm.utils.get_system_typenum(),
+      }
+    }).then(resp => {
+      if (resp.data.errorInfo == 'success') {
+
+        let status = resp.data.status;
+        vm.linking_vm.text = map[resp.data.status];
+
+        if (status != 'ERROR' && status != 'ACTIVE') {
+          // 继续检查状态
+          let it = setTimeout(request, 1000);
+        } else {
+          if (status == 'ACTIVE') {
+            vm.$ajax.get('/api/operation_system/link_vm', {
+              params: {
+                'configId': virtual_machine.configId,
+                // 'console': resp.data.console,
+                'vm_name': virtual_machine.sConfigName
+              }
+            }).then(resp => {
+              console.log('连接虚机成功')
+              //nothing to do
+            }).catch(error => {
+              if (error && error.response && error.response.status == 401)
+                return
+              vm.$root.alert.fail.message = '连接虚机失败';
+              vm.$root.alert.fail.is_show = true;
+            }).finally(() => {
+
+            });
+          }
+          vm.is_loading = false;
+          window.setTimeout(vm.close_vm_status, 2000)
+        }
+        return;
+
+      }
+      else {
+        vm.$refs.vm_status.hide();
+        vm.$root.alert.fail.message = resp.data.errorinfo;
+        vm.$root.alert.fail.is_show = true;
+        window.clearInterval(it);
+      }
+      vm.linking_vm = Object.assign(vm.linking_vm, resp.data)
+    }).catch(error => {
+      if (error && error.response && error.response.status == 401)
+        return
+      console.log(error.response.data)
+      vm.$root.alert.fail.message = '服务器发生错误，请联系管理员';
+      vm.$root.alert.fail.is_show = true;
+    })
+  }
+
+  export default {
+    name: 'vm_list',
+    components: {spinner},
+    data() {
+      return {
+        is_loading: false,
+        vm_list: [
+          // {
+          //   "configId": "160",
+          //   "sConfigName": "fujian-win7",
+          //   "type": 2,
+          //   "iconName": "win7",
+          //   "sServerId": "33d3ad33-201b-45bd-95f5-005016dc8182"
+          // },
+          // {
+          //   "configId": "134",
+          //   "sConfigName": "win7-5-18",
+          //   "type": 2,
+          //   "iconName": "win7",
+          //   "sServerId": 0
+          // },
+          // {
+          //   "configId": "160",
+          //   "sConfigName": "fujian-win7",
+          //   "type": 2,
+          //   "iconName": "win7",
+          //   "sServerId": "33d3ad33-201b-45bd-95f5-005016dc8182"
+          // },
+          // {
+          //   "configId": "134",
+          //   "sConfigName": "win7-5-18",
+          //   "type": 2,
+          //   "iconName": "win7",
+          //   "sServerId": 0
+          // },
+          // {
+          //   "configId": "160",
+          //   "sConfigName": "fujian-win7",
+          //   "type": 2,
+          //   "iconName": "win7",
+          //   "sServerId": "33d3ad33-201b-45bd-95f5-005016dc8182"
+          // },
+          // {
+          //   "configId": "134",
+          //   "sConfigName": "33d3ad33-201b-45bd-95f5-005016dc8182",
+          //   "type": 2,
+          //   "iconName": "win7",
+          //   "sServerId": 0
+          // },
+          // {
+          //   "configId": "160",
+          //   "sConfigName": "fujian-win7",
+          //   "type": 2,
+          //   "iconName": "win7",
+          //   "sServerId": "33d3ad33-201b-45bd-95f5-005016dc8182"
+          // },
+          // {
+          //   "configId": "134",
+          //   "sConfigName": "win7-5-18",
+          //   "type": 2,
+          //   "iconName": "win7",
+          //   "sServerId": 0
+          // },
+          // {
+          //   "configId": "160",
+          //   "sConfigName": "fujian-win7",
+          //   "type": 2,
+          //   "iconName": "win7",
+          //   "sServerId": "33d3ad33-201b-45bd-95f5-005016dc8182"
+          // },
+          // {
+          //   "configId": "134",
+          //   "sConfigName": "win7-5-18",
+          //   "type": 2,
+          //   "iconName": "win7",
+          //   "sServerId": 0
+          // },
+          // {
+          //   "configId": "160",
+          //   "sConfigName": "fujian-win7",
+          //   "type": 2,
+          //   "iconName": "win7",
+          //   "sServerId": "33d3ad33-201b-45bd-95f5-005016dc8182"
+          // },
+          // {
+          //   "configId": "134",
+          //   "sConfigName": "win7-5-18",
+          //   "type": 2,
+          //   "iconName": "win7",
+          //   "sServerId": 0
+          // },
+          // {
+          //   "configId": "160",
+          //   "sConfigName": "fujian-win7",
+          //   "type": 2,
+          //   "iconName": "win7",
+          //   "sServerId": "33d3ad33-201b-45bd-95f5-005016dc8182"
+          // },
+          // {
+          //   "configId": "134",
+          //   "sConfigName": "win7-5-18",
+          //   "type": 2,
+          //   "iconName": "win7",
+          //   "sServerId": 0
+          // },
+          // {
+          //   "configId": "160",
+          //   "sConfigName": "fujian-win7",
+          //   "type": 2,
+          //   "iconName": "win7",
+          //   "sServerId": "33d3ad33-201b-45bd-95f5-005016dc8182"
+          // },
+          // {
+          //   "configId": "134",
+          //   "sConfigName": "win7-5-18",
+          //   "type": 2,
+          //   "iconName": "win7",
+          //   "sServerId": 0
+          // }
+        ],
+        linking_vm: {
+          is_loading: true,
+          status_zh: "错误",
+          status: "ERROR",
+          errorInfo: "success",
+          console: "",
+          text: '',
+        },
+        menu_data: {
+          is_show: false,
+          position: {
+            top: '0px',
+            left: '0px',
+          },
+        },
+        right_click_vm: {}
+      }
+    },
+    computed: {},
+    methods: {
+      reboot_vm() {
+        const vm = this;
+        vm.$refs.menu.show = false;
+        vm.menu_data.is_show = false;
+        vm.$ajax.get('/api/common_api/api.ConsoleOperate', {
+          params: {
+            configId: vm.right_click_vm.configId,
+            operate: 3,
+            systemType: vm.utils.get_system_typenum(),
+          }
+        })
+          .then(resp => {
+            if (JSON.parse(resp.data.status)) {
+              vm.$root.alert.success.message = '重启虚机成功';
+              vm.$root.alert.success.is_show = true;
+            } else {
+              vm.$root.alert.fail.message = resp.data.errorinfo;
+              vm.$root.alert.fail.is_show = true;
+            }
+          }).catch(error => {
+          if (error && error.response && error.response.status == 401)
+            return
+        })
+      },
+      set_as_default() {
+        const vm = this;
+        vm.$refs.menu.show = false;
+        vm.menu_data.is_show = false;
+        vm.conf.default_vm = vm.right_click_vm.configId;
+        vm.$ajax.get('/api/account/set_default_vm',
+          {
+            params: {
+              default_vm: vm.right_click_vm.configId,
+              default_vm_name: vm.right_click_vm.sConfigName
+            }
+          },
+          // vm.$qs.stringify({default_vm: vm.right_click_vm})
+        )
+          .then(resp => {
+            vm.$root.alert.success.message = '设置默认虚机成功';
+            vm.$root.alert.success.is_show = true;
+          }).catch(error => {
+        })
+      },
+      open_menu(virtual_machine) {
+        const vm = this;
+        vm.right_click_vm = virtual_machine;
+        vm.menu_data.position.left = window.event.clientX + 'px';
+        vm.menu_data.position.top = window.event.clientY + 'px';
+        vm.menu_data.is_show = true;
+        vm.$refs.menu.show = true
+      },
+      close_menu() {
+        const vm = this;
+        vm.$refs.menu.show = false;
+        vm.menu_data.is_show = false;
+      },
+      reload(vm = NaN) {
+        if (!vm)
+          vm = this;
+        // vm.$ajax.get('/api/operation_system/get_created_local_vms', {})
+        //   .then(resp => {
+        //     if (resp.data.errorinfo == 'success') {
+        //       vm.vm_list = resp.data.list;
+        //     }
+        //     else {
+        //       vm.$root.alert.fail.message = resp.data.errorinfo;
+        //       vm.$root.alert.fail.is_show = true;
+        //     }
+        //   }).catch(error => {
+        //   if(error && error.response && error.response.status==401)
+        //     return
+        //   console.log(error.response.data)
+        //   vm.$root.alert.fail.message = error.response.data.content;
+        //   vm.$root.alert.fail.is_show = true;
+        // })
+
+        vm.$ajax.get('/api/common_api/api.list', {})
+          .then(resp => {
+            if (resp.data.errorinfo == 'success') {
+              vm.vm_list = resp.data.list;
+            }
+            else {
+              vm.$root.alert.fail.message = resp.data.errorinfo;
+              vm.$root.alert.fail.is_show = true;
+            }
+          }).catch(error => {
+          if (error && error.response && error.response.status == 401)
+            return
+          console.log(error.response.data)
+          vm.$root.alert.fail.message = error.response.data.content;
+          vm.$root.alert.fail.is_show = true;
+        })
+      },
+      vm_ready(virtual_machine) {
+        const vm = this;
+        if (vm.is_loading == true)
+          return;
+        vm.is_loading = true;
+        if (virtual_machine.type == 4) {
+          // 本地虚拟机
+          vm.$ajax.get('/api/common_api/api.OffLineDetail', {
+            params: {
+              configId: virtual_machine.configId,
+              systemType: vm.utils.get_system_typenum(),
+            }
+          }).then(resp => {
+            if (resp.data.errorinfo == 'success') {
+              //vm.$refs.vm_status.show();
+              //request(vm, virtual_machine, resp.data.console);
+              //vm.link_to_vm(virtual_machine, resp.data.console);
+              // let it = window.setInterval(vm.link_to_vm(configId), 1000)
+              let retry_times = 0;
+
+              let image_id = resp.data.image.id;
+              let image_size = resp.data.image.size;
+              let cpu = resp.data.flavor.cpu;
+              let ram = resp.data.flavor.ram;
+              let volume_size = resp.data.flavor.volume_size;
+              let os_type = resp.data.image.os_type;
+              let local_vm_name = resp.data.name;
+
+              //连接虚机（包含创建操作）
+              let link_local_vm = (configId, image_id, image_size, cpu, ram, volume_size, os_type, name, vm) => {
+                vm.$ajax.get('/api/operation_system/link_local_vm', {
+                  params: {
+                    configId: configId,
+                    image_id: image_id,
+                    image_size: image_size,
+                    cpu: cpu,
+                    ram: ram,
+                    volume_size: volume_size,
+                    os_type: os_type,
+                    name: local_vm_name,
+                  }
+                }).then(resp => {
+                  vm.linking_vm.text = '请稍后'
+                  vm.$refs.vm_status.show();
+                  // 获取虚机状态方法定义
+                  let get_local_vm_status_and_start = (vm) => {
+                    vm.$ajax.get('/api/operation_system/get_local_vm_status', {
+                      params: {
+                        configId: virtual_machine.configId,
+                      }
+                    }).then(resp => {
+                      let vm_current_status_map = {
+                        'building': '虚机正在创建中',
+                        'downloading_image': '正在下载镜像',
+                        'download_completed': '下载镜像完成',
+                        'builded': '虚机已创建',
+                        'active': '虚机活动中,请切换到虚机',
+                        'shutdown': '虚机在关机状态',
+                        'error': '创建虚机出现错误',
+                      }
+                      vm.linking_vm.text = vm_current_status_map[resp.data.content];
+                      // vm.$refs.vm_status.show();
+                      if (resp.data.content == 'error') {
+                        retry_times++;
+                        if (retry_times > 3) {
+                          window.setTimeout(vm.close_vm_status, 2000)
+                        } else if (0 < retry_times < 3) {
+                          window.setTimeout(() => {
+                            vm.linking_vm.text = `第${retry_times}次重新创建虚机`;
+                          }, 2000)
+                          window.setTimeout(() => {
+                            link_local_vm(virtual_machine.configId, image_id, image_size, cpu, ram, volume_size, os_type, name, vm)
+                          }, 4000)
+                        }
+                        return
+                      }
+                      if (resp.data.content == 'active') {
+                        vm.$refs.vm_status.hide();
+                      } else {
+                        //其他状态一直轮训显示
+                        window.setTimeout(() => {
+                          get_local_vm_status_and_start(vm)
+                        }, 2000)
+                      }
+                    }).catch(error => {
+                      if (error && error.response && error.response.status == 401)
+                        return
+                      console.log(error.response.data)
+                      vm.$refs.vm_status.hide()
+                      vm.$root.alert.fail.message = error.response.data.content;
+                      vm.$root.alert.fail.is_show = true;
+                    }).finally(() => {
+                      vm.is_loading = false;
+                    });
+                  }
+                  //获取虚机状态
+                  window.setTimeout(() => get_local_vm_status_and_start(vm), 1000)
+                }).catch(error => {
+                  if (error && error.response && error.response.status == 401)
+                    return
+                  console.log(error.response.data)
+                  vm.$root.alert.fail.message = error.response.data.content;
+                  vm.$root.alert.fail.is_show = true;
+                }).finally(() => {
+                  vm.is_loading = false;
+                });
+              }
+              link_local_vm(virtual_machine.configId, image_id, image_size, cpu, ram, volume_size, os_type, name, vm)
+            }
+            else {
+              vm.$root.alert.fail.message = resp.data.status_zh;
+              vm.$root.alert.fail.is_show = true;
+              console.log('server error: ' + resp.data.errorInfo)
+            }
+            //vm.linking_vm = Object.assign(vm.linking_vm, resp.data)
+          }).catch(error => {
+            if (error && error.response && error.response.status == 401)
+              return
+            vm.$root.alert.fail.message = '服务器发生错误，请联系管理员';
+            vm.$root.alert.fail.is_show = true;
+          }).finally(() => vm.$root.is_loading = false);
+        } else if (virtual_machine.type == 2) {
+          // vm.$root.is_loading = true;
+          // 远程虚拟机
+          vm.$ajax.get('/api/common_api/api.ServerSPICEConsole', {
+            params: {
+              configId: virtual_machine.configId,
+              systemType: vm.utils.get_system_typenum(),
+            }
+          }).then(resp => {
+            if (resp.data.errorInfo == 'success') {
+              vm.linking_vm.text = map[resp.data.status];
+              vm.$refs.vm_status.show();
+              request(vm, virtual_machine, resp.data.console);
+              //vm.link_to_vm(virtual_machine, resp.data.console);
+              // let it = window.setInterval(vm.link_to_vm(configId), 1000)
+            }
+            else {
+              vm.$root.alert.fail.message = resp.data.status_zh;
+              vm.$root.alert.fail.is_show = true;
+              console.log('server error: ' + resp.data.errorInfo)
+            }
+            vm.linking_vm = Object.assign(vm.linking_vm, resp.data)
+          }).catch(error => {
+            if (error && error.response && error.response.status == 401)
+              return
+            vm.$root.alert.fail.message = '服务器发生错误，请联系管理员';
+            vm.$root.alert.fail.is_show = true;
+          }).finally(() => vm.$root.is_loading = false);
+        }
+      },
+      //link_to_vm(virtual_machine, vm_console) {
+      //  const vm = this;
+      //  it = window.setInterval(() => request(vm, virtual_machine, vm_console), 2000);
+      //},
+      close_vm_status() {
+        const vm = this;
+        vm.$refs.vm_status.hide();
+        vm.is_loading = false;
+        window.clearInterval(it);
+      },
+    },
+    beforeCreate() {
+      let vm = this;
+      vm.$options.methods.reload(vm);
+      const default_vm = vm.utils.getCookie('default_vm');
+      if (!default_vm)
+        return
+      //如果有默认虚机，直接启动
+      vm.$ajax.get('/api/common_api/api.ConsoleOperate', {
+        params: {
+          configId: default_vm,
+          operate: 1,
+          systemType: vm.utils.get_system_typenum(),
+        }
+      })
+        .then(resp => {
+          if (JSON.parse(resp.data.status)) {
+            vm.$root.alert.success.message = `启动(${vm.utils.getCookie('default_vm_name')})虚机成功`;
+            vm.$root.alert.success.is_show = true;
+          } else {
+            vm.$root.alert.fail.message = `虚机${vm.utils.getCookie('default_vm_name')}：${resp.data.errorinfo}`;
+            vm.$root.alert.fail.is_show = true;
+          }
+        }).catch(error => {
+      })
+    },
+  }
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped lang="scss">
+  /*@import "../../static/css/base";*/
+  @import "../assets/sass/base";
+
+  .my_container {
+    width: 100%;
+    height: 100%;
+    /*overflow-y: scroll;*/
+    $height: 6em;
+
+    .vm {
+      vertical-align: top;
+
+    }
+    .icon {
+      width: $height;
+      height: $height;
+      margin: 2em 2em 0 2em;
+      background: {
+        /*image: url("/static/img/HomePage/vmbg01.png");*/
+        position: center;
+        repeat: no-repeat;
+        size: contain;
+      }
+      .win7, .linux, .ubuntu, .centos {
+        width: 100%;
+        height: 100%;
+        background: {
+          position: center;
+          repeat: no-repeat;
+          size: 50% 50%;
+        }
+      }
+      .win7 {
+        background-image: url("/static/img/HomePage/windows.png");
+      }
+      .linux {
+        background-image: url("/static/img/HomePage/linux.png");
+      }
+      .ubuntu {
+        background-image: url("/static/img/HomePage/ubuntu.png");
+      }
+      .centos {
+        background-image: url("/static/img/HomePage/centos.png");
+      }
+    }
+    .icon_0 {
+      background-image: url("/static/img/later-images-01/yzm_11_01.png");
+      &:hover {
+        background-image: url("/static/img/later-images-01/yzm_11_02.png");
+      }
+    }
+    .icon_1 {
+      background-image: url("/static/img/later-images-01/yzm_12_01.png");
+      &:hover {
+        background-image: url("/static/img/later-images-01/yzm_12_02.png");
+      }
+    }
+    .icon_2 {
+      background-image: url("/static/img/later-images-01/yzm_13_01.png");
+      &:hover {
+        background-image: url("/static/img/later-images-01/yzm_13_02.png");
+      }
+    }
+    .name {
+      width: $height;
+      margin: 0 2em;
+    }
+    .menu_background {
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 9998;
+      background: transparent;
+      #menu {
+        width: 7rem;
+        position: absolute;
+        /*z-index: 9999;*/
+        a {
+          padding: 5px 10px;
+        }
+      }
+    }
+
+  }
+
+
+</style>

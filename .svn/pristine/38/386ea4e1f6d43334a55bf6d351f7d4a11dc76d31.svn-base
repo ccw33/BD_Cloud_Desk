@@ -1,0 +1,289 @@
+<template>
+  <div class="my_container">
+    <div class="buttons-home" v-if="button_homes">
+      <div class="vms icon hvr-grow" @click="show_vm_server_set"></div>
+      <div class="ip_set icon hvr-grow" @click="show_my_modal('ip_setting_show')"></div>
+      <div class="resolution icon hvr-grow" @click="show_my_modal('resolution_setting_show')"></div>
+    </div>
+
+
+    <b-modal ref="vm_server_set" centered class="my-modal" :no-close-on-backdrop="true" v-model="vm_server_set_show">
+      <div slot="modal-title" class="w-100">
+        <h3>服务器设置</h3>
+      </div>
+      <div slot="modal-header-close">
+        <button type="button" aria-label="Close" class="close" style="position: absolute; top: 1em; right: 1em;">×
+        </button>
+      </div>
+      <form class="w-100">
+        <div class="input w-100 position-relative">
+          <label class="w-25 position-relative">服务器地址：</label>
+          <div class="w-75 in_help position-absolute">
+            <input type="text" class="form-control form-control-sm w-100" placeholder=""
+                   :class="{'is-invalid':form.host.is_invalid}"
+                   v-model="form.host.val">
+            <div class="invalid-feedback w-100">
+              {{form.host.help_text}}
+            </div>
+          </div>
+        </div>
+
+        <div class="input w-100 position-relative">
+          <label class="w-25 position-relative">端口：</label>
+          <div class="w-75 in_help position-absolute">
+            <input type="text" class="form-control form-control-sm w-100" placeholder=""
+                   :class="{'is-invalid':form.port.is_invalid}"
+                   v-model="form.port.val">
+            <div class="invalid-feedback">
+              {{form.port.help_text}}
+            </div>
+          </div>
+        </div>
+      </form>
+      <div slot="modal-footer" class="w-100 footer text-right">
+        <button class="btn btn-default " @click="vm_server_set_show = false">取消</button>
+        <button class="green_button btn btn-primary " @click="set_vm_server">提交</button>
+      </div>
+    </b-modal>
+
+
+    <div class="modal_background" v-show="modal_background_show">
+      <!--网络设置-->
+      <transition enter-active-class="animated fadeInDown" leave-active-class="animated fadeOutUp">
+        <ip_setting class="ip_setting" v-if="ip_setting_show"
+               @close_ip_setting="close_my_modal('ip_setting_show')"></ip_setting>
+      </transition>
+      <!--分辨率设置-->
+      <transition enter-active-class="animated fadeInDown" leave-active-class="animated fadeOutUp">
+        <screen_set class="resolution_setting" v-if="resolution_setting_show"
+                    @close_resolution_setting="close_my_modal('resolution_setting_show')">
+        </screen_set>
+      </transition>
+    </div>
+  </div>
+
+</template>
+
+<script>
+
+  // $('.carousel').carousel({
+  //   pause:true,
+  // });
+  import ip_setting from '@/components/System/ip_setting';
+  import screen_set from '@/components/System/screen_set';
+
+  export default {
+    name: 'computer_setting',
+    components: {ip_setting, screen_set},
+    props: {
+      button_homes: {
+        type: Boolean,
+        default: false,
+        required: true,
+      },
+    },
+    data() {
+      return {
+        vm_server_set_show: false,
+        ip_setting_show: false,
+        resolution_setting_show: false,
+        modal_background_show: false,
+        form: {
+          host: {
+            val: '',
+            is_invalid: false,
+            help_text: '',
+          },
+          port: {
+            val: '',
+            is_invalid: false,
+            help_text: '',
+          },
+        },
+
+      }
+    },
+    methods: {
+      show_vm_server_set() {
+        const vm = this;
+        debugger
+        vm.vm_server_set_show = true
+        vm.$ajax.get('/api/other_operation/get_vm_server')
+          .then(resp => {
+            vm.form.host.val = resp.data.vm_server_host
+            vm.form.port.val = resp.data.vm_server_port
+          }).catch(error => {
+          vm.$root.alert.fail.message = '获取虚机服务器失败'
+          vm.$root.alert.fail.show = true
+        }).finally(() => {
+        });
+      },
+      set_vm_server() {
+        const vm = this;
+        debugger
+        vm.form.host.val.split('.').forEach(function (val, index, arr) {
+          if (!(0 <= Number(val) < 1000)) {
+            vm.$root.alert.fail.message = '服务器地址格式不正确';
+            vm.$root.alert.fail.is_show = true;
+            return
+          }
+        })
+        if (!(0 < Number(vm.form.port.val) <= 65535)) {
+          vm.$root.alert.fail.message = '端口必须在1~65535内';
+          vm.$root.alert.fail.is_show = true;
+          return
+        }
+        vm.$ajax.get('/api/other_operation/set_vm_server', {
+          params: {
+            vm_server_host: vm.form.host.val,
+            vm_server_port: vm.form.port.val,
+          }
+        }).then(resp => {
+          vm.$root.alert.success.message = '设置默认虚机服务器成功';
+          vm.$root.alert.success.is_show = true;
+          vm.$refs.vm_server_set.hide();
+
+        }).catch(error => {
+          if(error && error.response && error.response.status==401)
+            return
+          console.log(error.response.data)
+          vm.$root.alert.fail.message = resp.data.content;
+          vm.$root.alert.fail.is_show = true;
+        })
+      },
+      show_my_modal(need_to_show) {
+        this[need_to_show] = true;
+        this.modal_background_show = true;
+      },
+      close_my_modal(need_to_close) {
+        this[need_to_close] = false;
+        window.setTimeout(()=>this.modal_background_show = false,500)
+      },
+    },
+    beforeCreate() {
+      let vm = this;
+      // // $.get(`${vm.host}/get_lans`,
+      // //   function (resp) {
+      // //     vm.lans = resp;
+      // //     vm.lan_data = vm.lans[0];
+      // //   });
+      //
+      // vm.$ajax.get(`${vm.host}/get_lans`)
+      //   .then(resp => {
+      //     vm.lans = resp.data;
+      //   }).catch(error => {
+      //   $('.alert-danger').show();
+      // }).finally(() => {
+      //   vm.lan_data = vm.lans[0];
+      // });
+    },
+  }
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped lang="scss">
+  @import "../assets/sass/base";
+
+  .my_container {
+    width: 100%;
+    /*height: 7rem;*/
+
+    .buttons-home {
+      margin: 0 10%;
+      margin-top: 3em;
+      height: 85%;
+      text-align: center;
+      $height: 15em;
+      .icon {
+        width: $height;
+        height: $height;
+        margin: 1em;
+        display: inline-block;
+        background: {
+          position: center;
+          repeat: no-repeat;
+          size: contain;
+        }
+      }
+      .vms {
+        background: {
+          image: url("/static/img/later-images-01/yzm_14_01.png");
+        }
+        &:hover {
+          background: {
+            image: url("/static/img/later-images-01/yzm_14_02.png");
+          }
+          cursor: pointer;
+        }
+      }
+      .ip_set {
+        background: {
+          image: url("/static/img/later-images-01/yzm_15_01.png");
+        }
+        &:hover {
+          background: {
+            image: url("/static/img/later-images-01/yzm_15_02.png");
+          }
+          cursor: pointer;
+        }
+      }
+      .resolution {
+        background: {
+          image: url("/static/img/later-images-01/yzm_16_01.png");
+        }
+        &:hover {
+          background: {
+            image: url("/static/img/later-images-01/yzm_16_02.png");
+          }
+          cursor: pointer;
+        }
+      }
+    }
+    .modal_background {
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0.3, 0.3, 0.3, 0.3);
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      .ip_setting {
+        width: 520px;
+        /*height: 450px;*/
+        margin: auto;
+        margin-top: 15%;
+      }
+      .resolution_setting {
+        width: 460px;
+        margin-top: 15%;
+        border-radius: 0.5em;
+        background-color: $color-withe;
+      }
+    }
+    .my-modal {
+      button.close {
+        position: relative;
+        top: 1em;
+        right: 1em;
+      }
+      form {
+        padding: 1em;
+        text-align: left;
+        .input {
+          margin: 0.5em 0;
+          label {
+            margin-top: 0.3em;
+            top: 0em
+          }
+          .in_help {
+            top: 0;
+            right: 0;
+          }
+        }
+      }
+
+    }
+
+  }
+
+</style>

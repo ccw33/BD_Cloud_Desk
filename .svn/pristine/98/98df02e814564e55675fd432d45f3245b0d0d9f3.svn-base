@@ -1,0 +1,499 @@
+<template>
+  <div id="app" class="h-100" @click.right.stop.prevent="do_nothing">
+    <v_alert :c_alert="$root.alert" @hide_success="$root.alert.success.is_show=false"
+             @hide_fail="$root.alert.fail.is_show=false"></v_alert>
+    <loading :is_loading="$root.is_loading"></loading>
+    <router-view/>
+  </div>
+</template>
+
+<script>
+  import loading from '@/common/loading';
+  import v_alert from '@/common/v_alert';
+
+
+  export default {
+    name: 'App',
+    components: {loading, v_alert},
+    methods: {
+      do_nothing() {
+        //禁掉全局右键
+        return
+      }
+    },
+    created() {
+      const vm = this;
+
+      //获取虚机列表判断能否上网
+      let is_connecting = () => vm.$ajax.get('/api/operation_system/can_connect_vm_server', {
+        params: {},
+      }).then(resp => {
+        //能上网
+        vm.$root.can_connect_network = true
+      }).catch(error => {
+        if (error && error.response && error.response.status == 401)
+          return
+        if (error && error.response && error.response.status == 408) {
+          vm.$root.can_connect_network = false;
+        }
+      });
+
+      let is_connecting_it = window.setInterval(is_connecting, 1000)
+
+      function Base64() {
+
+        // private property
+        let _keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+
+        // public method for encoding
+        this.encode = function (input) {
+          let output = "";
+          let chr1, chr2, chr3, enc1, enc2, enc3, enc4;
+          let i = 0;
+          input = this._utf8_encode(input);
+          while (i < input.length) {
+            chr1 = input.charCodeAt(i++);
+            chr2 = input.charCodeAt(i++);
+            chr3 = input.charCodeAt(i++);
+            enc1 = chr1 >> 2;
+            enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);
+            enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);
+            enc4 = chr3 & 63;
+            if (isNaN(chr2)) {
+              enc3 = enc4 = 64;
+            } else if (isNaN(chr3)) {
+              enc4 = 64;
+            }
+            output = output +
+              _keyStr.charAt(enc1) + _keyStr.charAt(enc2) +
+              _keyStr.charAt(enc3) + _keyStr.charAt(enc4);
+          }
+          return output;
+        }
+
+        // public method for decoding
+        this.decode = function (input) {
+          let output = "";
+          let chr1, chr2, chr3;
+          let enc1, enc2, enc3, enc4;
+          let i = 0;
+          input = input.replace(/[^A-Za-z0-9\+\/\=]/g, "");
+          while (i < input.length) {
+            enc1 = _keyStr.indexOf(input.charAt(i++));
+            enc2 = _keyStr.indexOf(input.charAt(i++));
+            enc3 = _keyStr.indexOf(input.charAt(i++));
+            enc4 = _keyStr.indexOf(input.charAt(i++));
+            chr1 = (enc1 << 2) | (enc2 >> 4);
+            chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);
+            chr3 = ((enc3 & 3) << 6) | enc4;
+            output = output + String.fromCharCode(chr1);
+            if (enc3 != 64) {
+              output = output + String.fromCharCode(chr2);
+            }
+            if (enc4 != 64) {
+              output = output + String.fromCharCode(chr3);
+            }
+          }
+          output = this._utf8_decode(output);
+          return output;
+        }
+
+        // private method for UTF-8 encoding
+        this._utf8_encode = function (string) {
+          string = string.replace(/\r\n/g, "\n");
+          let utftext = "";
+          for (let n = 0; n < string.length; n++) {
+            let c = string.charCodeAt(n);
+            if (c < 128) {
+              utftext += String.fromCharCode(c);
+            } else if ((c > 127) && (c < 2048)) {
+              utftext += String.fromCharCode((c >> 6) | 192);
+              utftext += String.fromCharCode((c & 63) | 128);
+            } else {
+              utftext += String.fromCharCode((c >> 12) | 224);
+              utftext += String.fromCharCode(((c >> 6) & 63) | 128);
+              utftext += String.fromCharCode((c & 63) | 128);
+            }
+
+          }
+          return utftext;
+        }
+
+        // private method for UTF-8 decoding
+        this._utf8_decode = function (utftext) {
+          let string = "";
+          let i = 0;
+          let c = 0;
+          let c2 = 0;
+          let c3 = 0;
+          while (i < utftext.length) {
+            c = utftext.charCodeAt(i);
+            if (c < 128) {
+              string += String.fromCharCode(c);
+              i++;
+            } else if ((c > 191) && (c < 224)) {
+              c2 = utftext.charCodeAt(i + 1);
+              string += String.fromCharCode(((c & 31) << 6) | (c2 & 63));
+              i += 2;
+            } else {
+              c2 = utftext.charCodeAt(i + 1);
+              c3 = utftext.charCodeAt(i + 2);
+              string += String.fromCharCode(((c & 15) << 12) | ((c2 & 63) << 6) | (c3 & 63));
+              i += 3;
+            }
+          }
+          return string;
+        }
+      }
+
+      let b = new Base64();
+
+      let box_id = ''
+      let current_mac = ''
+
+
+      let heart_it = NaN;
+      let heart_break_times = 0;
+      let set_device_status = () => {
+        if (heart_break_times == 0) {
+          vm.$root.deviceStatus = 1//开机
+        }
+        else if (heart_break_times > 0) {
+          if (vm.$root.is_login) {
+            vm.$root.deviceStatus = 3 //登录使用黄总
+          } else {
+            vm.$root.deviceStatus = 0 //未登录使用中
+          }
+        }
+        heart_break_times++
+      }
+
+      // 获取当前mac
+      let _get_mac = () => new Promise((resolve, reject) => {
+        vm.$ajax.get('/api/operation_system/get_current_mac', {
+          params: {},
+        }).then(resp => {
+          let data = resp.data.content;
+          current_mac = data
+          resolve(data)
+        }).catch(error => {
+          if (error && error.response && error.response.status == 401)
+            return
+          reject(error)
+        });
+      });
+
+      // 获取box_id
+      let _get_box_id = () => new Promise((resolve, reject) => {
+        vm.$ajax.get('/api/operation_system/get_all_mac_str', {
+          params: {}
+        }).then(resp => {
+          let data = resp.data.content;
+          if (!data) {
+            throw 'box_id不能为空'
+          } else {
+            box_id = data;
+            resolve(resp.data.content)
+          }
+        }).catch(error => {
+          if (error && error.response && error.response.status == 401)
+            return;
+          reject(error)
+        });
+      })
+
+      //整整发送一次心跳信息给虚机服务器
+      let _send_heart = () => new Promise((resolve, reject) => {
+        vm.$ajax.get('/api/common_api/api.device.pong', {
+          params: {
+            'mac': current_mac,
+            'deviceStatus': vm.$root.deviceStatus,
+            'account': vm.$root.account,
+            'password': vm.$root.password,
+            'systemType': vm.utils.get_system_typenum(),
+            'systemName': vm.utils.get_system_type(),
+            'boxId': box_id
+          },
+        }).then(resp => {
+          console.log(`成功给泓尚发送：${JSON.stringify({
+            'mac': current_mac,
+            'deviceStatus': vm.$root.deviceStatus,
+            'account': vm.$root.account,
+            'password': vm.$root.password,
+            'systemType': vm.utils.get_system_typenum(),
+            'systemName': vm.utils.get_system_type(),
+            'boxId': box_id
+          })}`)
+          switch (resp.data.responseResult) {
+            case 0:
+              resolve(resp.data)
+              return
+            case 1:
+              reject('mac为空');
+              break;
+            case 2:
+              reject('身份认证错误')
+              break;
+            case 3:
+              reject('系统类型不正确')
+              break;
+            case 4:
+              reject('系统名称为空')
+              break;
+            case 5:
+              reject('唯一标识号为空')
+              break;
+            default:
+              reject(`未知返回：${resp.data.responseStatus}`)
+              break;
+          }
+        }).catch(error => {
+          if (error && error.response && error.response.status == 401)
+            return
+          reject(error)
+        });
+      })
+
+      //判断是否登录并记录账号密码
+      let _is_login = () => new Promise((resolve, reject) => {
+        // 判断是否已经登录，并修改前端保存的account，password，is_login
+        vm.$ajax.get('/api/account/is_login', {
+          params: {},
+        }).then(resp => {
+          let data = resp.data.content;
+          if (data) {
+            vm.$root.is_login = true;
+            vm.$root.account = data.account;
+            vm.$root.password = data.password;
+            vm.$root.is_login = true;
+            // vm.$root.deviceStatus = 3;
+            set_device_status()
+          } else {
+            vm.$root.is_login = false;
+            vm.$root.account = '';
+            vm.$root.password = '';
+            vm.$root.is_login = false;
+            // vm.$root.deviceStatus = 0;
+            set_device_status()
+          }
+          resolve(data)
+        }).catch(error => {
+          if (error && error.response && error.response.status == 401)
+            return
+          reject(error)
+        })
+      })
+
+      //按顺序执行异步操作
+      async function await_f() {
+        await _get_box_id()
+        await _get_mac()
+        await _is_login()
+        await _send_heart()
+      }
+
+      //发送心跳
+      let sent_heart_to_vm_server = () => {
+        await_f().then(
+          v => {
+            //如果成功就继续，啥事都不用干
+          },
+          e => {
+            //失败就清除
+            window.clearInterval(heart_it)
+          })
+      }
+      //先发送一次心跳
+      await_f().then(
+        v => {
+          //成功了连续发,每五秒发一次
+          heart_it = window.setInterval(sent_heart_to_vm_server, 5000);
+          start_ws()//能给虚机服务器发送心跳再开始ws
+        }).catch(e => {
+      })
+
+
+      let start_ws = () => {
+        let ws = new WebSocket("ws://172.16.110.138:8000", "base64");
+        ws.onopen = function (evt) {
+          console.log("Connection open ...");
+          ws.send(b.encode(JSON.stringify({
+            'request': 'send_box_id',//请求标识，下面都是内容
+            'content': {//内容
+              'box_id': box_id
+            }
+          })));
+          console.log(`ws_send:${JSON.stringify({
+            'request': 'send_box_id',//请求标识，下面都是内容
+            'content': {//内容
+              'box_id': box_id
+            }
+          })}`)
+        };
+
+
+        ws.onmessage = function (evt) {
+          let recvData = b.decode(evt.data);
+
+          let startVM = (data) => new Promise((resolve, reject) => {
+            if (data.type == 2) {// 服务器虚机
+              vm.$ajax.get('/api/operation_system/link_vm', {
+                params: {
+                  'configId': data.configId,
+                  // 'console': resp.data.console,
+                  'vm_name': data.vmName,
+                }
+              }).then(resp => {
+                resolve('远程命令：启动服务器虚机成功')
+                //nothing to do
+              }).catch(error => {
+                if (error && error.response && error.response.status == 401)
+                  return
+                reject(`远程命令：启动服务器虚机失败`)
+                // vm.$root.alert.fail.message = '连接虚机失败';
+                // vm.$root.alert.fail.is_show = true;
+              })
+            } else if (data.type == 4) {// 本地虚机
+              //先获该本地续集参数
+              vm.$ajax.get('/api/common_api/api.OffLineDetail', {
+                params: {
+                  configId: data.configId,
+                  systemType: vm.utils.get_system_typenum(),
+                }
+              }).then(
+                resp => {//开启本地虚机
+                  let image_id = resp.data.image.id;
+                  let image_size = resp.data.image.size;
+                  let cpu = resp.data.flavor.cpu;
+                  let ram = resp.data.flavor.ram;
+                  let volume_size = resp.data.flavor.volume_size;
+                  let os_type = resp.data.image.os_type;
+                  let local_vm_name = resp.data.name;
+                  vm.$ajax.get('/api/operation_system/link_local_vm', {
+                    params: {
+                      configId: data.configId,
+                      image_id: image_id,
+                      image_size: image_size,
+                      cpu: cpu,
+                      ram: ram,
+                      volume_size: volume_size,
+                      os_type: os_type,
+                      name: local_vm_name,
+                    }
+                  }).then(resp => {
+                    resolve('远程命令：启动本地虚机成功')
+                  }).catch(error => {
+                    if (error && error.response && error.response.status == 401)
+                      return
+                    reject(`远程命令：启动虚机失败`)
+                    // vm.$root.alert.fail.message = error.response.data.content;
+                    // vm.$root.alert.fail.is_show = true;
+                  })
+                }
+              ).catch(err => reject(`远程命令：启动虚机失败`))
+
+            }
+          })
+
+          let stopVM = (data) => new Promise((resolve, reject) => {
+            vm.$ajax.get('/api/operation_system/stop_vm', {
+              params: {
+                configId: data.configId,
+              }
+            }).then(resp => {
+              resolve('远程命令：关闭虚机成功')
+            }).catch(error => {
+              if (error && error.response && error.response.status == 401)
+                return
+              reject(`远程命令：关闭虚机失败`)
+              // vm.$root.alert.fail.message = error.response.data.content;
+              // vm.$root.alert.fail.is_show = true;
+            });
+          })
+
+          async function switchVM(data) {
+            await stopVM(data)
+            await startVM(data)
+          }
+
+          try {
+            let data = JSON.parse(recvData)
+            console.log(`接收到远程命令：${recvData}`)
+            switch (data.task) {
+              case 'startvm':
+                console.log('startvm：' + JSON.stringify(data))
+                // {"configId":"161","task":"startvm","type":"2","vmName":"vm-2191-161-USER:yuandc-CONFIG:ubuntu"}
+                startVM(data).then((result) => console.log(result)).catch((err) => console.error(err))
+                break;
+              case 'stopvm':
+                console.log('stopvm：' + JSON.stringify(data))
+                // {"":"","task":"stopvm"}
+                stopVM(data).then((result) => console.log(result)).catch((err) => console.error(err))
+                break;
+              case 'poweroff':
+                console.log('poweroff：' + JSON.stringify(data))
+                //{"task":"poweroff"}
+                vm.$ajax.get(`/api/operation_system/shutdown`)
+                  .then(resp => {
+                    // do nothing
+                  }).catch(error => {
+                  if (error && error.response && error.response.status == 401)
+                    return
+                  console.error(`远程命令：关机失败`)
+                  // vm.$root.alert.fail.is_show = true;
+                  // vm.$root.alert.fail.message = '关机失败';
+                }).finally(() => {
+                  // vm.lan_data = vm.lans[0];
+                });
+                break;
+              case 'switchvm':
+                console.log('switchvm：' + JSON.stringify(data))
+                // {"configId": "161", "task": "switchvm", "type": "2", "vmName": "vm-2191-161-USER:yuandc-CONFIG:ubuntu"}
+                switchVM(data).then(result => console.log(result)).catch(err => console.error(err))
+                break;
+              default:
+                reject('未知命令：' + JSON.stringify(data))
+                break;
+            }
+
+          } catch (error) {
+            if (error instanceof ReferenceError) {
+              reject('不存在此方法')
+            } else {
+              reject(error)
+            }
+          }
+        };
+
+        let time = new Date();
+
+
+        ws.onclose = function (evt) {
+          console.log("Connection closed.");
+          // window.clearInterval(heartbeat_timer)
+        };
+      }
+
+
+    }
+  }
+</script>
+
+<style lang="scss">
+  /*@import "~bootstrap/scss/bootstrap";*/
+  @import "assets/sass/base";
+
+  body {
+    overflow-x: hidden;
+  }
+
+  #app {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /*text-align: center;*/
+    color: #2c3e50;
+    /*margin-top: 60px;*/
+  }
+
+</style>
