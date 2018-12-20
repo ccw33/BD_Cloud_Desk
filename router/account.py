@@ -63,7 +63,7 @@ def login():
             resp.headers.extend(flask_utils.Cross_Origin_Headers(request))
             return resp
         else:
-            abort(400,response.json()['errorinfo'].encode('utf-8'))
+            abort(400,response.json()['errorinfo'])
     except HTTPException as e:
         raise e
     except Exception as e:
